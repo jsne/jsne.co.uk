@@ -4,6 +4,9 @@
  */
 
 const config = {
+    addresses: {
+        source: 'https://github.com/jsne/jsne.co.uk',
+    },
     venues: {
         jazzCafe: {
             address: {

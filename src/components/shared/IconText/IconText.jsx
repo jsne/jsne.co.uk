@@ -40,6 +40,7 @@ const classNameIcon = css`
  * @param {Object} props     - additional props
  */
 const IconTextRoot = ({
+    className = '',
     children,
     to = null,
     ...props
@@ -58,7 +59,7 @@ const IconTextRoot = ({
 
         return (
             <a
-                className={`${primaryClassName} ${classNameIteractive}`}
+                className={`${primaryClassName} ${classNameIteractive} ${className}`}
                 href={to}
                 {...props}
                 {...optionalProps}
@@ -73,6 +74,7 @@ const IconTextRoot = ({
 
 IconTextRoot.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     to: PropTypes.string,
 };
 
