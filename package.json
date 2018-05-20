@@ -1,7 +1,7 @@
 {
   "name": "jsne.co.uk",
   "private": true,
-  "description": "",
+  "description": "Website for JavaScript North East – made with Gatsby",
   "version": "1.0.0",
   "author": "JSNE",
   "browserslist": [
