@@ -6,15 +6,14 @@
 import { css } from 'emotion';
 import React from 'react';
 
-import config from '../../../config';
+import config from 'Root/config';
 
-import { colors, fontSizes, lineHeights, spacingUnits } from '../../../styles/settings';
-import containerClassName from '../../../styles/container';
-import { secondaryDark as backgroundClassName } from '../../../styles/background';
+import { colors, fontSizes, lineHeights, spacingUnits } from 'Styles/settings';
+import containerClassName from 'Styles/container';
+import { secondaryDark as backgroundClassName } from 'Styles/background';
 
-import IconText from '../../shared/IconText';
-
-import GitHubIcon from '../Icons/GitHub';
+import IconText from 'Components/shared/IconText';
+import GitHubIcon from 'Components/shared/Icons/GitHub';
 
 const primaryClassName = css`
     padding: ${spacingUnits.half};

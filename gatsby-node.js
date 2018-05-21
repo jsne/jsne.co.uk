@@ -1,8 +1,11 @@
+/* eslint-disable no-console, consistent-return */
+
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // const generateBabelConfig = require('gatsby/dist/utils/babel-config');
 
+const { webpackConfig } = require('./build');
 const { browserslist } = require('./package.json');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -12,35 +15,8 @@ exports.modifyWebpackConfig = ({ config }) => {
         config.plugin('UglifyJsPlugin', UglifyJsPlugin);
     }
 
-    return config;
+    return config.merge(webpackConfig);
 };
-
-
-//
-// exports.modifyWebpackConfig = ({ config, stage }) => {
-//     const program = {
-//         directory: __dirname,
-//         browserslist,
-//     };
-//
-//     return generateBabelConfig(program, stage).then((babelConfig) => {
-//         // config.removeLoader("js").loader("js", {
-//         //     test: /\.jsx?$/,
-//         //     exclude: (modulePath) => {
-//         //         return (
-//         //             /node_modules/.test(modulePath) &&
-//         //             !/node_modules\/(swiper|dom7)/.test(modulePath)
-//         //         );
-//         //     },
-//         //     loader: "babel",
-//         //     query: babelConfig,
-//         // });
-//         console.info({ plugins: config._config.plugins, loaders: config._loaders })
-//         // config.removeLoader('css');
-//         config.removeLoader('cssModules');
-//         console.info({ plugins: config._config.plugins, loaders: config._loaders })
-//     });
-// };
 
 exports.modifyBabelrc = ({ babelrc }) => {
     const plugins = [
