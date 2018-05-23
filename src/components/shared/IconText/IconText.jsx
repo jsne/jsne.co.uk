@@ -7,8 +7,12 @@ import { css } from 'emotion';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { colors, lineHeights, spacingUnits } from '../../../styles/settings';
-import { transition } from '../../../styles/tools';
+import config from 'Root/config';
+
+import underlineImage from 'Img/header-underline.svg';
+
+import { colors, lineHeights, spacingUnits } from 'Styles/settings';
+import { transition } from 'Styles/tools';
 
 const primaryClassName = css`
     display: flex;
@@ -17,13 +21,21 @@ const primaryClassName = css`
 `;
 
 const classNameIteractive = css`
-    ${transition('color')};
-
+    ${transition('color, transform')};
     scroll-behavior: smooth;
+    padding-bottom: ${spacingUnits.nudge};
+    background-image: url('${underlineImage}');
+    background-size: 3rem;
+    background-position: left bottom;
+    background-repeat: repeat-x;
 
     &:hover,
     &:focus {
         color: ${colors.light};
+    }
+
+    &:active {
+        transform: translateY(${spacingUnits.nudge});
     }
 `;
 
@@ -55,6 +67,11 @@ const IconTextRoot = ({
                 el.scrollIntoView({ behavior: 'smooth' });
                 el.focus();
             };
+        }
+
+        // open external links in new window
+        if (!to.includes(config.app.domain)) {
+            optionalProps.target = '_blank';
         }
 
         return (

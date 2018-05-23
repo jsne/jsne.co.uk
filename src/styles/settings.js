@@ -64,6 +64,7 @@ export const spacingUnits = {
     half: '.5rem',
     whole: '1rem',
     double: '2rem',
+    nudge: '.1rem',
 };
 
 export const transitions = {
