@@ -22,7 +22,7 @@ export const base = css`
     cursor: pointer;
 
     &:active {
-        transform: translateY(.1rem);
+        transform: translateY(${spacingUnits.nudge});
     }
 
     &:hover:not([disabled]),
