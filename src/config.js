@@ -4,6 +4,9 @@
  */
 
 const config = {
+    app: {
+        domain: 'jsne.co.uk',
+    },
     addresses: {
         source: 'https://github.com/jsne/jsne.co.uk',
     },
