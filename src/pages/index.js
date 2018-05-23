@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from 'emotion';
 
 import IconText from '../components/shared/IconText';
 import ClockIcon from '../components/shared/Icons/Clock';
@@ -13,6 +14,11 @@ import config from '../config';
 
 const venue = config.venues.jazzCafe;
 
+const linkClassName = css`
+    border-bottom: 1px solid;
+    line-height: 25px;
+`;
+
 const IndexPage = () => [
 
     <HomeHero
@@ -23,17 +29,16 @@ const IndexPage = () => [
         }}
         secondary={{
             preTitle: 'Up next:',
-            title: 'JavaScript & Testing',
-            text: 'Scott Walton from Hotjar will give an overview and dive into testing in JavaScript, showing us why it\'s an important factor in delivering reliable systems that you can continue to build on over time. Scott will also take us through an application he\'s written in Node and Marionette to demo testing end-to-end.',
-
+            title: 'The Future of JavaScript',
+            text: 'This month we welcome Craig Ayre to talk about \'The Future of JavaScript\'. We take a step back from the WASM hype and focus on JavaScript itself. He will show us how JavaScript could look in the future, how the TC39 proposal process works and the problems that come with this.',
             infos: [
-                <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={<span>16<sup>th</sup> May</span>} />,
+                <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={<span>20<sup>th</sup> June</span>} />,
                 <IconText key="time" icon={<ClockIcon />} iconSize="large" text="6.00pm" />,
                 <IconText key="venue" icon={<MapIcon />} iconSize="large" text="Jazz Cafe" to="#venue-map" underline />,
             ],
         }}
         eventInfo={{
-            url: 'javascript-testing',
+            url: 'the-future-of-js',
         }}
     />,
 
