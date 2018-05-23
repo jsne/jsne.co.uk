@@ -23,11 +23,6 @@ const primaryClassName = css`
 const classNameIteractive = css`
     ${transition('color, transform')};
     scroll-behavior: smooth;
-    padding-bottom: ${spacingUnits.nudge};
-    background-image: url('${underlineImage}');
-    background-size: 3rem;
-    background-position: left bottom;
-    background-repeat: repeat-x;
 
     &:hover,
     &:focus {
@@ -39,12 +34,23 @@ const classNameIteractive = css`
     }
 `;
 
+const classNameUnderline = css`
+    padding-bottom: ${spacingUnits.nudge};
+    background-image: url('${underlineImage}');
+    background-size: 3rem .5rem;
+    background-position: left bottom;
+    background-repeat: repeat-x;
+`;
+
 const classNameIcon = css`
-    width: 1.25rem;
+    width: 1rem;
     margin-right: ${spacingUnits.quarter};
     fill: currentColor;
 `;
 
+const classNameIconLarge = css`
+    width: 1.25rem;
+`;
 /**
  * return anchor or div depending on `to` prop
  * @param {Object} children  - child nodes
@@ -55,8 +61,20 @@ const IconTextRoot = ({
     className = '',
     children,
     to = null,
+    underline = false,
     ...props
 }) => {
+    // eslint-disable-next-line no-underscore-dangle
+    const _className = [
+        primaryClassName,
+        className,
+    ];
+
+    if (underline) {
+        // `className` arg always goes last
+        _className.unshift(classNameUnderline);
+    }
+
     if (to) {
         const optionalProps = {};
 
@@ -74,9 +92,11 @@ const IconTextRoot = ({
             optionalProps.target = '_blank';
         }
 
+        _className.push(classNameIteractive);
+
         return (
             <a
-                className={`${primaryClassName} ${classNameIteractive} ${className}`}
+                className={_className.join(' ')}
                 href={to}
                 {...props}
                 {...optionalProps}
@@ -86,18 +106,24 @@ const IconTextRoot = ({
         );
     }
 
-    return <div className={primaryClassName} {...props}>{children}</div>;
+    return <div className={_className.join(' ')} {...props}>{children}</div>;
 };
 
 IconTextRoot.propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     to: PropTypes.string,
+    underline: PropTypes.bool,
 };
 
-const IconText = ({ icon, text, ...props }) => (
+const IconText = ({
+    icon,
+    text,
+    iconSize = '',
+    ...props
+}) => (
     <IconTextRoot {...props}>
-        <div className={classNameIcon}>
+        <div className={`${classNameIcon}${iconSize === 'large' ? ` ${classNameIconLarge}` : ''}`}>
             {icon}
         </div>
         {text}
@@ -106,6 +132,7 @@ const IconText = ({ icon, text, ...props }) => (
 
 IconText.propTypes = {
     icon: PropTypes.element.isRequired,
+    iconSize: PropTypes.string,
     text: PropTypes.oneOfType([
         PropTypes.element.isRequired,
         PropTypes.string.isRequired,

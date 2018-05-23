@@ -10,7 +10,7 @@ const GitHub = ({ style, ...props }) => (
     <svg
         viewBox="0 0 438.549 438.549"
         style={{
-            width: '1.25rem',
+            width: '100%',
             ...style,
         }}
         {...props}

@@ -27,9 +27,9 @@ const IndexPage = () => [
             text: 'Scott Walton from Hotjar will give an overview and dive into testing in JavaScript, showing us why it\'s an important factor in delivering reliable systems that you can continue to build on over time. Scott will also take us through an application he\'s written in Node and Marionette to demo testing end-to-end.',
 
             infos: [
-                <IconText key="date" theme="light" icon={<CalendarIcon />} text={<span>16<sup>th</sup> May</span>} />,
-                <IconText key="time" icon={<ClockIcon />} text="6.00pm" />,
-                <IconText key="venue" icon={<MapIcon />} text="Jazz Cafe" to="#venue-map" />,
+                <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={<span>16<sup>th</sup> May</span>} />,
+                <IconText key="time" icon={<ClockIcon />} iconSize="large" text="6.00pm" />,
+                <IconText key="venue" icon={<MapIcon />} iconSize="large" text="Jazz Cafe" to="#venue-map" underline />,
             ],
         }}
         eventInfo={{
