@@ -9,7 +9,7 @@ import fetchp from 'fetch-jsonp';
 import { sanitize } from '../../../utilities/string';
 import toQueryString from '../../../utilities/to-querystring';
 
-import { Input, Row, Status, FORM_STATUSES } from '../Form';
+import { Input, Label, Row, Status, FORM_STATUSES } from '../Form';
 
 import { primaryLarge as classNameButtonPrimaryLarge } from '../../../styles/button';
 
@@ -111,17 +111,19 @@ export default class MailingListForm extends PureComponent {
                 <input type="hidden" name="c" value="?" />
 
                 <Row>
+                    <Label htmlFor="NAME" value="Your name" />
                     <Input
                         type="name"
-                        placeholder="Name"
+                        placeholder="Charlie Kelly"
                         required
                         name="NAME"
                     />
                 </Row>
                 <Row>
+                    <Label htmlFor="EMAIL" value="Your email" />
                     <Input
                         type="email"
-                        placeholder="Email"
+                        placeholder="charlie@paddyspub.com"
                         required
                         name="EMAIL"
                         ref={this.email}
