@@ -14,13 +14,7 @@ import config from '../config';
 
 const venue = config.venues.jazzCafe;
 
-const linkClassName = css`
-    border-bottom: 1px solid;
-    line-height: 25px;
-`;
-
 const IndexPage = () => [
-
     <HomeHero
         key="hero"
         primary={{
