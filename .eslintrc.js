@@ -26,7 +26,13 @@ module.exports = {
 
         // jsx
         'jsx-a11y/anchor-is-valid': 0,
-
+        "jsx-a11y/label-has-for": [ 2, {
+            "components": [ "Label" ],
+            "required": {
+                "some": [ "nesting", "id" ]
+            },
+            "allowChildren": false,
+        }],
         // react
         'react/forbid-prop-types': 0,
         'react/jsx-filename-extension': 0,
