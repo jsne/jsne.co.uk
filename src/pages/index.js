@@ -1,5 +1,4 @@
 import React from 'react';
-import { css } from 'emotion';
 
 import IconText from '../components/shared/IconText';
 import ClockIcon from '../components/shared/Icons/Clock';
