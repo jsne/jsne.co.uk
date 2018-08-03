@@ -37,10 +37,10 @@ module.exports = {
         {
             resolve: 'gatsby-source-contentful',
             options: {
-              spaceId: '57zqw4qqv6jg',
-              accessToken: '6323a8db4d6e36706eb5822f815f8b41ce3f4d0e5ac59343d39f41f098215ebd',
-              host: 'preview.contentful.com',
+                spaceId: '57zqw4qqv6jg',
+                accessToken: '6323a8db4d6e36706eb5822f815f8b41ce3f4d0e5ac59343d39f41f098215ebd',
+                host: 'preview.contentful.com',
             },
-          },
+        },
     ],
 };
