@@ -2439,7 +2439,7 @@ contentful-sdk-core@^6.0.0-beta0:
     lodash "^4.17.10"
     qs "^6.5.2"
 
-contentful@^6.1.0, contentful@~6.1.2:
+contentful@^6.1.0:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/contentful/-/contentful-6.1.2.tgz#dae0512f9214238921c7c8d794989a54239d724e"
   dependencies:
