@@ -65,14 +65,13 @@ const IndexPage = ({
 export default IndexPage;
 
 export const pageQuery = graphql`
-    query {
-        allContentfulNextEvent {
-        edges {
-            node {
-                title
-                description
-            }
-
-        }
+{
+    eventsCollection {
+      items {
+        title
+        description
+      }
     }
+  }
+  
 `;
