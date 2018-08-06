@@ -9,52 +9,94 @@ import HomeHero from '../components/Home';
 import { MailingListFormSection } from '../components/shared/MailingListForm';
 import { MapSection } from '../components/shared/Map';
 
-import config from '../config';
 
-const venue = config.venues.jazzCafe;
+const IndexPage = ({
+    data: {
+        allContentfulEvents: { edges: events },
+        allContentfulVenue: { edges: venue },
+    },
+}) => {
+    const eventInfo = events[0].node;
+    const eventDate = new Date(eventInfo.eventDate).toDateString();
+    const eventTime = new Date(eventInfo.eventDate).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
+    const venueInfo = venue[0].node;
 
-const IndexPage = () => [
-    <HomeHero
-        key="hero"
-        primary={{
-            title: <div><span>JavaScript</span> North East</div>,
-            text: 'We\'re an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.',
-        }}
-        secondary={{
-            preTitle: 'Up next:',
-            title: 'The Future of JavaScript',
-            text: 'This month we welcome Craig Ayre to talk about \'The Future of JavaScript\'. We take a step back from the WASM hype and focus on JavaScript itself. He will show us how JavaScript could look in the future, how the TC39 proposal process works and the problems that come with this.',
-            infos: [
-                <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={<span>20<sup>th</sup> June</span>} />,
-                <IconText key="time" icon={<ClockIcon />} iconSize="large" text="6.00pm" />,
-                <IconText key="venue" icon={<MapIcon />} iconSize="large" text="Jazz Cafe" to="#venue-map" underline />,
-            ],
-        }}
-        eventInfo={{
-            url: 'the-future-of-js',
-        }}
-    />,
+    return [
+        <HomeHero
+            key="hero"
+            primary={{
+                title: <div><span>JavaScript</span> North East</div>,
+                text: 'We\'re an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.',
+            }}
+            secondary={{
+                preTitle: 'Up next:',
+                title: eventInfo.title,
+                text: eventInfo.description.description,
+                infos: [
+                    <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDate} />,
+                    <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
+                    <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venueInfo.name} to="#venue-map" underline />,
+                ],
+            }}
+            eventInfo={{
+                url: 'the-future-of-js',
+            }}
+        />,
 
-    <MailingListFormSection key="MailingListFormSection" />,
-    <MapSection
-        key="MapSection"
-        center={venue.location}
-        markers={[{
-            title: venue.name,
-            text: (
-                <div>
-                    {venue.address.street} <br />
-                    {venue.address.postcode}
-                </div>
-            ),
-            lat: venue.location.lat,
-            link: {
-                href: venue.mapsLink,
-                text: 'View on Google Maps',
-            },
-            lng: venue.location.lng,
-        }]}
-    />,
-];
+        <MailingListFormSection key="MailingListFormSection" />,
+        <MapSection
+            key="MapSection"
+            center={venueInfo.location}
+            markers={[{
+                title: venueInfo.name,
+                text: (
+                    <div>
+                        {venueInfo.street} <br />
+                        {venueInfo.postcode}
+                    </div>
+                ),
+                lat: venueInfo.location.lat,
+                link: {
+                    href: venueInfo.mapsLink,
+                    text: 'View on Google Maps',
+                },
+                lng: venueInfo.location.lon,
+            }]}
+        />,
+    ];
+};
+
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+query events {
+    allContentfulVenue {
+        edges {
+            node {
+                name
+                street
+                postcode
+                location { lat lon }
+            }
+        }
+    }
+    allContentfulEvents(limit:1, sort:{ fields: [eventDate] }) {
+
+        edges {
+            node {
+                title,
+                description { description },
+                eventDate,
+                eventLocation {
+                  lat
+                  lon
+                }
+            }
+        }
+
+
+    }
+  }
+
+`;
