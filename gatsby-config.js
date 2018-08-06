@@ -1,7 +1,12 @@
+
+require('dotenv').config();
+
 module.exports = {
+
     siteMetadata: {
         title: 'JSNE Website',
     },
+
     plugins: [
         'gatsby-plugin-react-helmet',
         // 'gatsby-plugin-emotion',
@@ -27,5 +32,12 @@ module.exports = {
                 plugins: [],
             },
         },
-    ],
+        {
+            resolve: 'gatsby-source-contentful',
+            options: {
+                spaceId: process.env.CONTENTFUL_SPACE,
+                accessToken: process.env.CONTENTFUL_TOKEN,
+            },
+        },
+    ]
 };
