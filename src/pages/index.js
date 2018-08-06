@@ -39,7 +39,7 @@ const IndexPage = ({
                 ],
             }}
             eventInfo={{
-                url: 'the-future-of-js',
+                url: eventInfo.titoId,
             }}
         />,
 
@@ -88,6 +88,7 @@ query events {
                 title,
                 description { description },
                 eventDate,
+                titoId
             }
         }
     }
