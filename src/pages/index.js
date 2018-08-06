@@ -20,7 +20,7 @@ const IndexPage = ({
     const eventDate = new Date(eventInfo.eventDate).toDateString();
     const eventTime = new Date(eventInfo.eventDate).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
     const venueInfo = venue[0].node;
-
+    console.log(venueInfo)
     return [
         <HomeHero
             key="hero"
