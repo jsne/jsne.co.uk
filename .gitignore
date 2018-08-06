@@ -10,3 +10,4 @@ yarn-error.log
 *.ignore
 package-lock.json
 *.emotion.css
+.env
