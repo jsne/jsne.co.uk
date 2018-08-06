@@ -1,9 +1,7 @@
 /* eslint-disable no-console, consistent-return */
 
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
+
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-// const generateBabelConfig = require('gatsby/dist/utils/babel-config');
 
 const { webpackConfig } = require('./build');
 const { browserslist } = require('./package.json');
@@ -37,7 +35,7 @@ exports.modifyBabelrc = ({ babelrc }) => {
 
     return {
         ...babelrc,
-        plugins: babelrc.plugins.concat(plugins),
+        plugins: babelrc.plugins.concat(plugins, ['transform-regenerator'], ['transform-runtime']),
     };
 };
 
