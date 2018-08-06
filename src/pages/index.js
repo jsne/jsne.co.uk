@@ -81,7 +81,7 @@ query events {
             }
         }
     }
-    allContentfulEvents(sort:{ fields:[eventDate]}) {
+    allContentfulEvents(limit:1, sort:{ fields: [eventDate] }) {
 
         edges {
             node {
