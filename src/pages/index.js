@@ -83,21 +83,14 @@ query events {
         }
     }
     allContentfulEvents(limit:1, sort:{ fields: [eventDate] }) {
-
         edges {
             node {
                 title,
                 description { description },
                 eventDate,
-                eventLocation {
-                  lat
-                  lon
-                }
             }
         }
-
-
     }
-  }
+}
 
 `;
