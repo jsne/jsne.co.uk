@@ -9,54 +9,94 @@ import HomeHero from '../components/Home';
 import { MailingListFormSection } from '../components/shared/MailingListForm';
 import { MapSection } from '../components/shared/Map';
 
-import config from '../config';
 
-const venue = config.venues.jazzCafe;
+const IndexPage = ({
+    data: {
+        allContentfulEvents: { edges: events },
+        allContentfulVenue: { edges: venue },
+    },
+}) => {
+    const eventInfo = events[0].node;
+    const eventDate = new Date(eventInfo.eventDate).toDateString();
+    const eventTime = new Date(eventInfo.eventDate).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
+    const venueInfo = venue[0].node;
 
-const IndexPage = () => [
+    return [
+        <HomeHero
+            key="hero"
+            primary={{
+                title: <div><span>JavaScript</span> North East</div>,
+                text: 'We\'re an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.',
+            }}
+            secondary={{
+                preTitle: 'Up next:',
+                title: eventInfo.title,
+                text: eventInfo.description.description,
+                infos: [
+                    <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDate} />,
+                    <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
+                    <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venueInfo.name} to="#venue-map" underline />,
+                ],
+            }}
+            eventInfo={{
+                url: 'the-future-of-js',
+            }}
+        />,
 
-    <HomeHero
-        key="hero"
-        primary={{
-            title: <div><span>JavaScript</span> North East</div>,
-            text: 'We\'re an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.',
-        }}
-        secondary={{
-            preTitle: 'Up next:',
-            title: 'JavaScript & Testing',
-            text: 'Scott Walton from Hotjar will give an overview and dive into testing in JavaScript, showing us why it\'s an important factor in delivering reliable systems that you can continue to build on over time. Scott will also take us through an application he\'s written in Node and Marionette to demo testing end-to-end.',
+        <MailingListFormSection key="MailingListFormSection" />,
+        <MapSection
+            key="MapSection"
+            center={venueInfo.location}
+            markers={[{
+                title: venueInfo.name,
+                text: (
+                    <div>
+                        {venueInfo.street} <br />
+                        {venueInfo.postcode}
+                    </div>
+                ),
+                lat: venueInfo.location.lat,
+                link: {
+                    href: venueInfo.mapsLink,
+                    text: 'View on Google Maps',
+                },
+                lng: venueInfo.location.lon,
+            }]}
+        />,
+    ];
+};
 
-            infos: [
-                <IconText key="date" theme="light" icon={<CalendarIcon />} text={<span>16<sup>th</sup> May</span>} />,
-                <IconText key="time" icon={<ClockIcon />} text="6.00pm" />,
-                <IconText key="venue" icon={<MapIcon />} text="Jazz Cafe" to="#venue-map" />,
-            ],
-        }}
-        eventInfo={{
-            url: 'javascript-testing',
-        }}
-    />,
-
-    <MailingListFormSection key="MailingListFormSection" />,
-    <MapSection
-        key="MapSection"
-        center={venue.location}
-        markers={[{
-            title: venue.name,
-            text: (
-                <div>
-                    {venue.address.street} <br />
-                    {venue.address.postcode}
-                </div>
-            ),
-            lat: venue.location.lat,
-            link: {
-                href: venue.mapsLink,
-                text: 'View on Google Maps',
-            },
-            lng: venue.location.lng,
-        }]}
-    />,
-];
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+query events {
+    allContentfulVenue {
+        edges {
+            node {
+                name
+                street
+                postcode
+                location { lat lon }
+            }
+        }
+    }
+    allContentfulEvents(limit:1, sort:{ fields: [eventDate] }) {
+
+        edges {
+            node {
+                title,
+                description { description },
+                eventDate,
+                eventLocation {
+                  lat
+                  lon
+                }
+            }
+        }
+
+
+    }
+  }
+
+`;

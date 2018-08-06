@@ -10,7 +10,7 @@ const Clock = ({ style, ...props }) => (
     <svg
         viewBox="0 0 24 24"
         style={{
-            width: '1.25rem',
+            width: '100%',
             ...style,
         }}
         {...props}

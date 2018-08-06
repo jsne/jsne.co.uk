@@ -1,8 +1,9 @@
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-// const generateBabelConfig = require('gatsby/dist/utils/babel-config');
+/* eslint-disable no-console, consistent-return */
 
+
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const { webpackConfig } = require('./build');
 const { browserslist } = require('./package.json');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -12,35 +13,8 @@ exports.modifyWebpackConfig = ({ config }) => {
         config.plugin('UglifyJsPlugin', UglifyJsPlugin);
     }
 
-    return config;
+    return config.merge(webpackConfig);
 };
-
-
-//
-// exports.modifyWebpackConfig = ({ config, stage }) => {
-//     const program = {
-//         directory: __dirname,
-//         browserslist,
-//     };
-//
-//     return generateBabelConfig(program, stage).then((babelConfig) => {
-//         // config.removeLoader("js").loader("js", {
-//         //     test: /\.jsx?$/,
-//         //     exclude: (modulePath) => {
-//         //         return (
-//         //             /node_modules/.test(modulePath) &&
-//         //             !/node_modules\/(swiper|dom7)/.test(modulePath)
-//         //         );
-//         //     },
-//         //     loader: "babel",
-//         //     query: babelConfig,
-//         // });
-//         console.info({ plugins: config._config.plugins, loaders: config._loaders })
-//         // config.removeLoader('css');
-//         config.removeLoader('cssModules');
-//         console.info({ plugins: config._config.plugins, loaders: config._loaders })
-//     });
-// };
 
 exports.modifyBabelrc = ({ babelrc }) => {
     const plugins = [
@@ -61,60 +35,7 @@ exports.modifyBabelrc = ({ babelrc }) => {
 
     return {
         ...babelrc,
-        plugins: babelrc.plugins.concat(plugins),
+        plugins: babelrc.plugins.concat(plugins, ['transform-regenerator'], ['transform-runtime']),
     };
 };
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-    const { createPage } = boundActionCreators;
-
-    return graphql(`
-        {
-            allMarkdownRemark(limit: 1000) {
-                edges {
-                    node {
-                        id
-                        fields {
-                            slug
-                        }
-                        frontmatter {
-                            templateKey
-                        }
-                    }
-                }
-            }
-        }
-        `).then((result) => {
-        if (result.errors) {
-            result.errors.forEach(e => console.error(e.toString()));
-            return Promise.reject(result.errors);
-        }
-
-        const posts = result.data.allMarkdownRemark.edges;
-
-        posts.forEach((edge) => {
-            const { id } = edge.node;
-            createPage({
-                path: edge.node.fields.slug,
-                component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.js`),
-                // additional data can be passed via context
-                context: {
-                    id,
-                },
-            });
-        });
-    });
-};
-
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-    const { createNodeField } = boundActionCreators;
-
-    if (node.internal.type === 'MarkdownRemark') {
-        const value = createFilePath({ node, getNode });
-        createNodeField({
-            name: 'slug',
-            node,
-            value,
-        });
-    }
-};
