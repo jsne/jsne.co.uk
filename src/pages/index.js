@@ -78,6 +78,7 @@ query events {
                 street
                 postcode
                 location { lat lon }
+                mapsLink
             }
         }
     }
