@@ -51,7 +51,12 @@ root styles
     box-sizing: inherit;
 }
 
+:root {
+    font-size: 16px;
+}
+
 body {
+    margin: 0;
     font-size: 1.2em;
     line-height: 1.4375;
     font-family: 'Overpass', arial, sans-serif;
