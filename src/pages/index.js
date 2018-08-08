@@ -1,14 +1,13 @@
 import React from 'react';
 
-import IconText from '../components/shared/IconText';
-import ClockIcon from '../components/shared/Icons/Clock';
-import CalendarIcon from '../components/shared/Icons/Calendar';
-import MapIcon from '../components/shared/Icons/Map';
+import ClockIcon from 'Components/shared/Icons/Clock';
+import CalendarIcon from 'Components/shared/Icons/Calendar';
+import IconText from 'Components/shared/IconText';
+import { MailingListFormSection } from 'Components/shared/MailingListForm';
+import MapIcon from 'Components/shared/Icons/Map';
+import { MapSection } from 'Components/shared/Map';
 
-import HomeHero from '../components/Home';
-import { MailingListFormSection } from '../components/shared/MailingListForm';
-import { MapSection } from '../components/shared/Map';
-
+import HomeHero from 'Components/Home';
 
 const IndexPage = ({
     data: {
