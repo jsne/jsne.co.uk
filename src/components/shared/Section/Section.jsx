@@ -7,7 +7,7 @@ import { css } from 'emotion';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { breakpoints, spacingUnits } from '../../../styles/settings';
+import { breakpoints, spacingUnits } from 'Styles/settings';
 
 import Title from './Title';
 

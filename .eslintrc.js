@@ -20,6 +20,7 @@ module.exports = {
     'rules': {
         'indent': ['error', 4],
         'linebreak-style': ['error', 'unix'],
+        'no-confusing-arrow': 0,
         'no-tabs': 0,
         'quotes': ['error', 'single'],
         'semi': ['error', 'always'],
@@ -45,8 +46,6 @@ module.exports = {
         'import/core-modules': [
             'graphql', // provided by gatsby
             'prop-types', // provided by gatsby
-            'react', // provided by gatsby
-            'react-dom', // provided by gatsby
         ],
         'import/resolver': {
             webpack: {
