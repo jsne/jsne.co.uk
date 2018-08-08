@@ -59,7 +59,7 @@ const IndexPage = ({
                     href: venueInfo.mapsLink,
                     text: 'View on Google Maps',
                 },
-                lng: venueInfo.location.lon,
+                lng: venueInfo.location.lng,
             }]}
         />,
     ];
@@ -76,7 +76,7 @@ query events {
                 name
                 street
                 postcode
-                location { lat lon }
+                location { lat lng: lon }
                 mapsLink
             }
         }
