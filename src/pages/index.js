@@ -17,8 +17,12 @@ const IndexPage = ({
 }) => {
     const eventInfo = events[0].node;
     const eventDate = new Date(eventInfo.eventDate).toDateString();
-    const eventTime = new Date(eventInfo.eventDate).toLocaleTimeString('en-GB', { timeZone: 'UTC' });
     const venueInfo = venue[0].node;
+    const eventTime = new Date(eventInfo.eventDate).toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC',
+    });
 
     return [
         <HomeHero
