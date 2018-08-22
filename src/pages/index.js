@@ -49,7 +49,7 @@ const IndexPage = ({
         <MailingListFormSection key="MailingListFormSection" />,
         <MapSection
             key="MapSection"
-            center={venueInfo.location}
+            center={{ lat: venueInfo.location.lat, lng: venueInfo.location.lon }}
             markers={[{
                 title: venueInfo.name,
                 text: (
@@ -63,7 +63,7 @@ const IndexPage = ({
                     href: venueInfo.mapsLink,
                     text: 'View on Google Maps',
                 },
-                lng: venueInfo.location.lng,
+                lng: venueInfo.location.lon,
             }]}
         />,
     ];
@@ -80,12 +80,12 @@ query events {
                 name
                 street
                 postcode
-                location { lat lng: lon }
+                location { lat lon }
                 mapsLink
             }
         }
     }
-    allContentfulEvents(limit:1, sort:{ fields: [eventDate] }) {
+    allContentfulEvents(limit:1, sort:{ fields: [eventDate], order: DESC }) {
         edges {
             node {
                 title,
