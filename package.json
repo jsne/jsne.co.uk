@@ -4,6 +4,11 @@
   "description": "Website for JavaScript North East – made with Gatsby",
   "version": "1.2.0",
   "author": "JSNE",
+  "homepage": "https://github.com/jsne/jsne.co.uk#jsne-website",
+  "repository": {
+  "type" : "git",
+    "url" : "https://github.com/jsne/jsne.co.uk.git"
+  },
   "browserslist": [
     "> .25%"
   ],
