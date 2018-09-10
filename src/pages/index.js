@@ -21,7 +21,6 @@ const IndexPage = ({
     const eventTime = new Date(eventInfo.eventDate).toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
-        timeZone: 'UTC',
     });
 
     return [
