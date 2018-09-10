@@ -20,8 +20,8 @@ const IndexPage = ({
     const eventDateString = eventDate.toDateString();
     const venueInfo = venue[0].node;
 
-    const eventHours = eventDate.getHours();
-    const eventMins = (eventDate.getMinutes() < 10 ? '0' : '') + eventDate.getMinutes();
+    const eventHours = eventDate.getUTCHours();
+    const eventMins = (eventDate.getUTCMinutes() < 10 ? '0' : '') + eventDate.getMinutes();
     const eventTime = `${eventHours}:${eventMins}`;
 
     return [
