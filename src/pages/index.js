@@ -16,12 +16,13 @@ const IndexPage = ({
     },
 }) => {
     const eventInfo = events[0].node;
-    const eventDate = new Date(eventInfo.eventDate).toDateString();
+    const eventDate = new Date(eventInfo.eventDate);
+    const eventDateString = eventDate.toDateString();
     const venueInfo = venue[0].node;
-    const eventTime = new Date(eventInfo.eventDate).toLocaleTimeString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
+
+    const eventHours = eventDate.getHours();
+    const eventMins = (eventDate.getMinutes() < 10 ? '0' : '') + eventDate.getMinutes();
+    const eventTime = `${eventHours}:${eventMins}`;
 
     return [
         <HomeHero
@@ -35,7 +36,7 @@ const IndexPage = ({
                 title: eventInfo.title,
                 text: eventInfo.description.description,
                 infos: [
-                    <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDate} />,
+                    <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
                     <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
                     <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venueInfo.name} to="#venue-map" underline />,
                 ],
