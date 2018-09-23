@@ -1,14 +1,15 @@
 require('dotenv').config();
 
+const { webpackConfig } = require('./build');
+
 module.exports = {
 
     siteMetadata: {
-        title: 'JSNE Website',
+        title: 'JavaScript North East',
     },
 
     plugins: [
         'gatsby-plugin-react-helmet',
-        // 'gatsby-plugin-emotion',
         {
             resolve: 'gatsby-source-filesystem',
             options: {
@@ -19,18 +20,13 @@ module.exports = {
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/src/img`,
+                path: webpackConfig.resolve.alias.Assets,
                 name: 'images',
             },
         },
         'gatsby-plugin-sharp',
         'gatsby-transformer-sharp',
-        {
-            resolve: 'gatsby-transformer-remark',
-            options: {
-                plugins: [],
-            },
-        },
+        'gatsby-transformer-remark',
         {
             resolve: 'gatsby-source-contentful',
             options: {

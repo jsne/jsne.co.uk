@@ -1,19 +1,18 @@
 /* eslint-disable no-console, consistent-return */
 
-
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
 const { webpackConfig } = require('./build');
 const { browserslist } = require('./package.json');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
-exports.modifyWebpackConfig = ({ config }) => {
-    if (!isDev) {
-        config.plugin('UglifyJsPlugin', UglifyJsPlugin);
-    }
-
-    return config.merge(webpackConfig);
+exports.onCreateWebpackConfig = ({
+    actions,
+    // getConfig,
+    // loaders,
+    // rules,
+    // stage,
+}) => {
+    actions.setWebpackConfig(webpackConfig);
 };
 
 exports.modifyBabelrc = ({ babelrc }) => {
@@ -38,4 +37,3 @@ exports.modifyBabelrc = ({ babelrc }) => {
         plugins: babelrc.plugins.concat(plugins, ['transform-regenerator'], ['transform-runtime']),
     };
 };
-

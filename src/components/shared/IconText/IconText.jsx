@@ -9,7 +9,7 @@ import React from 'react';
 
 import config from 'Root/config';
 
-import underlineImage from 'Img/header-underline.svg';
+import underlineImage from 'Assets/images/header-underline.svg';
 
 import { colors, lineHeights, spacingUnits } from 'Styles/settings';
 import { transition } from 'Styles/tools';
