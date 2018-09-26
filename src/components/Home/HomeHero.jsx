@@ -190,7 +190,7 @@ class HomeHero extends React.Component {
                                 </div>
                                 <div className={classNameSecondaryTitle}>{secondary.title}</div>
                             </h1>
-                            <p className={`${classNameMarginBottom} ${classNameSectionText}`}>{secondary.text}</p>
+                            <div className={`${classNameMarginBottom} ${classNameSectionText}`} dangerouslySetInnerHTML={{ __html: secondary.text }} />
                         </div>
                         <div className={classNameInfos}>
                             {secondary.infos.map((info, i) => (
