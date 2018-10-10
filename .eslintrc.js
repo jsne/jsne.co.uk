@@ -17,9 +17,7 @@ module.exports = {
             'jsx': true,
         },
     },
-    'globals': {
-        'graphql': true,
-    },
+    'globals': {},
     'rules': {
         'indent': ['error', 4],
         'linebreak-style': ['error', 'unix'],
