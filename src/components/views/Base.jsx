@@ -26,7 +26,7 @@ const Base = ({
                 { name: 'keywords', content: 'JavaScript, meet-up, JSNE' },
                 { name: 'msapplication-TileColor', content: 'red' },
                 { name: 'theme-color', content: 'blue' },
-                ...metas
+                ...metas,
             ]}
             link={[
                 /* eslint-disable object-curly-newline */
@@ -36,7 +36,7 @@ const Base = ({
                 { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
                 { rel: 'manifest', href: '/site.webmanifest' },
                 { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#6030c6' },
-                ...links
+                ...links,
                 /* eslint-enable object-curly-newline */
             ]}
             script={scripts}
