@@ -19,7 +19,7 @@ const IndexPage = ({
     },
 }) => {
     const eventInfo = events[0].node;
-    const eventDate = new Date(eventInfo.eventDate);
+    const eventDate = new Date(`${eventInfo.eventDate}Z`);
     const eventDateString = eventDate.toDateString();
     const venueInfo = venue[0].node;
 
