@@ -1,3 +1,3 @@
-import Root from './Root';
+import LayoutRoot from './LayoutRoot';
 
-export default Root;
+export { LayoutRoot };
