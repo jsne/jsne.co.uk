@@ -17,6 +17,8 @@ module.exports.webpackConfig = {
             Templates: resolve(__dirname, 'src/templates'),
             Utiltities: resolve(__dirname, 'src/utilities'),
         },
+        // @NOTE explictly defining `extensions` to appease eslint imports
+        extensions: ['.mjs', '.js', '.jsx', '.wasm', '.json'],
         modules: ['node_modules', resolve(__dirname, 'src')],
     },
 };
