@@ -6,6 +6,8 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import 'Static/styles.css';
+
 /**
  * Generic unstyled view with `Helmet`
  */
