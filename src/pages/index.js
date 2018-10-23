@@ -28,9 +28,7 @@ const IndexPage = ({
     const eventTime = `${eventHours}:${eventMins}`;
 
     return (
-        <Base
-            title="Testaroo"
-        >
+        <Base>
             <HomeHero
                 primary={{
                     title: (
