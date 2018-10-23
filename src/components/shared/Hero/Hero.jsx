@@ -10,7 +10,7 @@ import React from 'react';
 import { secondary as secondaryClassName } from 'Styles/background';
 import { breakpoints, colors, spacingUnits } from 'Styles/settings';
 
-import backgroundImage from 'Img/hero-background.svg';
+import backgroundImage from 'Assets/images/hero-background.svg';
 
 const className = css`
     ${secondaryClassName};
