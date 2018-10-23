@@ -15,13 +15,13 @@ import HomeHero from 'Components/Home';
 const IndexPage = ({
     data: {
         allContentfulEvents: { edges: events },
-        allContentfulVenue: { edges: venue },
     },
 }) => {
     const eventInfo = events[0].node;
     const eventDate = new Date(`${eventInfo.eventDate}Z`);
     const eventDateString = eventDate.toDateString();
-    const venueInfo = venue[0].node;
+
+    const { venue } = eventInfo;
 
     const eventHours = eventDate.getUTCHours();
     const eventMins = (eventDate.getUTCMinutes() < 10 ? '0' : '') + eventDate.getMinutes();
@@ -35,8 +35,7 @@ const IndexPage = ({
                 primary={{
                     title: (
                         <div>
-                            <span>JavaScript</span>
-                            North East
+                            <span>JavaScript</span> North East
                         </div>
                     ),
                     text: 'We\'re an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.',
@@ -48,7 +47,7 @@ const IndexPage = ({
                     infos: [
                         <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
                         <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
-                        <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venueInfo.name} to="#venue-map" underline />,
+                        <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venue.name} to="#venue-map" underline />,
                     ],
                 }}
                 eventInfo={{
@@ -59,22 +58,22 @@ const IndexPage = ({
             <MailingListFormSection />
 
             <MapSection
-                center={{ lat: venueInfo.location.lat, lng: venueInfo.location.lon }}
+                center={{ lat: venue.location.lat, lng: venue.location.lon }}
                 markers={[{
-                    title: venueInfo.name,
+                    title: venue.name,
                     text: (
                         <div>
-                            {venueInfo.street}
+                            {venue.street}
                             <br />
-                            {venueInfo.postcode}
+                            {venue.postcode}
                         </div>
                     ),
-                    lat: venueInfo.location.lat,
+                    lat: venue.location.lat,
                     link: {
-                        href: venueInfo.mapsLink,
+                        href: venue.mapsLink,
                         text: 'View on Google Maps',
                     },
-                    lng: venueInfo.location.lon,
+                    lng: venue.location.lon,
                 }]}
             />
         </Base>
@@ -85,31 +84,26 @@ IndexPage.propTypes = {
     data: PropTypes.object,
 };
 
-export default IndexPage;
-
 export const pageQuery = graphql`
-query events {
-    allContentfulVenue {
-        edges {
-            node {
-                name
-                street
-                postcode
-                location { lat lon }
-                mapsLink
+    query events {
+        allContentfulEvents(limit:1, sort:{ fields: [eventDate], order: DESC }) {
+            edges {
+                node {
+                    title
+                    description { description }
+                    eventDate
+                    titoId
+                    venue {
+                        name
+                        street
+                        postcode
+                        location { lat lon }
+                        mapsLink
+                    }
+                }
             }
         }
     }
-    allContentfulEvents(limit:1, sort:{ fields: [eventDate], order: DESC }) {
-        edges {
-            node {
-                title,
-                description { description },
-                eventDate,
-                titoId
-            }
-        }
-    }
-}
-
 `;
+
+export default IndexPage;
