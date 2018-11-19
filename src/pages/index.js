@@ -9,12 +9,14 @@ import IconText from 'Components/shared/IconText';
 import { MailingListFormSection } from 'Components/shared/MailingListForm';
 import MapIcon from 'Components/shared/Icons/Map';
 import { MapSection } from 'Components/shared/Map';
+import Notification from 'Components/shared/Notification';
 
 import HomeHero from 'Components/Home';
 
 const IndexPage = ({
     data: {
         allContentfulEvents: { edges: events },
+        contentfulNotifcation,
     },
 }) => {
     const eventInfo = events[0].node;
@@ -29,6 +31,14 @@ const IndexPage = ({
 
     return (
         <Base>
+            <Notification
+                content={contentfulNotifcation.text.content[0].content[0].value}
+                cta={{
+                    label: contentfulNotifcation.ctaLabel,
+                    uri: contentfulNotifcation.ctaUri,
+                }}
+                icon={contentfulNotifcation.icon}
+            />
             <HomeHero
                 primary={{
                     title: (
@@ -83,7 +93,16 @@ IndexPage.propTypes = {
 };
 
 export const pageQuery = graphql`
-    query events {
+    query pageQuery {
+        contentfulNotifcation(uid: {eq:"new-venue-black-swan"}) {
+            text {
+                content { content { value } }
+            }
+            ctaLabel
+            ctaUri
+            icon
+        }
+
         allContentfulEvents(limit:1, sort:{ fields: [eventDate], order: DESC }) {
             edges {
                 node {
