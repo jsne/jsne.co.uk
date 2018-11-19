@@ -44,6 +44,7 @@ const classNameUnderline = css`
 
 const classNameIcon = css`
     width: 1rem;
+    flex-shrink: 0;
     margin-right: ${spacingUnits.quarter};
     fill: currentColor;
 `;
