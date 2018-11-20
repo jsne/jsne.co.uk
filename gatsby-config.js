@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const { webpackConfig } = require('./build');
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 module.exports = {
 
     siteMetadata: {
@@ -10,6 +12,15 @@ module.exports = {
 
     plugins: [
         'gatsby-plugin-react-helmet',
+        {
+            resolve: 'gatsby-plugin-emotion',
+            optons: {
+                autoLabel: isDev,
+                cssPropOptimization: true,
+                labelFormat: '[local]',
+                sourceMap: isDev,
+            },
+        },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
