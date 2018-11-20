@@ -7,9 +7,9 @@ import { css } from 'emotion';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import underlineImage from '../../../img/header-underline.svg';
+import underlineImage from 'Assets/images/header-underline.svg';
 
-import { colors, spacingUnits } from '../../../styles/settings';
+import { colors, spacingUnits } from 'Styles/settings';
 
 
 const primaryClassName = css`
