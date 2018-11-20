@@ -13,6 +13,10 @@ const NotificationContent = styled('h1')`
     flex-grow: 1;
     font-size: ${theme.fontSizes.normal};
     font-weight: normal;
+
+    @media(min-width: ${theme.breakpoints.low}) {
+        margin-right: ${props => props.hasCta ? theme.spacingUnits.whole : 0};
+    }
 `;
 
 const NotificationCta = styled('a')`
@@ -53,7 +57,7 @@ const Notification = ({
 }) => (
     <NotificationRoot {...props}>
         <NotificationInner>
-            <NotificationContent dangerouslySetInnerHTML={{ __html: content }} /> {/* eslint-disable-line react/no-danger, max-len */}
+            <NotificationContent hasCta={!!cta} dangerouslySetInnerHTML={{ __html: content }} /> {/* eslint-disable-line react/no-danger, max-len */}
             {cta && <NotificationCta href={cta.uri}>{cta.label}</NotificationCta>}
         </NotificationInner>
     </NotificationRoot>
