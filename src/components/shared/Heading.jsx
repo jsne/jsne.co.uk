@@ -8,11 +8,18 @@ import React from 'react';
 import styled from 'react-emotion';
 
 const AnchorHeadingRoot = styled('div')`
-    position: relative;
+    display: flex;
+    color: ${props => props.theme.color.uiTextBase};
 `;
 
 const AnchorHeadingAnchor = styled('a')`
-    margin-right: .5rem;
+    margin-right: ${props => props.theme.spacing.half};
+    color: ${props => props.theme.color.pageAnchorBase};
+
+    &:hover,
+    &:focus {
+        color: ${props => props.theme.color.pageAnchorActive};
+    }
 `;
 
 export const BaseAnchorHeading = ({
@@ -40,17 +47,17 @@ BaseAnchorHeading.propTypes = {
 export const H1 = styled(({ className, ...props }) => (
     <h1 className={className}><BaseAnchorHeading as="h1" {...props} /></h1>
 ))`
-    color: red;
+    font-size: ${props => props.theme.fontSize.larger};
 `;
 
 export const H2 = styled(({ className, ...props }) => (
     <h2 className={className}><BaseAnchorHeading as="h1" {...props} /></h2>
 ))`
-    color: blue;
+    font-size: ${props => props.theme.fontSize.large};
 `;
 
 export const H3 = styled(({ className, ...props }) => (
     <h3 className={className}><BaseAnchorHeading as="h1" {...props} /></h3>
 ))`
-    color: rebeccapurple;
+    font-size: ${props => props.theme.fontSize.medium};
 `;
