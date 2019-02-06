@@ -9,16 +9,17 @@ import styled from 'react-emotion';
 
 const AnchorHeadingRoot = styled('div')`
     display: flex;
-    color: ${props => props.theme.color.uiTextBase};
+    color: ${props => props.theme.color.uiPageForegroundBase};
 `;
 
 const AnchorHeadingAnchor = styled('a')`
+    ${props => props.theme.transition.call('color')}
     margin-right: ${props => props.theme.spacing.half};
-    color: ${props => props.theme.color.pageAnchorBase};
+    color: ${props => props.theme.color.uiPageAnchorBase};
 
     &:hover,
     &:focus {
-        color: ${props => props.theme.color.pageAnchorActive};
+        color: ${props => props.theme.color.uiPageAnchorActive};
     }
 `;
 

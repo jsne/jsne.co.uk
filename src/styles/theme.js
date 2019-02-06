@@ -1,5 +1,7 @@
 import { css } from 'emotion';
 
+import { transition } from './tools';
+
 /**
  * Get Theme without having to duplicate definition values
  */
@@ -16,23 +18,20 @@ const getTheme = () => {
 
     // Root color definitions
     const color = {
-        alphaDarkBase: 'rgba(29, 0, 48, 0.45)',
-        alphaDarkDark: 'rgba(29, 0, 48, 0.7)',
+        alphaDarkBase: 'rgba(29, 0, 48, 0.4)',
+        alphaDarkDark: 'rgba(29, 0, 48, 0.55)',
         blueBase: '#1ebae0',
         greenBase: '#49b43b',
         orangeBase: '#ee9d30',
         pinkBase: '#e760ab',
         purpleBase: '#682ec6',
+        purpleDark: '#1d0031',
         redBase: '#d21515',
         redLight: '#f7d2d2', // Roxxxxaaanne
+        whiteBase: '#f8f8f8',
+        whiteLight: '#ffffff',
         yellowBase: '#f9d72f',
         yellowLight: '#fff099',
-
-        // Neutral / generic
-        neutralDark: '#1d0031',
-        neutralLightDark: '#e5e2e6',
-        neutralLightBase: '#f8f8f8',
-        neutralLightLight: '#ffffff',
     };
 
     return {
@@ -46,31 +45,24 @@ const getTheme = () => {
         },
         color: {
             ...color,
-
             // Primary, secondary etc.
-            primaryBase: color.yellowBase,
-            primaryLight: color.yellowLight,
-            secondaryBase: color.purpleBase,
-            secondaryDark: color.uiDark,
-
+            uiPrimaryBase: color.yellowBase,
+            uiPrimaryLight: color.yellowLight,
+            uiPrimaryContrastBase: color.purpleDark,
+            uiSecondaryBase: color.purpleBase,
+            uiSecondaryDark: color.uiDark,
+            uiSecondaryContrastBase: color.whiteLight,
             // Pages
-            pageAnchorBase: color.alphaDarkBase,
-            pageAnchorActive: color.alphaDarkDark,
-
+            uiPageAnchorBase: color.alphaDarkBase,
+            uiPageAnchorActive: color.alphaDarkDark,
+            uiPageBase: color.whiteLight,
+            uiPageContrastBase: color.purpleDark,
             // Statuses
-            goodBase: color.greenBase,
-            badBase: color.orangeBase,
-            uglyBase: color.redBase,
-            uglyLight: color.redLight,
-            infoBase: color.blueBase,
-
-            // UI colors
-            uiTextBase: color.neutralDark,
-            uiTextBackground: color.neutralDark,
-            uiDarkBase: color.neutralDark,
-            uiMediumBase: color.neutralMedium,
-            uiLightBase: color.neutralLight,
-            uiLightLight: color.neutralLightest,
+            uiGoodBase: color.greenBase,
+            uiBadBase: color.orangeBase,
+            uiUglyBase: color.redBase,
+            uiUglyLight: color.redLight,
+            uiInfoBase: color.blueBase,
         },
         fontSize: {
             rootBase: '16px', // initial `:root` font-size
@@ -109,9 +101,10 @@ const getTheme = () => {
             nudge: '.1rem',
         },
         transition: {
+            call: (...args) => transition(...args), // Helper function
             delay: 0,
             duration: '.275s',
-            function: 'cubic-bezier(.5, -.5, .3, 1.3)',
+            timingFunction: 'cubic-bezier(.5, -.5, .3, 1.3)',
         },
     };
 };
