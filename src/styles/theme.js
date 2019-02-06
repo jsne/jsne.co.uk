@@ -1,9 +1,23 @@
+import { css } from 'emotion';
+
 /**
  * Get Theme without having to duplicate definition values
  */
 const getTheme = () => {
+    // Reference breakpoints
+    const breakpoint = {
+        minimum: '475px',
+        low: '600px',
+        medium: '800px',
+        high: '1024px',
+        higher: '1280px',
+        maximum: '1400px',
+    };
+
     // Root color definitions
     const color = {
+        alphaDarkBase: 'rgba(29, 0, 48, 0.45)',
+        alphaDarkDark: 'rgba(29, 0, 48, 0.7)',
         blueBase: '#1ebae0',
         greenBase: '#49b43b',
         orangeBase: '#ee9d30',
@@ -28,12 +42,7 @@ const getTheme = () => {
             widthBase: '2px',
         },
         breakpoint: {
-            minimum: '475px',
-            low: '600px',
-            medium: '800px',
-            high: '1024px',
-            higher: '1280px',
-            maximum: '1800px',
+            ...breakpoint,
         },
         color: {
             ...color,
@@ -44,6 +53,10 @@ const getTheme = () => {
             secondaryBase: color.purpleBase,
             secondaryDark: color.uiDark,
 
+            // Pages
+            pageAnchorBase: color.alphaDarkBase,
+            pageAnchorActive: color.alphaDarkDark,
+
             // Statuses
             goodBase: color.greenBase,
             badBase: color.orangeBase,
@@ -52,21 +65,21 @@ const getTheme = () => {
             infoBase: color.blueBase,
 
             // UI colors
+            uiTextBase: color.neutralDark,
+            uiTextBackground: color.neutralDark,
             uiDarkBase: color.neutralDark,
             uiMediumBase: color.neutralMedium,
             uiLightBase: color.neutralLight,
             uiLightLight: color.neutralLightest,
         },
-        font: {
-            size: {
-                rootBase: '16px', // initial `:root` font-size
-                rootLarge: '20px', // font-size for high DPI
-                normal: '1rem',
-                small: '.85rem',
-                medium: '1.75rem',
-                large: '2.125rem',
-                larger: '2.75rem',
-            },
+        fontSize: {
+            rootBase: '16px', // initial `:root` font-size
+            rootLarge: '20px', // font-size for high DPI
+            normal: '1rem',
+            small: '.85rem',
+            medium: '1.3rem',
+            large: '1.6em',
+            larger: '2rem',
         },
         lineHeight: {
             multi: 1.4375,
@@ -74,6 +87,20 @@ const getTheme = () => {
             single: 1,
             spaced: 1.6,
         },
+        // Automagically generate media queries based on `breakpoint` key/values
+        // Allows us to use media queries as functions in `styled` components like:
+        // `${props => props.theme.mediaQuery.low`
+        //     content: 'Only on low and up!';
+        // `}`
+        mediaQuery: Object.keys(breakpoint).reduce((acc, label) => {
+            acc[label] = (...args) => css`
+                @media (min-width: ${breakpoint[label]}) {
+                    ${css(...args)}
+                }
+            `;
+
+            return acc;
+        }, {}),
         spacing: {
             base: '1rem',
             quarter: '.25rem',
