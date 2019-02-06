@@ -23,8 +23,8 @@ const Base = ({
     title = 'JavaScript North East | JSNE',
     ...props
 }) => (
-    <ThemeProvider theme={theme}>
-        <main {...props}>
+    <ThemeProvider theme={theme} {...props}>
+        <>
             <Helmet
                 title={title}
                 meta={[
@@ -36,7 +36,6 @@ const Base = ({
                 ]}
                 link={[
                     /* eslint-disable object-curly-newline */
-                    { href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css', rel: 'stylesheet prefetch preload', as: 'style' },
                     { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
                     { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
                     { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
@@ -48,7 +47,7 @@ const Base = ({
                 script={scripts}
             />
             {children}
-        </main>
+        </>
     </ThemeProvider>
 );
 
