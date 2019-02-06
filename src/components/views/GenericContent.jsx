@@ -11,6 +11,7 @@ import Base from 'Components/views/Base';
 import Footer from 'Components/shared/Footer';
 import Header from 'Components/shared/Header';
 import { H1, H2, H3 } from 'Components/shared/Heading';
+import Page from 'Components/shared/Page';
 
 /**
  * Components to replace standard elements created from markdown
@@ -28,7 +29,9 @@ export const components = {
 const GenericContent = ({ children, slug, ...props }) => (
     <Base {...props}>
         <Header activePage={slug} />
-        <MDX components={components}>{children}</MDX>
+        <Page>
+            <MDX components={components}>{children}</MDX>
+        </Page>
         <Footer />
     </Base>
 );
