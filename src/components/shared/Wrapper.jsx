@@ -14,6 +14,11 @@ const Wrapper = styled('div')`
         padding-right: ${props.theme.spacing.base};
         padding-left: ${props.theme.spacing.base};
     `}
+
+    ${'' /* @HACK @TODO remove overhang from header */}
+    ${props => props.withResponsiveHeader && props.theme.mediaQuery.high`
+        padding-top: 3rem;
+    `}
 `;
 
 export default Wrapper;
