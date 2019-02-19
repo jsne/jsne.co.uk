@@ -49,16 +49,19 @@ export const H1 = styled(({ className, ...props }) => (
     <h1 className={className}><BaseAnchorHeading as="h1" {...props} /></h1>
 ))`
     font-size: ${props => props.theme.fontSize.larger};
+    margin-bottom: ${props => props.theme.spacing.half};
 `;
 
 export const H2 = styled(({ className, ...props }) => (
     <h2 className={className}><BaseAnchorHeading as="h1" {...props} /></h2>
 ))`
     font-size: ${props => props.theme.fontSize.large};
+    margin-bottom: ${props => props.theme.spacing.quarter};
 `;
 
 export const H3 = styled(({ className, ...props }) => (
     <h3 className={className}><BaseAnchorHeading as="h1" {...props} /></h3>
 ))`
     font-size: ${props => props.theme.fontSize.medium};
+    margin-bottom: ${props => props.theme.spacing.quarter};
 `;
