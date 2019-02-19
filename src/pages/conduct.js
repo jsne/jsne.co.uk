@@ -9,8 +9,10 @@ const ContentPage = ({ data: { contentfulPage } }) => {
 
     return (
         <GenericContent title={title} slug={slug}>
-            {introduction.introduction}
-            {body.body}
+            {[
+                introduction.introduction,
+                body.body,
+            ].join('\n')}
         </GenericContent>
     );
 };
