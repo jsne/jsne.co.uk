@@ -25,6 +25,7 @@ const getTheme = () => {
         orangeBase: '#ee9d30',
         pinkBase: '#e760ab',
         purpleBase: '#682ec6',
+        purpleMid: '#4d268e',
         purpleDark: '#1d0031',
         redBase: '#d21515',
         redLight: '#f7d2d2', // Roxxxxaaanne
@@ -50,7 +51,7 @@ const getTheme = () => {
             uiPrimaryLight: color.yellowLight,
             uiPrimaryContrastBase: color.purpleDark,
             uiSecondaryBase: color.purpleBase,
-            uiSecondaryDark: color.uiDark,
+            uiSecondaryDark: color.purpleMid,
             uiSecondaryContrastBase: color.whiteLight,
             // Pages
             uiPageAnchorBase: color.alphaDarkBase,
@@ -97,6 +98,7 @@ const getTheme = () => {
             base: '1rem',
             quarter: '.25rem',
             half: '.5rem',
+            threeQuarter: '.75rem',
             double: '2rem',
             nudge: '.1rem',
         },
