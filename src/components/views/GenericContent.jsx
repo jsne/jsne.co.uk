@@ -12,6 +12,7 @@ import Footer from 'Components/shared/Footer';
 import Header from 'Components/shared/Header';
 import { H1, H2, H3 } from 'Components/shared/Heading';
 import LayoutRoot from 'Components/shared/Layout/LayoutRoot';
+import Link from 'Components/shared/Link';
 import Page from 'Components/shared/Page';
 import Wrapper from 'Components/shared/Wrapper';
 
@@ -19,7 +20,7 @@ import Wrapper from 'Components/shared/Wrapper';
  * Components to replace standard elements created from markdown
  */
 export const components = {
-    a: props => <a style={{ color: 'orange' }} {...props} />,
+    a: props => <Link {...props} />,
     h1: props => <H1 {...props} />,
     h2: props => <H2 {...props} />,
     h3: props => <H3 {...props} />,
@@ -32,7 +33,7 @@ const GenericContent = ({ children, slug, ...props }) => (
     <Base {...props}>
         <LayoutRoot>
             <Header activePage={slug} />
-            <Wrapper padded>
+            <Wrapper padded withResponsiveHeader>
                 <Page>
                     <MDX components={components}>{children}</MDX>
                 </Page>
