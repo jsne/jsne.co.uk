@@ -3,24 +3,20 @@
  * @desc Root element of app
  */
 
-import { css } from 'emotion';
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'react-emotion';
 
-const className = css`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	width: 100%;
-	min-height: 100vh;
+const LayoutRoot = styled(props => <main role="main" {...props} />)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100vh;
 `;
 
-const Root = ({ children }) => (
-    <main role="main" className={className}>{children}</main>
-);
-
-Root.propTypes = {
+LayoutRoot.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default Root;
+export default LayoutRoot;

@@ -86,26 +86,14 @@ const Header = ({ type }) => (
                 <img className={logoClassName} src={logo} alt="JSNE" />
             </Link>
 
-            {/* <nav className={`${type === 'home' ? `${classNameNavHome}` : ''}`}>
-                <Link
-                    className={`${navItemClassName}${type === 'home' ? ` ${navItemClassNameHome}` : ''}`}
-                    to="/speakers"
-                >
-                    Speakers
-                </Link>
-                <Link
-                    className={`${navItemClassName}${type === 'home' ? ` ${navItemClassNameHome}` : ''}`}
-                    to="/sponsors"
-                >
-                    Sponsors
-                </Link>
+            <nav className={`${type === 'home' ? `${classNameNavHome}` : ''}`}>
                 <Link
                     className={`${navItemClassName}${type === 'home' ? ` ${navItemClassNameHome}` : ''}`}
                     to="/conduct"
                 >
                     Conduct
                 </Link>
-            </nav> */}
+            </nav>
         </div>
     </header>
 );
