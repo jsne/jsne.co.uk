@@ -7,7 +7,7 @@
 
 import { css } from 'emotion';
 
-import { transitions } from './settings';
+import theme from './theme';
 
 /**
  * css transition helper
@@ -20,15 +20,13 @@ import { transitions } from './settings';
 export const transition = (
     property = 'all',
     {
-        delay = transitions.delay,
-        duration = transitions.duration,
-        timingFunction = transitions.function,
+        delay = theme.transition.delay,
+        duration = theme.transition.duration,
+        timingFunction = theme.transition.function,
     } = {},
-) => (
-    css`
-        transition-delay: ${delay};
-        transition-duration: ${duration};
-        transition-property: ${property};
-        transition-timing-function: ${timingFunction};
-    `
-);
+) => css`
+    transition-delay: ${delay};
+    transition-duration: ${duration};
+    transition-property: ${property};
+    transition-timing-function: ${timingFunction};
+`;
