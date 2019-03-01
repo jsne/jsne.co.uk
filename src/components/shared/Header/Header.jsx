@@ -5,7 +5,9 @@ import React from 'react';
 
 import logo from 'Assets/images/logo-stroke.svg';
 
-import { breakpoints, colors, lineHeights, spacingUnits, transitions } from '../../../styles/settings';
+import {
+ breakpoints, colors, lineHeights, spacingUnits, transitions 
+} from '../../../styles/settings';
 import containerClassName from '../../../styles/container';
 import { primary as primaryClassName } from '../../../styles/background';
 
@@ -92,6 +94,12 @@ const Header = ({ type }) => (
                     to="/conduct"
                 >
                     Conduct
+                </Link>
+                <Link
+                    className={`${navItemClassName}${type === 'home' ? ` ${navItemClassNameHome}` : ''}`}
+                    to="/events"
+                >
+                    Events
                 </Link>
             </nav>
         </div>
