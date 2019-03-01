@@ -3,6 +3,13 @@
  * CSS bare essentials
  */
 
+/**
+ * @HACK Importing normalize as this stylesheet gets embedded before any `links` imported by
+ *       react-helmet
+ * @TODO Figure out how to control embedded order (https://github.com/gatsbyjs/gatsby/issues/1836)
+ */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+
 /*
 font faces
 */

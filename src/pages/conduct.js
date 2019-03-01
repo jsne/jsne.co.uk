@@ -2,22 +2,20 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Base from 'Components/views/Base';
+import GenericContent from 'Components/views/GenericContent';
 
-const ContentPage = ({
-    data: {
-        contentfulPage
-    },
-}) => {
-
-    const { title, introduction, body } = contentfulPage;
+const ContentPage = ({ data: { contentfulPage } }) => {
+    const {
+        body, introduction, slug, title,
+    } = contentfulPage;
 
     return (
-        <Base>
-            <div>{title}</div>
-            <div>{introduction.introduction}</div>
-            <div>{body.body}</div>
-        </Base>
+        <GenericContent title={title} slug={slug}>
+            {[
+                introduction.introduction,
+                body.body,
+            ].join('\n')}
+        </GenericContent>
     );
 };
 
@@ -27,13 +25,14 @@ ContentPage.propTypes = {
 
 export const pageQuery = graphql`
     query conductQuery {
-        contentfulPage(slug: {eq: "/conduct"}) {
+        contentfulPage(slug: { eq: "/conduct" }) {
+            slug
             title
-            body {
-                body
-            }
             introduction {
                 introduction
+            }
+            body {
+                body
             }
         }
     }
