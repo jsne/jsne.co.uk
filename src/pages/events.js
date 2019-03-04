@@ -9,6 +9,7 @@ import Header from 'Components/shared/Header';
 import LayoutRoot from 'Components/shared/Layout/LayoutRoot';
 
 import Wrapper from 'Components/shared/Wrapper';
+import Card from 'Components/shared/Card';
 
 const EventsPage = ({
     data: { allContentfulEvents: { edges: events } },
@@ -18,12 +19,9 @@ const EventsPage = ({
             title, eventDate, titoId, description,
         } = eventContent.node;
         return (
-            <div>
-                {eventDate}
-                {title}
-                {description.description}
-                {titoId}
-            </div>);
+            <Card title={title} body={description.description} />
+
+        );
     });
 
     return (
