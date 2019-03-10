@@ -42,29 +42,27 @@ EventLink.propTypes = {
 
 const sortByYear = (a, b) => b.node.year - a.node.year;
 
-const getGroupedEvents = (data) => {
-    const groupedEventsByYear = data.sort(sortByYear);
-
-    const groupedEvents = [];
-
+const getEventsWithYearHeadings = (data) => {
+    const sortedEventsByYear = data.sort(sortByYear);
+    const eventsWithYearHeadings = [];
     let lastDate = null;
 
-    groupedEventsByYear.forEach((eventNode) => {
+    sortedEventsByYear.forEach((eventNode) => {
         const showDate = lastDate !== eventNode.node.year;
         lastDate = eventNode.node.year;
 
         if (showDate) {
-            groupedEvents.push(<h2>{eventNode.node.year}</h2>);
+            eventsWithYearHeadings.push(<h2>{eventNode.node.year}</h2>);
         }
 
-        groupedEvents.push(<EventLink
+        eventsWithYearHeadings.push(<EventLink
             key={eventNode.node.titoId}
             title={eventNode.node.title}
             path={`events/${eventNode.node.titoId}`}
         />);
     });
 
-    return groupedEvents;
+    return eventsWithYearHeadings;
 };
 
 const EventsPage = ({ data: { allContentfulEvents: { edges } } }) => (
@@ -78,7 +76,7 @@ const EventsPage = ({ data: { allContentfulEvents: { edges } } }) => (
             />
             <Wrapper padded withResponsiveHeader>
                 <Page breakWord>
-                    {getGroupedEvents(edges)}
+                    {getEventsWithYearHeadings(edges)}
                 </Page>
             </Wrapper>
             <Footer />
