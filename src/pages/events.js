@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'react-emotion';
 
 import Base from 'Components/views/Base';
+import Page from 'Components/shared/Page';
 
 import Footer from 'Components/shared/Footer';
 import Header from 'Components/shared/Header';
@@ -38,25 +39,45 @@ EventLink.propTypes = {
     path: PropTypes.string.isRequired,
 };
 
-const EventsPage = ({ data }) => (
-    <Base>
+const desc = (a, b) => b - a;
 
+const getGroupedEvents = (data) => {
+    const groupedEventsByYear = data.reduce((groupedEvents, eventNode) => {
+        groupedEvents[eventNode.node.year] = groupedEvents[eventNode.node.year] || [];
+        groupedEvents[eventNode.node.year].push(eventNode);
+        return groupedEvents;
+    }, Object.create(null));
+
+    const display = [];
+
+    Object.keys(groupedEventsByYear).sort(desc).forEach((year) => {
+        display.push(<h2>{year}</h2>);
+
+        groupedEventsByYear[year].forEach((eventNode) => {
+            display.push(<EventLink
+                key={eventNode.node.titoId}
+                title={eventNode.node.title}
+                path={`events/${eventNode.node.titoId}`}
+            />);
+        });
+    });
+
+    return display;
+};
+
+const EventsPage = ({ data: { allContentfulEvents: { edges } } }) => (
+
+    <Base>
         <LayoutRoot>
             <Header activePage="/events" />
             <Hero
                 title="Past Events"
                 body="Past events..."
             />
-            <Wrapper withResponsiveHeader>
-
-                {data.allContentfulEvents.edges.map(edge => (
-                    <EventLink
-                        key={edge.node.titoId}
-                        title={edge.node.title}
-                        path={`events/${edge.node.titoId}`}
-                    />
-                ))}
-
+            <Wrapper padded withResponsiveHeader>
+                <Page breakWord>
+                    {getGroupedEvents(edges)}
+                </Page>
             </Wrapper>
             <Footer />
         </LayoutRoot>
@@ -77,7 +98,7 @@ export const pageQuery = graphql`
                     id
                     titoId
                     title
-                    eventDate
+                    year: eventDate(formatString:"YYYY")
                     description {
                         description
                     }
