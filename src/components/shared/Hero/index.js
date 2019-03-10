@@ -1,4 +1,3 @@
-import Hero, { NextSpeakerDetails } from './Hero';
+import Hero from './Hero';
 
-export { NextSpeakerDetails };
 export default Hero;
