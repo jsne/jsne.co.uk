@@ -8,13 +8,25 @@ import Base from 'Components/views/Base';
 import Footer from 'Components/shared/Footer';
 import Header from 'Components/shared/Header';
 import LayoutRoot from 'Components/shared/Layout/LayoutRoot';
+import Hero from 'Components/shared/Hero';
 
 import Wrapper from 'Components/shared/Wrapper';
 import Link from 'gatsby-link';
+import underlineImage from 'Assets/images/header-underline.svg';
 
 const StyledLink = styled(Link)`
-    background-color: ${props => props.theme.color.uiPageBase};
-    color: ${props => props.theme.color.uiPageContrastBase};
+ ${props => props.theme.transition.call('color')}
+    color: ${props => props.theme.color.uiSecondaryBase};
+
+    &:hover,
+    &:focus {
+        color: ${props => props.theme.color.uiInfoBase};
+    }
+
+    background-image: url('${underlineImage}');
+    background-size: 3rem .5rem;
+    background-position: left bottom;
+    background-repeat: repeat-x;
 `;
 
 const EventLink = ({ title, path }) => (
@@ -28,10 +40,14 @@ EventLink.propTypes = {
 
 const EventsPage = ({ data }) => (
     <Base>
+
         <LayoutRoot>
             <Header activePage="/events" />
-            <Wrapper padded withResponsiveHeader>
-                <h2>Events:</h2>
+            <Hero
+                title="Past Events"
+                body="Past events..."
+            />
+            <Wrapper withResponsiveHeader>
 
                 {data.allContentfulEvents.edges.map(edge => (
                     <EventLink
