@@ -6,7 +6,7 @@ import React from 'react';
 import logo from 'Assets/images/logo-stroke.svg';
 
 import {
- breakpoints, colors, lineHeights, spacingUnits, transitions 
+    breakpoints, colors, lineHeights, spacingUnits, transitions,
 } from '../../../styles/settings';
 import containerClassName from '../../../styles/container';
 import { primary as primaryClassName } from '../../../styles/background';

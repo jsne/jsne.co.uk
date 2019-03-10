@@ -8,7 +8,9 @@ import React from 'react';
 
 import config from 'Root/config';
 
-import { colors, fontSizes, lineHeights, spacingUnits } from 'Styles/settings';
+import {
+    colors, fontSizes, lineHeights, spacingUnits,
+} from 'Styles/settings';
 import containerClassName from 'Styles/container';
 import { secondaryDark as backgroundClassName } from 'Styles/background';
 
