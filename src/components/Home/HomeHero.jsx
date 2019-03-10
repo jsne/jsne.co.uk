@@ -16,7 +16,9 @@ import {
     secondary as secondaryBackground,
 } from '../../styles/background';
 
-import { h2, h3, primary as primaryText, primaryShadow, spaced } from '../../styles/text';
+import {
+    h2, h3, primary as primaryText, primaryShadow, spaced,
+} from '../../styles/text';
 import { primaryLarge as buttonPrimaryLargeClassName } from '../../styles/button';
 
 const className = css`
@@ -207,6 +209,7 @@ class HomeHero extends React.Component {
                             className={buttonPrimaryLargeClassName}
                             href={`https://ti.to/jsne/${eventInfo.url}`}
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             Get Tickets
                         </a>
