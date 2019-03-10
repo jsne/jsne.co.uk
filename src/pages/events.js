@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'react-emotion';
 
 import Base from 'Components/views/Base';
 
@@ -9,54 +10,63 @@ import Header from 'Components/shared/Header';
 import LayoutRoot from 'Components/shared/Layout/LayoutRoot';
 
 import Wrapper from 'Components/shared/Wrapper';
-import Card from 'Components/shared/Card';
+import Link from 'gatsby-link';
 
-const EventsPage = ({
-    data: { allContentfulEvents: { edges: events } },
-}) => {
-    const eventContents = events.map((eventContent) => {
-        const {
-            title, eventDate, titoId, description,
-        } = eventContent.node;
-        return (
-            <Card title={title} body={description.description} />
+const StyledLink = styled(Link)`
+    background-color: ${props => props.theme.color.uiPageBase};
+    color: ${props => props.theme.color.uiPageContrastBase};
+`;
 
-        );
-    });
+const EventLink = ({ title, path }) => (
+    <h3><StyledLink to={path}>{title}</StyledLink></h3>
+);
 
-    return (
-        <Base>
-            <LayoutRoot>
-                <Header activePage="/events" />
-                <Wrapper padded withResponsiveHeader>
-                    {eventContents}
-                </Wrapper>
-                <Footer />
-            </LayoutRoot>
-        </Base>
-    );
+EventLink.propTypes = {
+    title: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
 };
+
+const EventsPage = ({ data }) => (
+    <Base>
+        <LayoutRoot>
+            <Header activePage="/events" />
+            <Wrapper padded withResponsiveHeader>
+                <h2>Events:</h2>
+
+                {data.allContentfulEvents.edges.map(edge => (
+                    <EventLink
+                        key={edge.node.titoId}
+                        title={edge.node.title}
+                        path={`events/${edge.node.titoId}`}
+                    />
+                ))}
+
+            </Wrapper>
+            <Footer />
+        </LayoutRoot>
+    </Base>
+);
 
 EventsPage.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.object.isRequired,
 };
 
+export default EventsPage;
+
 export const pageQuery = graphql`
-    query eventsQuery {
-        allContentfulEvents(sort:{ fields: [eventDate], order: DESC }) {
+    query eventsListQuery {
+        allContentfulEvents(sort: {fields: [eventDate], order: DESC}) {
             edges {
                 node {
                     id
+                    titoId
                     title
+                    eventDate
                     description {
                         description
                     }
-                    eventDate
-                    titoId
                 }
             }
         }
     }
 `;
-
-export default EventsPage;
