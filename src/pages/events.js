@@ -39,30 +39,32 @@ EventLink.propTypes = {
     path: PropTypes.string.isRequired,
 };
 
-const desc = (a, b) => b - a;
+
+const sortByYear = (a, b) => b.node.year - a.node.year;
 
 const getGroupedEvents = (data) => {
-    const groupedEventsByYear = data.reduce((groupedEvents, eventNode) => {
-        groupedEvents[eventNode.node.year] = groupedEvents[eventNode.node.year] || [];
-        groupedEvents[eventNode.node.year].push(eventNode);
-        return groupedEvents;
-    }, Object.create(null));
+    const groupedEventsByYear = data.sort(sortByYear);
 
-    const display = [];
+    const groupedEvents = [];
 
-    Object.keys(groupedEventsByYear).sort(desc).forEach((year) => {
-        display.push(<h2>{year}</h2>);
+    let lastDate = null;
 
-        groupedEventsByYear[year].forEach((eventNode) => {
-            display.push(<EventLink
-                key={eventNode.node.titoId}
-                title={eventNode.node.title}
-                path={`events/${eventNode.node.titoId}`}
-            />);
-        });
+    groupedEventsByYear.forEach((eventNode) => {
+        const showDate = lastDate !== eventNode.node.year;
+        lastDate = eventNode.node.year;
+
+        if (showDate) {
+            groupedEvents.push(<h2>{eventNode.node.year}</h2>);
+        }
+
+        groupedEvents.push(<EventLink
+            key={eventNode.node.titoId}
+            title={eventNode.node.title}
+            path={`events/${eventNode.node.titoId}`}
+        />);
     });
 
-    return display;
+    return groupedEvents;
 };
 
 const EventsPage = ({ data: { allContentfulEvents: { edges } } }) => (
