@@ -4,6 +4,7 @@ import MDX from '@mdx-js/runtime/src/index';
 import React from 'react';
 
 import Base from 'Components/views/Base';
+import Page from 'Components/shared/Page';
 
 import Footer from 'Components/shared/Footer';
 import Header from 'Components/shared/Header';
@@ -13,6 +14,8 @@ import Wrapper from 'Components/shared/Wrapper';
 import Link from 'Components/shared/Link';
 
 import { H1, H2, H3 } from 'Components/shared/Heading';
+
+import Title from 'Components/shared/Section/Title';
 
 export const components = {
     a: props => <Link {...props} />,
@@ -32,12 +35,14 @@ const EventsTemplate = (
 ) => (
     <Base>
         <LayoutRoot>
-            <Header activePage="/events" />
+            <Header activePage="events" />
             <Wrapper padded withResponsiveHeader>
-                <h2>{title}</h2>
-                <h3>{eventDate}</h3>
-                <h3>{speaker.name}</h3>
-                <MDX components={components}>{description}</MDX>
+                <Page breakWord>
+                    <Title align="center">{title}</Title>
+                    <h2>{speaker.name}</h2>
+                    <h3>{eventDate}</h3>
+                    <MDX components={components}>{description}</MDX>
+                </Page>
             </Wrapper>
             <Footer />
         </LayoutRoot>
