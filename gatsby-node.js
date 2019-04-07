@@ -24,29 +24,6 @@ exports.createPages = ({
             allContentfulEvent {
                 edges {
                     node {
-                        title
-                        description {
-                            childMdx {
-                                code {
-                                    body
-                                }
-                            }
-                            childMdx {
-                                code {
-                                    body
-                                }
-                            }
-                        }
-                        eventDate
-                        titoId
-                        venue {
-                            name
-                            slug
-                        }
-                        speaker {
-                            name
-                            handle
-                        }
                         slug
                     }
                 }
@@ -65,7 +42,6 @@ exports.createPages = ({
                 component: eventTemplate,
                 context: {
                     slug: edge.node.slug,
-                    titoId: edge.node.titoId,
                 },
             });
         });

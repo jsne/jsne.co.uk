@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
+import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 import PropTypes from 'prop-types';
-import MDX from '@mdx-js/runtime/src/index';
 import React from 'react';
 
 import Base from 'Components/views/Base';
@@ -24,24 +24,21 @@ export const components = {
     h3: props => <H3 {...props} />,
 };
 
-const EventsTemplate = (
-    {
-        data: {
-            contentfulEvent: {
-                title, eventDate, speaker, description: { description },
-            },
-        },
-    },
-) => (
-    <Base>
+const EventsTemplate = ({ data: { contentfulEvent } }) => (
+    <Base
+        title={contentfulEvent.title}
+    >
         <LayoutRoot>
             <Header activePage="events" />
             <Wrapper padded withResponsiveHeader>
                 <Page breakWord>
-                    <Title align="center">{title}</Title>
-                    <h2>{speaker.name}</h2>
-                    <h3>{eventDate}</h3>
-                    <MDX components={components}>{description}</MDX>
+                    <Title align="center">{contentfulEvent.title}</Title>
+                    <h2>{contentfulEvent.speaker.name}</h2>
+                    <h3>{contentfulEvent.eventDatePretty}{contentfulEvent.eventDate}</h3>
+
+                    <MDXRenderer components={components}>
+                        {contentfulEvent.description.childMdx.code.body}
+                    </MDXRenderer>
                 </Page>
             </Wrapper>
             <Footer />
@@ -53,18 +50,36 @@ EventsTemplate.propTypes = {
     data: PropTypes.object.isRequired,
 };
 
-export default EventsTemplate;
-
 export const query = graphql`
-    query eventsQuery($titoId: String!) {
-        contentfulEvent(titoId: { eq: $titoId }) {
+    query eventsQuery($slug: String!) {
+        contentfulEvent(slug: { eq: $slug }) {
+            description {
+                childMdx {
+                    code {
+                        body
+                    }
+                }
+            }
+            eventDatePretty: eventDate(formatString: "dddd DD MMMM YYYY")
+            eventDate
+            speaker {
+                handle
+                name
+            }
             title
             titoId
-            eventDate (formatString:"MMMM Do, YYYY @ h:mm A")
-            description {
-                description
+            venue {
+                location {
+                    lat
+                    lon
+                }
+                mapsLink
+                name
+                postcode
+                street
             }
-            speaker { name }
         }
     }
 `;
+
+export default EventsTemplate;
