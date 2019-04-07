@@ -115,18 +115,22 @@ export const pageQuery = graphql`
                     }
                     eventDate
                     focalImage {
+                        description
                         file {
                             url
                         }
+                        title
                     }
                     id
                     speaker {
                         avatar {
+                            description
                             file {
                                 url
                                 fileName
                                 contentType
                             }
+                            title
                         }
                         handle
                         name
