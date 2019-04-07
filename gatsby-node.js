@@ -47,6 +47,7 @@ exports.createPages = ({
                             name
                             handle
                         }
+                        slug
                     }
                 }
             }
@@ -56,12 +57,12 @@ exports.createPages = ({
             return Promise.reject(result.errors);
         }
 
-        const eventsTemplate = path.resolve('src/templates/event.js');
+        const eventTemplate = path.resolve('src/templates/event.js');
 
         result.data.allContentfulEvent.edges.forEach((edge) => {
             createPage({
                 path: `/events/${edge.node.slug}`,
-                component: eventsTemplate,
+                component: eventTemplate,
                 context: {
                     slug: edge.node.slug,
                     titoId: edge.node.titoId,
