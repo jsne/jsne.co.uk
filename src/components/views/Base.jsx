@@ -16,7 +16,7 @@ import 'Static/styles.css';
  */
 const Base = ({
     children,
-    description = 'We\'re an all things JavaScript meetup in Newcastle.',
+    description = 'We\'re an all things JavaScript meetup in Newcastle Upon Tyne.',
     links = [],
     metas = [],
     scripts = [],
@@ -30,8 +30,8 @@ const Base = ({
                 meta={[
                     { name: 'description', content: description },
                     { name: 'keywords', content: 'JavaScript, meet-up, JSNE' },
-                    { name: 'msapplication-TileColor', content: theme.color.primaryBase },
-                    { name: 'theme-color', content: theme.color.primaryBase },
+                    { name: 'msapplication-TileColor', content: theme.color.uiPrimaryBase },
+                    { name: 'theme-color', content: theme.color.uiPrimaryBase },
                     ...metas,
                 ]}
                 link={[
@@ -40,7 +40,7 @@ const Base = ({
                     { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
                     { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
                     { rel: 'manifest', href: '/site.webmanifest' },
-                    { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#6030c6' },
+                    { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: theme.color.uiSecondaryBase },
                     ...links,
                     /* eslint-enable object-curly-newline */
                 ]}
