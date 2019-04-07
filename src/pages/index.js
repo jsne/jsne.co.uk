@@ -15,7 +15,7 @@ import HomeHero from 'Components/Home';
 
 const IndexPage = ({
     data: {
-        allContentfulEvents: { edges: events },
+        allContentfulEvent: { edges: events },
         contentfulNotifcation,
     },
 }) => {
@@ -103,7 +103,7 @@ export const pageQuery = graphql`
             icon
         }
 
-        allContentfulEvents(limit:1, sort:{ fields: [eventDate], order: DESC }) {
+        allContentfulEvent(limit:1, sort:{ fields: [eventDate], order: DESC }) {
             edges {
                 node {
                     title

@@ -56,17 +56,16 @@ const getEventsWithYearHeadings = (data) => {
         }
 
         eventsWithYearHeadings.push(<EventLink
-            key={eventNode.node.titoId}
+            key={eventNode.node.slug}
             title={eventNode.node.title}
-            path={`events/${eventNode.node.titoId}`}
+            path={`events/${eventNode.node.slug}`}
         />);
     });
 
     return eventsWithYearHeadings;
 };
 
-const EventsPage = ({ data: { allContentfulEvents: { edges } } }) => (
-
+const EventsPage = ({ data: { allContentfulEvent: { edges } } }) => (
     <Base>
         <LayoutRoot>
             <Header activePage="/events" />
@@ -92,10 +91,11 @@ export default EventsPage;
 
 export const pageQuery = graphql`
     query eventsListQuery {
-        allContentfulEvents(sort: {fields: [eventDate], order: DESC}) {
+        allContentfulEvent(sort: {fields: [eventDate], order: DESC}) {
             edges {
                 node {
                     id
+                    slug
                     titoId
                     title
                     year: eventDate(formatString:"YYYY")

@@ -27,7 +27,7 @@ export const components = {
 const EventsTemplate = (
     {
         data: {
-            contentfulEvents: {
+            contentfulEvent: {
                 title, eventDate, speaker, description: { description },
             },
         },
@@ -57,7 +57,7 @@ export default EventsTemplate;
 
 export const query = graphql`
     query eventsQuery($titoId: String!) {
-        contentfulEvents(titoId: { eq: $titoId }) {
+        contentfulEvent(titoId: { eq: $titoId }) {
             title
             titoId
             eventDate (formatString:"MMMM Do, YYYY @ h:mm A")
