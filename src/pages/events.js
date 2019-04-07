@@ -4,8 +4,8 @@ import React from 'react';
 import styled from 'react-emotion';
 
 import Base from 'Components/views/Base';
-import Page from 'Components/shared/Page';
 
+import Card from 'Components/shared/Card';
 import Footer from 'Components/shared/Footer';
 import Header from 'Components/shared/Header';
 import LayoutRoot from 'Components/shared/Layout/LayoutRoot';
@@ -39,71 +39,106 @@ EventLink.propTypes = {
     path: PropTypes.string.isRequired,
 };
 
+const EventsPage = ({
+    data: {
+        events,
+        page,
+    },
+    ...props
+}) => {
+    const parsedEvents = events.edges.map(({ node }) => ({
+        ...node,
+        qualifiedSlug: `/${page.slug}/${node.slug}`,
+    }));
 
-const sortByYear = (a, b) => b.node.year - a.node.year;
-
-const getEventsWithYearHeadings = (data) => {
-    const sortedEventsByYear = data.sort(sortByYear);
-    const eventsWithYearHeadings = [];
-    let lastDate = null;
-
-    sortedEventsByYear.forEach((eventNode) => {
-        const showDate = lastDate !== eventNode.node.year;
-        lastDate = eventNode.node.year;
-
-        if (showDate) {
-            eventsWithYearHeadings.push(<h2>{eventNode.node.year}</h2>);
-        }
-
-        eventsWithYearHeadings.push(<EventLink
-            key={eventNode.node.slug}
-            title={eventNode.node.title}
-            path={`events/${eventNode.node.slug}`}
-        />);
-    });
-
-    return eventsWithYearHeadings;
+    return (
+        <Base title={page.title} {...props}>
+            <LayoutRoot>
+                <Header activePage="/events" />
+                <Hero
+                    title="Past Events"
+                    body="Past events..."
+                />
+                <Wrapper padded withResponsiveHeader>
+                    {parsedEvents.map(event => (
+                        <Card
+                            key={event.id}
+                            body={event.description.childMdx.code.body}
+                            // ctaPrimary={{ label: 'Get tickets', to: '/Hello!' }}
+                            ctaSecondary={{
+                                label: 'More info',
+                                to: event.qualifiedSlug,
+                            }}
+                            media="https://via.placeholder.com/480?text=Event"
+                            person={{
+                                name: event.speaker.name,
+                                avatar: event.speaker.avatar.file.url,
+                            }}
+                            slug={event.qualifiedSlug}
+                            title={event.title}
+                        />
+                    ))}
+                </Wrapper>
+                <Footer />
+            </LayoutRoot>
+        </Base>
+    );
 };
-
-const EventsPage = ({ data: { allContentfulEvent: { edges } } }) => (
-    <Base>
-        <LayoutRoot>
-            <Header activePage="/events" />
-            <Hero
-                title="Past Events"
-                body="Past events..."
-            />
-            <Wrapper padded withResponsiveHeader>
-                <Page breakWord>
-                    {getEventsWithYearHeadings(edges)}
-                </Page>
-            </Wrapper>
-            <Footer />
-        </LayoutRoot>
-    </Base>
-);
 
 EventsPage.propTypes = {
     data: PropTypes.object.isRequired,
 };
 
-export default EventsPage;
-
 export const pageQuery = graphql`
-    query eventsListQuery {
-        allContentfulEvent(sort: {fields: [eventDate], order: DESC}) {
+    query eventsIndexQuery {
+        page: contentfulPage(slug: { eq: "events" }) {
+            body {
+                childMdx {
+                    code {
+                        body
+                    }
+                }
+            }
+            slug
+            title
+        }
+
+        events: allContentfulEvent(sort: { fields: [eventDate], order: DESC }) {
             edges {
                 node {
+                    description {
+                        childMdx {
+                            code {
+                                body
+                            }
+                        }
+                    }
+                    eventDate
+                    focalImage {
+                        file {
+                            url
+                        }
+                    }
                     id
+                    speaker {
+                        avatar {
+                            file {
+                                url
+                                fileName
+                                contentType
+                            }
+                        }
+                        handle
+                        name
+                    }
                     slug
                     titoId
                     title
                     year: eventDate(formatString:"YYYY")
-                    description {
-                        description
-                    }
                 }
             }
         }
     }
 `;
+
+export default EventsPage;
