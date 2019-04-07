@@ -27,6 +27,7 @@ const getTheme = () => {
         purpleBase: '#682ec6',
         purpleMid: '#4d268e',
         purpleDark: '#1d0031',
+        purpleDarkAlpha: 'rgba(29, 0, 48, .75)',
         redBase: '#d21515',
         redLight: '#f7d2d2', // Roxxxxaaanne
         whiteBase: '#f8f8f8',
@@ -58,6 +59,7 @@ const getTheme = () => {
             uiPageAnchorActive: color.alphaDarkDark,
             uiPageBase: color.whiteLight,
             uiPageContrastBase: color.purpleDark,
+            uiPageContrastAlpha: color.purpleDarkAlpha,
             // Statuses
             uiGoodBase: color.greenBase,
             uiBadBase: color.orangeBase,
