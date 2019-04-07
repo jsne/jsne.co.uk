@@ -24,22 +24,43 @@ exports.createPages = ({
     return graphql(`
         {
             allContentfulEvents {
-              edges {
-                node {
-                  titoId
+                edges {
+                    node {
+                        title
+                        description {
+                            childMdx {
+                                code {
+                                    body
+                                }
+                            }
+                            childMdx {
+                                code {
+                                    body
+                                }
+                            }
+                        }
+                        eventDate
+                        titoId
+                        venue {
+                            name
+                            slug
+                        }
+                        speaker {
+                            name
+                            handle
+                        }
+                    }
                 }
-              }
             }
-          }
-
-        `).then((result) => {
+        }
+    `).then((result) => {
         if (result.errors) {
             return Promise.reject(result.errors);
         }
 
         result.data.allContentfulEvents.edges.forEach((edge) => {
             createPage({
-                path: `/events/${edge.node.titoId}`,
+                path: `/events/${edge.node.slug}`,
                 component: eventsTemplate,
                 context: {
                     titoId: edge.node.titoId,

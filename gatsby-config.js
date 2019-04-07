@@ -13,6 +13,12 @@ module.exports = {
     plugins: [
         'gatsby-plugin-react-helmet',
         {
+            resolve: 'gatsby-mdx',
+            options: {
+                extensions: ['.mdx', '.md'],
+            },
+        },
+        {
             resolve: 'gatsby-plugin-emotion',
             optons: {
                 autoLabel: isDev,
