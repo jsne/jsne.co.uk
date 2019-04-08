@@ -61,6 +61,10 @@ const CardPerson = styled('a')`
     justify-content: center;
     margin-top: -3.175rem;
     margin-bottom: ${props => props.theme.spacing.half};
+
+    @media(min-width: ${breakPoint}) {
+        margin-top: -3.675rem;
+    }
 `;
 
 const CardPersonAvatar = styled('img')`
