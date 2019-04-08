@@ -5,21 +5,30 @@ import React from 'react';
 import styled from 'react-emotion';
 import slugify from 'slugify';
 
+const breakPoint = '28rem';
+
 const CardRoot = styled('section')`
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    max-width: 28rem;
+    max-width: ${breakPoint};
     margin-bottom: ${props => props.theme.spacing.double};
     border-radius: ${props => props.theme.border.radiusBase};
     background-color: ${props => props.theme.color.uiPageBase};
     color: ${props => props.theme.color.uiPageContrastAlpha};
-    box-shadow: .35rem .35rem 0 ${props => props.theme.color.uiSecondaryDark};
+
+    @media(min-width: ${breakPoint}) {
+        box-shadow: .35rem .35rem 0 ${props => props.theme.color.uiSecondaryDark};
+    }
 `;
 
 const CardInner = styled('div')`
     padding: ${props => props.theme.spacing.base};
+
+    @media(min-width: ${breakPoint}) {
+        padding: calc(${props => props.theme.spacing.base} * 1.5);
+    }
 `;
 
 const CardMedia = styled('div')`
