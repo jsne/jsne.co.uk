@@ -59,7 +59,22 @@ root styles
 }
 
 :root {
+    --color-primary-base: #f9d72f;
+    --color-secondary-base: #682ec6;
+
     font-size: 16px;
+}
+
+::-moz-selection {
+    background-color: var(--color-primary-base);
+    color: var(--color-secondary-base);
+    text-shadow: none;
+}
+
+::selection {
+    background-color: var(--color-primary-base);
+    color: var(--color-secondary-base);
+    text-shadow: none;
 }
 
 body {
