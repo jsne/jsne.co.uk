@@ -10,12 +10,12 @@ const CardRoot = styled('section')`
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    max-width: 30rem;
+    max-width: 28rem;
     margin-bottom: ${props => props.theme.spacing.double};
     border-radius: ${props => props.theme.border.radiusBase};
     background-color: ${props => props.theme.color.uiPageBase};
     color: ${props => props.theme.color.uiPageContrastAlpha};
-    box-shadow: .2rem .2rem 0 ${props => props.theme.color.uiSecondaryDark};
+    box-shadow: .35rem .35rem 0 ${props => props.theme.color.uiSecondaryDark};
 `;
 
 const CardInner = styled('div')`
@@ -23,10 +23,13 @@ const CardInner = styled('div')`
 `;
 
 const CardMedia = styled('div')`
-    background-color: red;
+    position: relative;
+    max-height: 10rem;
+    padding-bottom: 60%;
 `;
 
 const CardMediaPrimary = styled('img')`
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -42,23 +45,33 @@ const CardMediaItemsItem = styled('li')`
 `;
 
 const CardPerson = styled('a')`
+    position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    margin-top: -3.175rem;
+    margin-bottom: ${props => props.theme.spacing.half};
 `;
 
 const CardPersonAvatar = styled('img')`
-    width: 4rem;
-    height: 4rem;
+    width: 4.25rem;
+    height: 4.25rem;
+    border: ${props => props.theme.border.widthBase} solid ${props => props.theme.color}
     border-radius: 100%;
     margin-bottom: ${props => props.theme.spacing.base};
 `;
 
 const CardPersonName = styled('div')`
-
+    font-size: ${props => props.theme.fontSize.medium};
+    color: ${props => props.theme.color.uiSecondaryBase};
 `;
 
 const CardTitle = styled(Link)`
+    display: block;
+    margin-bottom: ${props => props.theme.spacing.half};
+    text-align: center;
+
     /* Full width/height element to cover entire card */
     ::before {
         content: '';
@@ -130,8 +143,8 @@ const Card = ({
                     </CardPerson>
                 )}
 
-                <CardTitle id={titleId} to={slug}>
-                    <CardTitleHeading>{title}</CardTitleHeading>
+                <CardTitle to={slug}>
+                    <CardTitleHeading id={titleId}>{title}</CardTitleHeading>
                 </CardTitle>
 
                 <CardBody>
