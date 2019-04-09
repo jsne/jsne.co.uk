@@ -9,7 +9,6 @@ const Page = styled('section')`
     border-radius: ${props => props.theme.border.radius};
     background-color: ${props => props.theme.color.uiPageBase};
     color: ${props => props.theme.color.uiPageContrastBase};
-
     ${props => props.breakWord && 'word-break: break-word;'}
 `;
 
