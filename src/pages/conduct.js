@@ -5,7 +5,9 @@ import React from 'react';
 import GenericContent from 'Components/views/GenericContent';
 
 const ContentPage = ({ data: { contentfulPage } }) => {
-    const { body, introduction, slug, title } = contentfulPage;
+    const {
+        body, introduction, slug, title,
+    } = contentfulPage;
 
     return (
         <GenericContent title={title} slug={slug}>
@@ -23,7 +25,7 @@ ContentPage.propTypes = {
 
 export const pageQuery = graphql`
     query conductQuery {
-        contentfulPage(slug: { eq: "/conduct" }) {
+        contentfulPage(slug: { eq: "conduct" }) {
             slug
             title
             introduction {

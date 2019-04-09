@@ -34,7 +34,7 @@ const GenericContent = ({ children, slug, ...props }) => (
         <LayoutRoot>
             <Header activePage={slug} />
             <Wrapper padded withResponsiveHeader>
-                <Page>
+                <Page breakWord>
                     <MDX components={components}>{children}</MDX>
                 </Page>
             </Wrapper>
