@@ -25,7 +25,7 @@ ContentPage.propTypes = {
 
 export const pageQuery = graphql`
     query conductQuery {
-        contentfulPage(slug: { eq: "/conduct" }) {
+        contentfulPage(slug: { eq: "conduct" }) {
             slug
             title
             introduction {
