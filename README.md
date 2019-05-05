@@ -1,5 +1,7 @@
 # JSNE Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/409c5c17-66c8-4e64-a4c0-7eb5c699d57f/deploy-status)](https://app.netlify.com/sites/jsne/deploys)
+
 ## Set Up
 
 You'll need a Contentful Space ID and a Contentful token to get content for the site.
