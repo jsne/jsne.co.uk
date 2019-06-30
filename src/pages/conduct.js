@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import GenericContent from 'Components/views/GenericContent';
+import ContentTemplate from 'Templates/ContentTemplate';
 
 const ContentPage = ({ data: { contentfulPage } }) => {
     const {
@@ -10,12 +10,12 @@ const ContentPage = ({ data: { contentfulPage } }) => {
     } = contentfulPage;
 
     return (
-        <GenericContent title={title} slug={slug}>
+        <ContentTemplate title={title} slug={slug}>
             {[
                 introduction.introduction,
                 body.body,
             ].join('\n')}
-        </GenericContent>
+        </ContentTemplate>
     );
 };
 

@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Base from 'Components/views/Base';
+import RootTemplate from 'Templates/RootTemplate';
 import ClockIcon from 'Components/shared/Icons/Clock';
 import CalendarIcon from 'Components/shared/Icons/Calendar';
 import IconText from 'Components/shared/IconText';
@@ -30,7 +30,7 @@ const IndexPage = ({
     const eventTime = `${eventHours}:${eventMins}`;
 
     return (
-        <Base>
+        <RootTemplate>
             <Notification
                 content={contentfulNotifcation.text.content[0].content[0].value}
                 cta={{
@@ -84,7 +84,7 @@ const IndexPage = ({
                     lng: venue.location.lon,
                 }]}
             />
-        </Base>
+        </RootTemplate>
     );
 };
 

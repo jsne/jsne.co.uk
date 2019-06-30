@@ -1,7 +1,3 @@
-/**
- * @module Base
- */
-
 import { ThemeProvider } from 'emotion-theming';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
@@ -12,9 +8,9 @@ import theme from 'Styles/theme';
 import 'Static/styles.css';
 
 /**
- * Generic unstyled view with `Helmet`
+ * Root template for all pages
  */
-const Base = ({
+const RootTemplate = ({
     children,
     description = 'We\'re an all things JavaScript meetup in Newcastle.',
     links = [],
@@ -51,7 +47,7 @@ const Base = ({
     </ThemeProvider>
 );
 
-Base.propTypes = {
+RootTemplate.propTypes = {
     children: PropTypes.node.isRequired,
     description: PropTypes.string,
     links: PropTypes.array,
@@ -60,4 +56,4 @@ Base.propTypes = {
     title: PropTypes.string,
 };
 
-export default Base;
+export default RootTemplate;

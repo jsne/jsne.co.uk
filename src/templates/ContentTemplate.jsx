@@ -1,11 +1,7 @@
-/**
- * @module GenericContent
- */
-
 import MDX from '@mdx-js/runtime';
 import React from 'react';
 
-import Base from 'Components/views/Base';
+import RootTemplate from 'Templates/RootTemplate';
 
 import Footer from 'Components/shared/Footer';
 import Header from 'Components/shared/Header';
@@ -28,8 +24,8 @@ export const components = {
 /**
  * Generic Content Page
  */
-const GenericContent = ({ children, slug, ...props }) => (
-    <Base {...props}>
+const ContentTemplate = ({ children, slug, ...props }) => (
+    <RootTemplate {...props}>
         <LayoutRoot>
             <Header activePage={slug} />
             <Wrapper padded withResponsiveHeader>
@@ -39,7 +35,7 @@ const GenericContent = ({ children, slug, ...props }) => (
             </Wrapper>
             <Footer />
         </LayoutRoot>
-    </Base>
+    </RootTemplate>
 );
 
-export default GenericContent;
+export default ContentTemplate;
