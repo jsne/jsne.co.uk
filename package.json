@@ -51,7 +51,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "prestart": "rm -rf ./cache",
+    "prestart": "gatsby clean",
     "start": "yarn develop",
     "build": "gatsby build",
     "develop": "gatsby develop",
