@@ -21,13 +21,13 @@ module.exports = {
                 sourceMap: isDev,
             },
         },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: `${__dirname}/src/pages`,
-                name: 'pages',
-            },
-        },
+        // {
+        //     resolve: 'gatsby-source-filesystem',
+        //     options: {
+        //         path: `${__dirname}/src/pages`,
+        //         name: 'pages',
+        //     },
+        // },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
@@ -55,5 +55,6 @@ module.exports = {
                 exclude: ['/preview/**'],
             },
         },
+        'gatsby-mdx',
     ],
 };

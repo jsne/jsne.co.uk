@@ -5,6 +5,9 @@ const { resolve } = require('path');
  * @type {Object}
  */
 module.exports.webpackConfig = {
+    node: {
+        fs: 'empty',
+    },
     resolve: {
         alias: {
             Assets: resolve(__dirname, 'src/assets'),
