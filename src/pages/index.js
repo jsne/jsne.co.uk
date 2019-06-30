@@ -11,9 +11,9 @@ import MapIcon from 'Components/shared/Icons/Map';
 import { MapSection } from 'Components/shared/Map';
 import Notification from 'Components/shared/Notification';
 
-import HomeHero from 'Components/Home';
+import HomeHero from 'Pages/Home/HomeHero';
 
-const IndexPage = ({
+const HomePage = ({
     data: {
         allContentfulEvent: { edges: events },
         contentfulNotifcation,
@@ -88,12 +88,12 @@ const IndexPage = ({
     );
 };
 
-IndexPage.propTypes = {
+HomePage.propTypes = {
     data: PropTypes.object,
 };
 
 export const pageQuery = graphql`
-    query pageQuery {
+    query indexQuery {
         contentfulNotifcation(uid: {eq:"new-venue-black-swan"}) {
             text {
                 content { content { value } }
@@ -123,4 +123,4 @@ export const pageQuery = graphql`
     }
 `;
 
-export default IndexPage;
+export default HomePage;

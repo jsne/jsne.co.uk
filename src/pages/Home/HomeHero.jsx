@@ -7,7 +7,7 @@ import { css } from 'emotion';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Header from '../shared/Header';
+import Header from 'Components/shared/Header';
 
 import { colors, breakpoints, spacingUnits } from '../../styles/settings';
 
