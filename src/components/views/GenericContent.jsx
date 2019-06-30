@@ -2,8 +2,7 @@
  * @module GenericContent
  */
 
-// @HACK Using MDX runtime - 'gatsby-mdx' doesn't seem to work
-import MDX from '@mdx-js/runtime/src/index';
+import MDX from '@mdx-js/runtime';
 import React from 'react';
 
 import Base from 'Components/views/Base';

@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import logo from 'Assets/images/logo-stroke.svg';
+import logo from 'Assets/images/logo.svg';
 
 import { breakpoints, colors, lineHeights, spacingUnits, transitions } from '../../../styles/settings';
 import containerClassName from '../../../styles/container';
