@@ -61,17 +61,17 @@ export const getGlobalCss = theme => css`
         font-size: ${theme.fontSize.normal};
         line-height: ${theme.lineHeight.multi};
         font-family: '${theme.fontFamily.body0}', arial, sans-serif;
-        font-weight: 500;
+        font-weight: ${theme.fontWeight.base0};
         background-color: ${theme.color.uiBodyBase};
         color: ${theme.color.uiBodyContrast};
     }
 
     p {
         margin-top: 0;
+        margin-bottom: 0;
     }
 
     a {
-        color: inherit;
         text-decoration: none;
     }
 

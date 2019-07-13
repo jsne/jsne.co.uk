@@ -74,11 +74,11 @@ const getTheme = () => {
         transition-timing-function: ${timingFunction};
     `;
 
-    return {
+    const rootTheme = {
         border: {
             radius0: '.1rem',
             style: 'solid',
-            widthBase: '2px',
+            width0: '2px',
         },
         breakpoint: {
             ...breakpoint,
@@ -105,6 +105,9 @@ const getTheme = () => {
             // UI body
             uiBodyBase: rootColor.white700,
             uiBodyContrast: rootColor.black500,
+            // UI interactive outline
+            uiInteractiveOutlineBase: `${rootColor.purple100}78`,
+            uiInteractiveOutlineContrast: rootColor.white900,
         },
         fontFamily: {
             body0: 'font-body-0',
@@ -122,6 +125,11 @@ const getTheme = () => {
             medium: '1.3rem',
             large: '1.6em',
             larger: '2rem',
+        },
+        fontWeight: {
+            base0: 500,
+            base1: 600,
+            base2: 700,
         },
         lineHeight: {
             multi: 1.4375,
@@ -157,6 +165,38 @@ const getTheme = () => {
             call: (...args) => getTransitionCss(...args),
         },
     };
+
+    rootTheme.color.getIntentPresetCss = (intent = 'neutral') => {
+        let style = '';
+
+        if (intent === 'good') {
+            style = `
+                color: ${rootTheme.color.intentGoodContrast};
+                background-color: ${rootTheme.color.intentGoodBase};
+            `;
+        } else if (intent === 'bad') {
+            style = `
+                color: ${rootTheme.color.intentBadContrast};
+                background-color: ${rootTheme.color.intentBadBase};
+            `;
+        } else if (intent === 'ugly') {
+            style = `
+                color: ${rootTheme.color.intentUglyContrast};
+                background-color: ${rootTheme.color.intentUglyBase};
+            `;
+        } else {
+            style = `
+                color: ${rootTheme.color.intentNeutralContrast};
+                background-color: ${rootTheme.color.intentNeutralBase};
+            `;
+        }
+
+        return css`
+            ${style}
+        `;
+    };
+
+    return rootTheme;
 };
 
 export const theme = getTheme();

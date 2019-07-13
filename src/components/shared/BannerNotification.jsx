@@ -1,76 +1,59 @@
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import React from 'react';
 
+import { Button } from 'Components/shared/Button';
+
 const BannerNotificationRoot = styled.section`
-    ${({ theme, type }) => {
-        let style = '';
+    ${props => props.theme.color.getIntentPresetCss(props.intent)}
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: ${props => props.theme.spacing.half};
+    align-items: flex-start;
+    padding: ${props =>
+        `${props.theme.spacing.half} ${props.theme.spacing.base}`};
 
-        if (type === 'good') {
-            style = `
-                color: ${theme.color.uiStatusGoodContrast};
-                background-color: ${theme.color.uiStatusGoodBase};
-            `;
-        } else if (type === 'bad') {
-            style = `
-                color: ${theme.color.uiStatusBadContrast};
-                background-color: ${theme.color.uiStatusBadBase};
-            `;
-        } else if (type === 'ugly') {
-            style = `
-                color: ${theme.color.uiStatusUglyContrast};
-                background-color: ${theme.color.uiStatusUglyBase};
-            `;
-        } else {
-            style = `
-                color: ${theme.color.uiStatusNeutralContrast};
-                background-color: ${theme.color.uiStatusNeutralBase};
-            `;
-        }
-
-        return css`
-            ${style}
-        `;
-    }}
+    ${props => props.theme.mediaQuery.low`
+        grid-gap: ${props.theme.spacing.base};
+    `}
 `;
 
-const BannerNotificationIcon = styled.span``;
+// const BannerNotificationIcon = styled.span``;
 
 const BannerNotificationContent = styled.p``;
 
-const BannerNotificationCta = styled.a``;
-
-const BannerNotificationInner = styled.div``;
+const BannerNotificationCta = styled(Button)`
+    flex-grow: 1;
+    background-color: ${props => props.theme.color.uiBodyBase};
+    color: ${props => props.theme.color.uiBodyContrast};
+`;
 
 /**
  * Notification shown at top of page, cannot dismiss
  */
 export const BannerNotification = ({
-    type = 'neutral',
     content,
     cta,
-    icon,
+    // icon,
+    intent = 'neutral',
     ...props
 }) => (
-    <BannerNotificationRoot type={type} {...props}>
-        <BannerNotificationInner>
-            {icon && <BannerNotificationIcon icon={icon} />}
-            <BannerNotificationContent
-                dangerouslySetInnerHTML={{ __html: content }}
-            />
-            {cta && (
-                <BannerNotificationCta href={cta.url}>
-                    {cta.label}
-                </BannerNotificationCta>
-            )}
-        </BannerNotificationInner>
+    <BannerNotificationRoot intent={intent} {...props}>
+        {/* {icon && <BannerNotificationIcon icon={icon} />} */}
+        <BannerNotificationContent
+            dangerouslySetInnerHTML={{ __html: content }}
+        />
+        {cta && (
+            <BannerNotificationCta intent={intent} href={cta.url}>
+                {cta.label}
+            </BannerNotificationCta>
+        )}
     </BannerNotificationRoot>
 );
 
 BannerNotification.propTypes = {
-    type: PropTypes.oneOf('good', 'bad', 'ugly', 'neutral'),
-    icon: PropTypes.string,
     content: PropTypes.string.isRequired,
     cta: PropTypes.object,
+    // icon: PropTypes.string,
+    intent: PropTypes.oneOf(['good', 'bad', 'ugly', 'neutral']),
 };
