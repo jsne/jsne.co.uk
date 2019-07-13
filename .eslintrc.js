@@ -27,7 +27,7 @@ module.exports = {
     },
     globals: {},
     rules: {
-        indent: ['error', 4],
+        // indent: ['error', 4],
         'linebreak-style': ['error', 'unix'],
         'lines-around-comment': 0,
         'no-confusing-arrow': 0,
