@@ -2,20 +2,25 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import React from 'react';
 
+import { Wrapper } from 'Components/shared/Wrapper';
 import { Button } from 'Components/shared/Button';
 
 const BannerNotificationRoot = styled.section`
     ${props => props.theme.color.getIntentPresetCss(props.intent)}
+`;
+
+const BannerNotificationInner = styled(Wrapper)`
     display: grid;
     grid-auto-flow: column;
     grid-gap: ${props => props.theme.spacing.half};
     align-items: flex-start;
+    justify-content: space-between;
     padding: ${props =>
         `${props.theme.spacing.half} ${props.theme.spacing.base}`};
 
     ${props => props.theme.mediaQuery.low`
-        grid-gap: ${props.theme.spacing.base};
-    `}
+    grid-gap: ${props.theme.spacing.base};
+`}
 `;
 
 // const BannerNotificationIcon = styled.span``;
@@ -39,15 +44,17 @@ export const BannerNotification = ({
     ...props
 }) => (
     <BannerNotificationRoot intent={intent} {...props}>
-        {/* {icon && <BannerNotificationIcon icon={icon} />} */}
-        <BannerNotificationContent
-            dangerouslySetInnerHTML={{ __html: content }}
-        />
-        {cta && (
-            <BannerNotificationCta intent={intent} href={cta.url}>
-                {cta.label}
-            </BannerNotificationCta>
-        )}
+        <BannerNotificationInner>
+            {/* {icon && <BannerNotificationIcon icon={icon} />} */}
+            <BannerNotificationContent
+                dangerouslySetInnerHTML={{ __html: content }}
+            />
+            {cta && (
+                <BannerNotificationCta intent={intent} href={cta.url}>
+                    {cta.label}
+                </BannerNotificationCta>
+            )}
+        </BannerNotificationInner>
     </BannerNotificationRoot>
 );
 
