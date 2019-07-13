@@ -1,17 +1,16 @@
-import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 import React from 'react';
 
-import RootTemplate from 'Templates/RootTemplate';
-import ClockIcon from 'Components/shared/Icons/Clock';
-import CalendarIcon from 'Components/shared/Icons/Calendar';
-import IconText from 'Components/shared/IconText';
-import { MailingListFormSection } from 'Components/shared/MailingListForm';
-import MapIcon from 'Components/shared/Icons/Map';
-import { MapSection } from 'Components/shared/Map';
-import Notification from 'Components/shared/Notification';
-
-import HomeHero from 'Pages/Home/HomeHero';
+import { RootTemplate } from 'Templates/RootTemplate';
+// import ClockIcon from 'Components/shared/Icons/Clock';
+// import CalendarIcon from 'Components/shared/Icons/Calendar';
+// import IconText from 'Components/shared/IconText';
+// import { MailingListFormSection } from 'Components/shared/MailingListForm';
+// import MapIcon from 'Components/shared/Icons/Map';
+// import { MapSection } from 'Components/shared/Map';
+import { BannerNotification } from 'Components/shared/BannerNotification';
+import { HomeHero } from 'Components/pages/Home/HomeHero';
 
 const HomePage = ({
     data: {
@@ -26,12 +25,45 @@ const HomePage = ({
     const { venue } = eventInfo;
 
     const eventHours = eventDate.getUTCHours();
-    const eventMins = (eventDate.getUTCMinutes() < 10 ? '0' : '') + eventDate.getMinutes();
+    const eventMins =
+        (eventDate.getUTCMinutes() < 10 ? '0' : '') + eventDate.getMinutes();
     const eventTime = `${eventHours}:${eventMins}`;
 
     return (
         <RootTemplate>
-            <Notification
+            {contentfulNotifcation && (
+                <BannerNotification
+                    content={
+                        contentfulNotifcation.text.content[0].content[0].value
+                    }
+                    cta={{
+                        label: contentfulNotifcation.ctaLabel,
+                        url: contentfulNotifcation.ctaUri,
+                    }}
+                    icon={contentfulNotifcation.icon}
+                />
+            )}
+            {/* <HomeHero
+                sectionPrimary={{
+                    title: <><span>JavaScript</span> North East</>,
+                    body: 'We\'re the all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.',
+                }}
+                sectionSecondary={{
+                    preTitle: 'Up next:',
+                    title: eventInfo.title,
+                    body: eventInfo.description.description,
+                    infos: [
+                        // <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
+                        // <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
+                        // <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venue.name} to="#venue-map" underline />,
+                    ],
+                }}
+                cta={{
+                    label: 'Get tickets',
+                    url: `https://ti.to/jsne/${eventInfo.titoId}`,
+                }}
+            /> */}
+            {/* <Notification
                 content={contentfulNotifcation.text.content[0].content[0].value}
                 cta={{
                     label: contentfulNotifcation.ctaLabel,
@@ -83,7 +115,7 @@ const HomePage = ({
                     },
                     lng: venue.location.lon,
                 }]}
-            />
+            /> */}
         </RootTemplate>
     );
 };
@@ -94,27 +126,39 @@ HomePage.propTypes = {
 
 export const pageQuery = graphql`
     query indexQuery {
-        contentfulNotifcation(uid: {eq:"new-venue-black-swan"}) {
+        contentfulNotifcation(uid: { eq: "new-venue-black-swan" }) {
             text {
-                content { content { value } }
+                content {
+                    content {
+                        value
+                    }
+                }
             }
             ctaLabel
             ctaUri
             icon
         }
 
-        allContentfulEvent(limit:1, sort:{ fields: [eventDate], order: DESC }) {
+        allContentfulEvent(
+            limit: 1
+            sort: { fields: [eventDate], order: DESC }
+        ) {
             edges {
                 node {
                     title
-                    description { description }
+                    description {
+                        description
+                    }
                     eventDate
                     titoId
                     venue {
                         name
                         street
                         postcode
-                        location { lat lon }
+                        location {
+                            lat
+                            lon
+                        }
                         mapsLink
                     }
                 }

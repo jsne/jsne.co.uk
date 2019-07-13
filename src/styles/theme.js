@@ -1,12 +1,10 @@
-import { css } from 'emotion';
-
-import { transition } from './tools';
+import { css } from '@emotion/core';
 
 /**
  * Get Theme without having to duplicate definition values
  */
 const getTheme = () => {
-    // Reference breakpoints
+    // 0erence breakpoints
     const breakpoint = {
         minimum: '475px',
         low: '600px',
@@ -16,28 +14,69 @@ const getTheme = () => {
         maximum: '1400px',
     };
 
-    // Root color definitions
-    const color = {
-        alphaDarkBase: 'rgba(29, 0, 48, 0.4)',
-        alphaDarkDark: 'rgba(29, 0, 48, 0.55)',
-        blueBase: '#1ebae0',
-        greenBase: '#49b43b',
-        orangeBase: '#ee9d30',
-        pinkBase: '#e760ab',
-        purpleBase: '#682ec6',
-        purpleMid: '#4d268e',
-        purpleDark: '#1d0031',
-        redBase: '#d21515',
-        redLight: '#f7d2d2', // Roxxxxaaanne
-        whiteBase: '#f8f8f8',
-        whiteLight: '#ffffff',
-        yellowBase: '#f9d72f',
-        yellowLight: '#fff099',
+    // Root color definitions, not directly included in theme
+    const rootColor = {
+        // Blacks
+        black500: '#322C3C',
+        black600: '#4A4257',
+        black700: '#8B8398',
+        // Blues
+        blue500: '#56CCF2',
+        blue600: '#88E2FF',
+        // Greens
+        green500: '#49b43b',
+        // Oranges
+        orange500: '#ee9d30',
+        // Pinks
+        pink500: '#e760ab',
+        // Purples
+        purple100: '#1d0031',
+        purple400: '#3d268e',
+        purple500: '#682ec6',
+        purple600: '#8D50F0',
+        // Reds
+        red500: '#d21515',
+        red600: '#f7d2d2',
+        // Whites
+        white500: '#f8f8f8',
+        white700: '#f2f2f2',
+        white900: '#ffffff',
+        // Yellows
+        yellow500: '#f9d72f',
+        yellow600: '#fff099',
     };
+
+    const transition = {
+        delay: 0,
+        duration: '.275s',
+        timingFunction: 'cubic-bezier(.5, -.5, .3, 1.3)',
+    };
+
+    /**
+     * css transition helper
+     * @param  {string} [property='all']                       - CSS property e.g. 'color'
+     * @param  {number|string} [delay=transitions.delay]       - delay before/after
+     * @param  {number|string} [duration=transitions.duration] - duration
+     * @param  {string} [timingFunction=transitions.function]  - timing function e.g. 'ease-in-out'
+     * @return {Object}                                        - CSS style definition
+     */
+    const getTransitionCss = (
+        property = 'all',
+        {
+            delay = transition.delay,
+            duration = transition.duration,
+            timingFunction = transition.function,
+        } = {},
+    ) => css`
+        transition-delay: ${delay};
+        transition-duration: ${duration};
+        transition-property: ${property};
+        transition-timing-function: ${timingFunction};
+    `;
 
     return {
         border: {
-            radiusBase: '.1rem',
+            radius0: '.1rem',
             style: 'solid',
             widthBase: '2px',
         },
@@ -45,29 +84,39 @@ const getTheme = () => {
             ...breakpoint,
         },
         color: {
-            ...color,
-            // Primary, secondary etc.
-            uiPrimaryBase: color.yellowBase,
-            uiPrimaryLight: color.yellowLight,
-            uiPrimaryContrastBase: color.purpleDark,
-            uiSecondaryBase: color.purpleBase,
-            uiSecondaryDark: color.purpleMid,
-            uiSecondaryContrastBase: color.whiteLight,
-            // Pages
-            uiPageAnchorBase: color.alphaDarkBase,
-            uiPageAnchorActive: color.alphaDarkDark,
-            uiPageBase: color.whiteLight,
-            uiPageContrastBase: color.purpleDark,
-            // Statuses
-            uiGoodBase: color.greenBase,
-            uiBadBase: color.orangeBase,
-            uiUglyBase: color.redBase,
-            uiUglyLight: color.redLight,
-            uiInfoBase: color.blueBase,
+            // Primary brand
+            brand0Base: rootColor.yellow500,
+            brand0Contrast: rootColor.purple100,
+            // Secondary brand
+            brand1Base: rootColor.purple500,
+            brand1Contrast: rootColor.white700,
+            // Shadow brand
+            brandShadowBase: rootColor.purple100,
+            brandShadowContrast: rootColor.white700,
+            // Intent (statuses)
+            intentGoodBase: rootColor.green500,
+            intentGoodContrast: rootColor.white700,
+            intentBadBase: rootColor.orange500,
+            intentBadContrast: rootColor.white700,
+            intentUglyBase: rootColor.red500,
+            intentUglyContrast: rootColor.white900,
+            intentNeutralBase: rootColor.blue500,
+            intentNeutralContrast: rootColor.white700,
+            // UI body
+            uiBodyBase: rootColor.white700,
+            uiBodyContrast: rootColor.black500,
+        },
+        fontFamily: {
+            body0: 'font-body-0',
+            body1: 'font-body-1',
+            title0: 'font-title-0',
+            title1: 'font-title-1',
         },
         fontSize: {
-            rootBase: '16px', // initial `:root` font-size
-            rootLarge: '20px', // font-size for high DPI
+            // initial `:root` font-size
+            root0: '16px',
+            // font-size for high DPI
+            root1: '20px',
             normal: '1rem',
             small: '.85rem',
             medium: '1.3rem',
@@ -103,12 +152,11 @@ const getTheme = () => {
             nudge: '.1rem',
         },
         transition: {
-            call: (...args) => transition(...args), // Helper function
-            delay: 0,
-            duration: '.275s',
-            timingFunction: 'cubic-bezier(.5, -.5, .3, 1.3)',
+            ...transition,
+            // Helper function
+            call: (...args) => getTransitionCss(...args),
         },
     };
 };
 
-export default getTheme();
+export const theme = getTheme();
