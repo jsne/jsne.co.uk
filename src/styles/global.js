@@ -1,5 +1,7 @@
 import { css } from '@emotion/core';
 
+import { headingCssFont } from 'Components/shared/Heading';
+
 export const getGlobalCss = theme => css`
     @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 
@@ -36,7 +38,7 @@ export const getGlobalCss = theme => css`
     @font-face {
         font-family: '${theme.fontFamily.title1}';
         font-style: normal;
-        font-weight: bold;
+        font-weight: normal;
         font-display: swap;
         src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
             url(https://fonts.gstatic.com/s/raleway/v13/1Ptrg8zYS_SKggPNwIouWqZPAA.woff2)
@@ -83,8 +85,21 @@ export const getGlobalCss = theme => css`
     h2,
     h3,
     h4,
-    h5 {
+    h5,
+    h6 {
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    h1,
+    h2 {
+        ${headingCssFont({ theme })};
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        ${headingCssFont({ primary: false, theme })};
     }
 `;
