@@ -40,8 +40,13 @@ const NotFoundPageRoot = styled.div`
 const NotFoundPage = () => {
     const videoUrl = videoUrls[(videoUrls.length * Math.random()) | 0];
 
+    /* eslint-disable shopify/jsx-no-hardcoded-content */
     return (
-        <RootTemplate title="Not found" description="Unable to find page">
+        <RootTemplate
+            childrenReplaceContainer
+            title="Not found"
+            description="Unable to find page"
+        >
             <NotFoundPageRoot>
                 <NotFoundPageGroup>
                     <h1>Not Found</h1>
@@ -56,6 +61,7 @@ const NotFoundPage = () => {
             </NotFoundPageRoot>
         </RootTemplate>
     );
+    /* eslint-enable shopify/jsx-no-hardcoded-content */
 };
 
 export default NotFoundPage;

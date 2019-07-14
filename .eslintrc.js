@@ -37,6 +37,9 @@ module.exports = {
         // babel
         'babel/object-curly-spacing': 0,
 
+        // eslint-comments
+        'eslint-comments/disable-enable-pair': 0,
+
         // react
         'react/jsx-filename-extension': 0,
 

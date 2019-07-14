@@ -1,5 +1,8 @@
+/* eslint-disable shopify/jsx-no-complex-expressions */
+
 import PropTypes from 'prop-types';
 import { Global } from '@emotion/core';
+import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import Helmet from 'react-helmet';
 import React from 'react';
@@ -7,10 +10,19 @@ import React from 'react';
 import { getGlobalCss } from 'Styles/global';
 import { theme } from 'Styles/theme';
 
+const RootTemplateChildContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100vh;
+`;
+
 /**
  * Root template for all pages
  */
 export const RootTemplate = ({
+    childrenReplaceContainer,
     children,
     description = "We're the all things JavaScript meetup in Newcastle.",
     link = [],
@@ -62,13 +74,20 @@ export const RootTemplate = ({
                 ]}
                 script={script}
             />
-            {children}
+            {childrenReplaceContainer ? (
+                children
+            ) : (
+                <RootTemplateChildContainer>
+                    {children}
+                </RootTemplateChildContainer>
+            )}
         </>
     </ThemeProvider>
 );
 
 RootTemplate.propTypes = {
     children: PropTypes.node.isRequired,
+    childrenReplaceContainer: PropTypes.bool,
     description: PropTypes.string,
     link: PropTypes.arrayOf(PropTypes.object),
     meta: PropTypes.arrayOf(PropTypes.object),
