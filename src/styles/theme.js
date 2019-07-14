@@ -31,6 +31,7 @@ const getTheme = () => {
         pink500: '#e760ab',
         // Purples
         purple100: '#1d0031',
+        purple200: '#2a004d',
         purple400: '#3d268e',
         purple500: '#682ec6',
         purple600: '#8D50F0',
@@ -86,7 +87,7 @@ const getTheme = () => {
         color: {
             // Primary brand
             brand0Base: rootColor.yellow500,
-            brand0Contrast: rootColor.purple100,
+            brand0Contrast: rootColor.purple200,
             // Secondary brand
             brand1Base: rootColor.purple500,
             brand1Contrast: rootColor.white700,
