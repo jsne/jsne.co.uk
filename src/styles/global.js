@@ -25,21 +25,21 @@ export const getGlobalCss = theme => css`
 
     @font-face {
         font-family: '${theme.fontFamily.title0}';
-        font-style: normal;
-        font-weight: bold;
-        font-display: swap;
-        src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
-            url(https://fonts.gstatic.com/s/raleway/v13/1Ptrg8zYS_SKggPNwIouWqZPAA.woff2)
-                format('woff2');
-    }
-
-    @font-face {
-        font-family: '${theme.fontFamily.title1}';
         font-style: italic;
         font-weight: normal;
         font-display: swap;
         src: local('Raleway ExtraBold Italic'), local('Raleway-ExtraBoldItalic'),
             url(https://fonts.gstatic.com/s/raleway/v13/1Ptpg8zYS_SKggPNyCgw6qd_AtCb.woff2)
+                format('woff2');
+    }
+
+    @font-face {
+        font-family: '${theme.fontFamily.title1}';
+        font-style: normal;
+        font-weight: bold;
+        font-display: swap;
+        src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
+            url(https://fonts.gstatic.com/s/raleway/v13/1Ptrg8zYS_SKggPNwIouWqZPAA.woff2)
                 format('woff2');
     }
 
@@ -54,6 +54,10 @@ export const getGlobalCss = theme => css`
 
     :root {
         font-size: ${theme.fontSize.root0};
+
+        ${theme.mediaQuery.maximum`
+            font-size: ${theme.fontSize.root1};
+        `}
     }
 
     body {
