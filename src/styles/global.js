@@ -87,6 +87,7 @@ export const getGlobalCss = theme => css`
     h4,
     h5,
     h6 {
+        font-weight: normal;
         margin-top: 0;
         margin-bottom: 0;
     }
@@ -101,5 +102,10 @@ export const getGlobalCss = theme => css`
     h5,
     h6 {
         ${headingCssFont({ primary: false, theme })};
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
     }
 `;
