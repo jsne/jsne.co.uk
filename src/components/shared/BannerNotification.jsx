@@ -9,26 +9,29 @@ const BannerNotificationRoot = styled.section`
     ${props => props.theme.color.getIntentPresetCss(props.intent)}
 `;
 
-const BannerNotificationInner = styled(Wrapper)`
+const BannerNotificationInner = styled(props => <Wrapper padding {...props} />)`
     display: grid;
-    grid-auto-flow: column;
     grid-gap: ${props => props.theme.spacing.half};
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: ${props =>
-        `${props.theme.spacing.half} ${props.theme.spacing.base}`};
+    justify-items: center;
 
     ${props => props.theme.mediaQuery.low`
-    grid-gap: ${props.theme.spacing.base};
-`}
+        grid-auto-flow: column;
+        grid-gap: ${props.theme.spacing.base};
+        align-items: center;
+        justify-content: space-between;
+    `}
 `;
 
 // const BannerNotificationIcon = styled.span``;
 
 const BannerNotificationContent = styled.p``;
 
-const BannerNotificationCta = styled(Button)`
+const BannerNotificationCtaRoot = styled.div`
+    display: flex;
     flex-grow: 1;
+`;
+
+const BannerNotificationCtaButton = styled(Button)`
     background-color: ${props => props.theme.color.uiBodyBase};
     color: ${props => props.theme.color.uiBodyContrast};
 `;
@@ -50,9 +53,11 @@ export const BannerNotification = ({
                 dangerouslySetInnerHTML={{ __html: content }}
             />
             {cta && (
-                <BannerNotificationCta intent={intent} href={cta.url}>
-                    {cta.label}
-                </BannerNotificationCta>
+                <BannerNotificationCtaRoot>
+                    <BannerNotificationCtaButton intent={intent} href={cta.url}>
+                        {cta.label}
+                    </BannerNotificationCtaButton>
+                </BannerNotificationCtaRoot>
             )}
         </BannerNotificationInner>
     </BannerNotificationRoot>
