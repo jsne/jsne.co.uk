@@ -42,6 +42,7 @@ module.exports = {
 
         // shopify
         'shopify/strict-component-boundaries': 0,
+        'shopify/images-no-direct-imports': 0,
     },
     settings: {
         'import/core-modules': [
