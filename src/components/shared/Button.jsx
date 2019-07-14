@@ -8,6 +8,7 @@ export const Button = styled.a`
     border-radius: ${props => props.theme.border.radius0};
     appearance: none;
     font-weight: ${props => props.theme.fontWeight.base1};
+    line-height: ${props => props.theme.lineHeight.single};
     text-align: center;
 
     :focus {
