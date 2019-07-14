@@ -106,7 +106,7 @@ const getTheme = () => {
             uiBodyBase: rootColor.white700,
             uiBodyContrast: rootColor.black500,
             // UI interactive outline
-            uiInteractiveOutlineBase: `${rootColor.purple100}78`,
+            uiInteractiveOutlineBase: `${rootColor.purple100}58`,
             uiInteractiveOutlineContrast: rootColor.white900,
         },
         fontFamily: {
@@ -119,12 +119,13 @@ const getTheme = () => {
             // initial `:root` font-size
             root0: '16px',
             // font-size for high DPI
-            root1: '20px',
+            root1: '18px',
             normal: '1rem',
             small: '.85rem',
             medium: '1.3rem',
-            large: '1.6em',
+            large: '1.6rem',
             larger: '2rem',
+            largest: '2.5rem',
         },
         fontWeight: {
             base0: 500,
