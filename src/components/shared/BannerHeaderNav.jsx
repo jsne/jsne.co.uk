@@ -8,7 +8,9 @@ import { listCleanCss } from 'Styles/utils';
 
 import { Button } from 'Components/shared/Button';
 
-const BannerHeaderNavToggle = styled(Button)`
+const BannerHeaderNavToggle = styled(props => (
+    <Button as="button" {...props} />
+))`
     color: ${props => props.theme.color.brand1Base};
 `;
 
