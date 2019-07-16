@@ -159,7 +159,7 @@ const getTheme = () => {
             half: '.5rem',
             threeQuarter: '.75rem',
             double: '2rem',
-            nudge: '.1rem',
+            nudge: '.2rem',
         },
         transition: {
             ...transition,
