@@ -1,4 +1,5 @@
-const { resolve } = require('path');
+/* eslint-env node */
+const { resolve } = require('path'); // eslint-disable-line import/no-extraneous-dependencies
 
 /**
  * webpackConfig overrides
@@ -12,6 +13,7 @@ module.exports.webpackConfig = {
         alias: {
             Assets: resolve(__dirname, 'src/assets'),
             Components: resolve(__dirname, 'src/components'),
+            Graphql: resolve(__dirname, 'src/graphql'),
             Layouts: resolve(__dirname, 'src/layouts'),
             Pages: resolve(__dirname, 'src/pages'),
             Root: resolve(__dirname, 'src'),
