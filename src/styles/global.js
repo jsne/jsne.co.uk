@@ -81,6 +81,10 @@ export const getGlobalCss = theme => css`
         text-decoration: none;
     }
 
+    button {
+        border: 0;
+    }
+
     h1,
     h2,
     h3,
