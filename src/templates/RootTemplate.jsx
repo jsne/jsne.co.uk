@@ -16,6 +16,7 @@ const RootTemplateChildContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     min-height: 100vh;
+    scroll-behavior: smooth;
 `;
 
 /**
