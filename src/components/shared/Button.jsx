@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-export const Button = styled.a`
+export const ButtonRoot = styled.a`
     ${props => props.theme.transition.call()}
     border-radius: ${props => props.theme.border.radius0};
     appearance: none;
@@ -56,6 +57,44 @@ export const Button = styled.a`
     }}
 `;
 
+export const Button = ({ appearance, size, href, ...props }) => {
+    const url = href && !href.startsWith('#') ? new URL(href) : null;
+    const optionalProps = {};
+
+    // Add smooth scroll if host is the same, `url` has hash and its supported
+    if (
+        window &&
+        Element &&
+        Element.prototype.scrollIntoView &&
+        url &&
+        url.hash &&
+        url.host === window.location.host
+    ) {
+        optionalProps.onClick = ev => {
+            ev.preventDefault();
+
+            const el = document.querySelector(url.hash);
+            el.scrollIntoView({ behavior: 'smooth' });
+            el.focus();
+        };
+    }
+
+    // Open external links in new window (can be overriden by props)
+    if (window && url && url.host !== window.location.host) {
+        optionalProps.target = '_blank';
+    }
+
+    return (
+        <ButtonRoot
+            appearance={appearance}
+            href={href}
+            size={size}
+            {...optionalProps}
+            {...props}
+        />
+    );
+};
+
 Button.defaultProps = {
     size: 'medium',
 };
@@ -69,5 +108,6 @@ Button.propTypes = {
         'ugly',
         null,
     ]),
+    href: PropTypes.string,
     size: PropTypes.oneOf(['smaller', 'small', 'medium', 'large', null]),
 };
