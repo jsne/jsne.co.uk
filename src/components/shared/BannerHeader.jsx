@@ -31,6 +31,14 @@ const BannerHeaderLogoImg = styled.img`
     ${props => props.theme.mediaQuery.low`
         width: 4.5rem;
     `}
+
+    ${props => props.theme.mediaQuery.high`
+        width: 5rem;
+    `}
+
+    ${props => props.theme.mediaQuery.maximum`
+        width: 5.25rem;
+    `}
 `;
 
 const BannerHeaderLogo = ({ alt, src = logo, to = '/', ...props }) => (
