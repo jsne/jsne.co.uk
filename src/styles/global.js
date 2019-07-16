@@ -83,6 +83,7 @@ export const getGlobalCss = theme => css`
 
     button {
         border: 0;
+        background-color: transparent;
     }
 
     h1,
