@@ -14,7 +14,6 @@ module.exports.webpackConfig = {
             Assets: resolve(__dirname, 'src/assets'),
             Components: resolve(__dirname, 'src/components'),
             Graphql: resolve(__dirname, 'src/graphql'),
-            Layouts: resolve(__dirname, 'src/layouts'),
             Pages: resolve(__dirname, 'src/pages'),
             Root: resolve(__dirname, 'src'),
             Static: resolve(__dirname, 'static'),
