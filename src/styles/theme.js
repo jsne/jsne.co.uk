@@ -126,7 +126,7 @@ const getTheme = () => {
             medium: '1.3rem',
             large: '1.6rem',
             larger: '2rem',
-            largest: '2.5rem',
+            largest: '2.65rem',
         },
         fontWeight: {
             base0: 500,
