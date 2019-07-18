@@ -92,7 +92,6 @@ export const getGlobalCss = theme => css`
     h4,
     h5,
     h6 {
-        font-weight: normal;
         margin-top: 0;
         margin-bottom: 0;
     }
@@ -112,5 +111,11 @@ export const getGlobalCss = theme => css`
     img {
         display: block;
         max-width: 100%;
+    }
+
+    svg {
+        display: block;
+        width: 100%;
+        height: auto;
     }
 `;
