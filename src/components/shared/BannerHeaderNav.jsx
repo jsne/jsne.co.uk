@@ -9,7 +9,6 @@ import { listCleanCss } from 'Styles/utils';
 import IconBars from 'Assets/images/icon-bars.svg';
 
 import { Button } from 'Components/shared/Button';
-import { VisuallyHidden } from 'Components/shared/VisuallyHidden';
 
 const BannerHeaderNavToggle = styled(props => (
     <Button as="button" {...props} />
@@ -74,7 +73,11 @@ BannerHeaderNavList.propTypes = {
     navItems: PropTypes.arrayOf(PropTypes.object),
 };
 
-export const BannerHeaderNav = ({ toggleButtonLabel = 'Toggle', ...props }) => {
+export const BannerHeaderNav = ({
+    navMenuId = 'banner-header-nav-menu',
+    toggleButtonLabel = 'Navigation',
+    ...props
+}) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const navItems = usePageQueryAllNavFormatted();
 
@@ -86,16 +89,22 @@ export const BannerHeaderNav = ({ toggleButtonLabel = 'Toggle', ...props }) => {
         <BannerHeaderNavRoot role="navigation" {...props}>
             <BannerHeaderNavToggle
                 onClick={handleToggleClick}
+                aria-controls={navMenuId}
                 aria-expanded={isExpanded}
+                aria-label={toggleButtonLabel}
             >
                 <BannerHeaderNavToggleIcon role="presentation" />
-                <VisuallyHidden>{toggleButtonLabel}</VisuallyHidden>
             </BannerHeaderNavToggle>
-            <BannerHeaderNavList isExpanded={isExpanded} navItems={navItems} />
+            <BannerHeaderNavList
+                id={navMenuId}
+                isExpanded={isExpanded}
+                navItems={navItems}
+            />
         </BannerHeaderNavRoot>
     );
 };
 
 BannerHeaderNav.propTypes = {
+    navMenuId: PropTypes.string,
     toggleButtonLabel: PropTypes.string,
 };

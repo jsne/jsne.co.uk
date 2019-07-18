@@ -9,7 +9,6 @@ import { Wrapper } from 'Components/shared/Wrapper';
 import { BannerHeaderNav } from 'Components/shared/BannerHeaderNav';
 
 const BannerHeaderRoot = styled(props => <header role="banner" {...props} />)`
-    position: relative;
     padding-top: ${props => props.theme.spacing.half};
     padding-bottom: ${props => props.theme.spacing.half};
     background-color: ${props => props.theme.color.brand0Base};
@@ -17,6 +16,7 @@ const BannerHeaderRoot = styled(props => <header role="banner" {...props} />)`
 `;
 
 const BannerHeaderInner = styled(Wrapper)`
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
