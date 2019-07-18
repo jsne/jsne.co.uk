@@ -155,6 +155,7 @@ const getTheme = () => {
         }, {}),
         spacing: {
             base: '1rem',
+            eighth: '.125rem',
             quarter: '.25rem',
             half: '.5rem',
             threeQuarter: '.75rem',
