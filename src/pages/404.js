@@ -3,6 +3,8 @@ import React from 'react';
 
 import { RootTemplate } from 'Templates/RootTemplate';
 
+import { Button } from 'Components/shared/Button';
+
 const videoUrls = [
     '/assets/media/charlie-im-so-sorry.mp4',
     '/assets/media/charlie-what-do-now.mp4',
@@ -12,10 +14,6 @@ const videoUrls = [
 
 const NotFoundPageVideo = styled.video`
     width: 100%;
-`;
-
-const NotFoundPageCta = styled.a`
-    color: ${props => props.theme.color.brand1Base};
 `;
 
 const NotFoundPageGroup = styled.div`
@@ -56,7 +54,7 @@ const NotFoundPage = () => {
                 </NotFoundPageGroup>
                 <NotFoundPageGroup>
                     <p>Move along, nothing to see here.</p>
-                    <NotFoundPageCta href="/">Homepage</NotFoundPageCta>
+                    <Button href="/">Homepage</Button>
                 </NotFoundPageGroup>
             </NotFoundPageRoot>
         </RootTemplate>

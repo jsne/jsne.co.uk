@@ -1,3 +1,6 @@
+/* eslint-env node */
+/* eslint-disable no-process-env */
+
 require('dotenv').config();
 
 const { webpackConfig } = require('./build');
@@ -5,7 +8,6 @@ const { webpackConfig } = require('./build');
 const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-
     siteMetadata: {
         title: 'JavaScript North East',
     },
@@ -21,13 +23,6 @@ module.exports = {
                 sourceMap: isDev,
             },
         },
-        // {
-        //     resolve: 'gatsby-source-filesystem',
-        //     options: {
-        //         path: `${__dirname}/src/pages`,
-        //         name: 'pages',
-        //     },
-        // },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
@@ -50,11 +45,19 @@ module.exports = {
             options: {
                 trackingId: 'UA-123707923-1',
                 head: false,
-                anonymize: true, // @NOTE enabled for GDPR
+                anonymize: true,
                 respectDNT: true,
                 exclude: ['/preview/**'],
             },
         },
         'gatsby-mdx',
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /assets/,
+                },
+            },
+        },
     ],
 };

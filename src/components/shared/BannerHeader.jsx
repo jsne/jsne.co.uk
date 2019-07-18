@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
-import logo from 'Assets/images/logo.svg';
+import Logo from 'Assets/images/logo.svg';
 
 import { Wrapper } from 'Components/shared/Wrapper';
 import { BannerHeaderNav } from 'Components/shared/BannerHeaderNav';
@@ -25,7 +25,7 @@ const BannerHeaderInner = styled(Wrapper)`
 const BannerHeaderLogoRoot = styled.h1``;
 const BannerHeaderLogoLink = styled(Link)``;
 
-const BannerHeaderLogoImg = styled.img`
+const BannerHeaderLogoImage = styled(Logo)`
     width: 4rem;
 
     ${props => props.theme.mediaQuery.low`
@@ -41,17 +41,15 @@ const BannerHeaderLogoImg = styled.img`
     `}
 `;
 
-const BannerHeaderLogo = ({ alt, src = logo, to = '/', ...props }) => (
+const BannerHeaderLogo = ({ to = '/', ...props }) => (
     <BannerHeaderLogoRoot>
         <BannerHeaderLogoLink to={to} {...props}>
-            <BannerHeaderLogoImg alt={alt} src={src} />
+            <BannerHeaderLogoImage />
         </BannerHeaderLogoLink>
     </BannerHeaderLogoRoot>
 );
 
 BannerHeaderLogo.propTypes = {
-    alt: PropTypes.string,
-    src: PropTypes.string,
     to: PropTypes.string,
 };
 
