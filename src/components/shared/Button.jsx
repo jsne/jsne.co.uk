@@ -6,15 +6,17 @@ import styled from '@emotion/styled';
 
 export const ButtonRoot = styled.a`
     ${props => props.theme.transition.call()}
+    display: inline-flex;
     border-radius: ${props => props.theme.border.radius0};
     appearance: none;
     font-weight: ${props => props.theme.fontWeight.base1};
     line-height: ${props => props.theme.lineHeight.single};
     text-align: center;
+    color: ${props => props.theme.color.brand1Base};
 
     :focus {
-        box-shadow: 0 0 0 .25rem ${props =>
-            props.theme.color.uiInteractiveOutlineBase};
+        box-shadow: 0 0 0 0.25rem
+            ${props => props.theme.color.uiInteractiveOutlineBase};
         outline-style: solid;
         outline-offset: -1px;
     }
@@ -22,6 +24,12 @@ export const ButtonRoot = styled.a`
     :active {
         transform: translateY(${props => props.theme.spacing.nudge});
     }
+
+    ${props =>
+        props.disabled &&
+        css`
+            cursor: not-allowed;
+        `}
 
     ${props => {
         // Default CSS, default to none
@@ -58,7 +66,7 @@ export const ButtonRoot = styled.a`
 `;
 
 export const Button = ({ appearance, size, href, ...props }) => {
-    const url = href && !href.startsWith('#') ? new URL(href) : null;
+    const url = href && href.includes('://') ? new URL(href) : null;
     const optionalProps = {};
 
     // Add smooth scroll if host is the same, `url` has hash and its supported
