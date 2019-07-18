@@ -58,7 +58,7 @@ const getTheme = () => {
      * @param  {string} [property='all']                       - CSS property e.g. 'color'
      * @param  {number|string} [delay=transitions.delay]       - delay before/after
      * @param  {number|string} [duration=transitions.duration] - duration
-     * @param  {string} [timingFunction=transitions.function]  - timing function e.g. 'ease-in-out'
+     * @param  {string} [timingFunction=transitions.timingFunction]  - timing function e.g. 'ease-in-out'
      * @return {Object}                                        - CSS style definition
      */
     const getTransitionCss = (
@@ -66,7 +66,7 @@ const getTheme = () => {
         {
             delay = transition.delay,
             duration = transition.duration,
-            timingFunction = transition.function,
+            timingFunction = transition.timingFunction,
         } = {},
     ) => css`
         transition-delay: ${delay};
