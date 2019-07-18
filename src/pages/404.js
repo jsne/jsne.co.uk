@@ -44,6 +44,7 @@ const NotFoundPage = () => {
             childrenReplaceContainer
             title="Not found"
             description="Unable to find page"
+            meta={[{ name: 'robots', content: 'noindex, nofollow' }]}
         >
             <NotFoundPageRoot>
                 <NotFoundPageGroup>
