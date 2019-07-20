@@ -9,7 +9,7 @@ export const listCleanCss = () => css`
 `;
 
 export const visuallyHiddenCss = () => css`
-    position: absolute !important;
+    position: absolute;
     height: 1px;
     width: 1px;
     overflow: hidden;
