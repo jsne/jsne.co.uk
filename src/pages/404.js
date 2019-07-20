@@ -5,12 +5,12 @@ import { RootTemplate } from 'Templates/RootTemplate';
 
 import { Button } from 'Components/shared/Button';
 
-const videoUrls = [
-    '/assets/media/charlie-im-so-sorry.mp4',
-    '/assets/media/charlie-what-do-now.mp4',
-    '/assets/media/frank-egg-limo.mp4',
-    '/assets/media/frank-whoops.mp4',
-];
+import video1 from 'Static/assets/media/charlie-im-so-sorry.mp4';
+import video2 from 'Static/assets/media/charlie-what-do-now.mp4';
+import video3 from 'Static/assets/media/frank-egg-limo.mp4';
+import video4 from 'Static/assets/media/frank-whoops.mp4';
+
+const videoUrls = [video1, video2, video3, video4];
 
 const NotFoundPageVideo = styled.video`
     width: 100%;
