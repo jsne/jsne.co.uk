@@ -2,32 +2,15 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import React from 'react';
 
+import { useEventQuerySingleLatestFormatted } from 'Graphql/event';
+
 import { RootTemplate } from 'Templates/RootTemplate';
-// import ClockIcon from 'Components/shared/Icons/Clock';
-// import CalendarIcon from 'Components/shared/Icons/Calendar';
-// import IconText from 'Components/shared/IconText';
-// import { MailingListFormSection } from 'Components/shared/MailingListForm';
-// import MapIcon from 'Components/shared/Icons/Map';
-// import { MapSection } from 'Components/shared/Map';
 import { BannerNotification } from 'Components/shared/BannerNotification';
 import { HomeHero } from 'Components/pages/Home/HomeHero';
 
-const HomePage = ({
-    data: {
-        allContentfulEvent: { edges: events },
-        contentfulNotifcation,
-    },
-}) => {
-    const eventInfo = events[0].node;
-    // const eventDate = new Date(`${eventInfo.eventDate}Z`);
-    // const eventDateString = eventDate.toDateString();
-
+const HomePage = ({ data: { contentfulNotifcation } }) => {
+    const eventInfo = useEventQuerySingleLatestFormatted();
     // const { venue } = eventInfo;
-
-    // const eventHours = eventDate.getUTCHours();
-    // const eventMins =
-    // (eventDate.getUTCMinutes() < 10 ? '0' : '') + eventDate.getMinutes();
-    // const eventTime = `${eventHours}:${eventMins}`;
 
     /* eslint-disable shopify/jsx-no-hardcoded-content */
     return (
@@ -45,55 +28,31 @@ const HomePage = ({
                 />
             )}
 
-            {
-                <HomeHero
-                    sectionPrimary={{
-                        title: (
-                            <>
-                                <span>JavaScript</span> North East
-                            </>
-                        ),
-                        text:
-                            "We're an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.",
-                    }}
-                    sectionSecondary={{
-                        preTitle: 'Up next:',
-                        title: eventInfo.title,
-                        text: eventInfo.description.description,
-                        infos: [
-                            // <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
-                            // <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
-                            // <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venue.name} to="#venue-map" underline />,
-                        ],
-                        cta: {
-                            to: eventInfo.titoId,
-                            label: 'Get tickets',
-                        },
-                    }}
-                />
-            }
-
-            {/* <MailingListFormSection />
-
-            <MapSection
-                center={{ lat: venue.location.lat, lng: venue.location.lon }}
-                markers={[{
-                    title: venue.name,
-                    text: (
-                        <div>
-                            {venue.street}
-                            <br />
-                            {venue.postcode}
-                        </div>
+            <HomeHero
+                sectionPrimary={{
+                    title: (
+                        <>
+                            <span>JavaScript</span> North East
+                        </>
                     ),
-                    lat: venue.location.lat,
-                    link: {
-                        href: venue.mapsLink,
-                        text: 'View on Google Maps',
+                    text:
+                        "We're an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.",
+                }}
+                sectionSecondary={{
+                    preTitle: 'Up next:',
+                    title: eventInfo.title,
+                    text: eventInfo.description.description,
+                    infos: [
+                        // <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
+                        // <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
+                        // <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venue.name} to="#venue-map" underline />,
+                    ],
+                    cta: {
+                        to: eventInfo.titoId,
+                        label: 'Get tickets',
                     },
-                    lng: venue.location.lon,
-                }]}
-            />} */}
+                }}
+            />
         </RootTemplate>
     );
     /* eslint-enable shopify/jsx-no-hardcoded-content */
@@ -116,32 +75,6 @@ export const pageQuery = graphql`
             ctaLabel
             ctaUri
             icon
-        }
-
-        allContentfulEvent(
-            limit: 1
-            sort: { fields: [eventDate], order: DESC }
-        ) {
-            edges {
-                node {
-                    title
-                    description {
-                        description
-                    }
-                    eventDate
-                    titoId
-                    venue {
-                        name
-                        street
-                        postcode
-                        location {
-                            lat
-                            lon
-                        }
-                        mapsLink
-                    }
-                }
-            }
         }
     }
 `;

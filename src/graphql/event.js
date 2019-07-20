@@ -26,7 +26,7 @@ export const eventFragment = graphql`
 
 /**
  * Essential data for Latest event
- * @NOTE Result will be `null` if latest event is in the past
+ * @NOTE Result will be `null` if `$date` event is past previous event
  */
 export const eventQuerySingleLatest = graphql`
     query eventQuerySingleLatest($date: Date) {
