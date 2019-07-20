@@ -3,6 +3,46 @@ import { css } from '@emotion/core';
 import { headingFontCss } from 'Styles/utils';
 
 export const globalCss = theme => css`
+    @font-face {
+        font-family: '${theme.fontFamily.body0}';
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+        font-named-instance: 'Regular';
+        src: url('https://rsms.me/inter/font-files/Inter-upright.var.woff2?v=3.7')
+            format('woff2');
+    }
+
+    @font-face {
+        font-family: '${theme.fontFamily.body1}';
+        font-weight: 100 900;
+        font-style: italic;
+        font-display: swap;
+        font-named-instance: 'Italic';
+        src: url('https://rsms.me/inter/font-files/Inter-upright.var.woff2?v=3.7')
+            format('woff2');
+    }
+
+    @font-face {
+        font-family: '${theme.fontFamily.title0}';
+        font-style: italic;
+        font-weight: normal;
+        font-display: swap;
+        src: local('Raleway ExtraBold Italic'), local('Raleway-ExtraBoldItalic'),
+            url(https://fonts.gstatic.com/s/raleway/v13/1Ptpg8zYS_SKggPNyCgw6qd_AtCb.woff2)
+                format('woff2');
+    }
+
+    @font-face {
+        font-family: '${theme.fontFamily.title1}';
+        font-style: normal;
+        font-weight: normal;
+        font-display: swap;
+        src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
+            url(https://fonts.gstatic.com/s/raleway/v13/1Ptrg8zYS_SKggPNwIouWqZPAA.woff2)
+                format('woff2');
+    }
+
     * {
         box-sizing: border-box;
     }
@@ -75,45 +115,5 @@ export const globalCss = theme => css`
         display: block;
         width: 100%;
         height: auto;
-    }
-
-    @font-face {
-        font-family: '${theme.fontFamily.body0}';
-        font-weight: 100 900;
-        font-style: normal;
-        font-display: swap;
-        font-named-instance: 'Regular';
-        src: url('https://rsms.me/inter/font-files/Inter-upright.var.woff2?v=3.7')
-            format('woff2');
-    }
-
-    @font-face {
-        font-family: '${theme.fontFamily.body1}';
-        font-weight: 100 900;
-        font-style: italic;
-        font-display: swap;
-        font-named-instance: 'Italic';
-        src: url('https://rsms.me/inter/font-files/Inter-upright.var.woff2?v=3.7')
-            format('woff2');
-    }
-
-    @font-face {
-        font-family: '${theme.fontFamily.title0}';
-        font-style: italic;
-        font-weight: normal;
-        font-display: swap;
-        src: local('Raleway ExtraBold Italic'), local('Raleway-ExtraBoldItalic'),
-            url(https://fonts.gstatic.com/s/raleway/v13/1Ptpg8zYS_SKggPNyCgw6qd_AtCb.woff2)
-                format('woff2');
-    }
-
-    @font-face {
-        font-family: '${theme.fontFamily.title1}';
-        font-style: normal;
-        font-weight: normal;
-        font-display: swap;
-        src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
-            url(https://fonts.gstatic.com/s/raleway/v13/1Ptrg8zYS_SKggPNwIouWqZPAA.woff2)
-                format('woff2');
     }
 `;
