@@ -1,5 +1,7 @@
 /* eslint-disable shopify/jsx-no-complex-expressions */
 
+import 'Styles/vendor.css';
+
 import PropTypes from 'prop-types';
 import { Global } from '@emotion/core';
 import styled from '@emotion/styled';
