@@ -4,28 +4,33 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 import { BannerHeader } from 'Components/shared/BannerHeader';
-import { headingCssFont } from 'Components/shared/Heading';
 import { Wrapper } from 'Components/shared/Wrapper';
+
+import { headingFontCss } from 'Styles/utils';
 
 const HomeHeroRoot = styled.div`
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-`;
-
-const HomeHeroInner = styled.div`
-    flex-grow: 1;
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
 
     ${props => props.theme.mediaQuery.maximum`
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: max-content;
+        grid-template-areas: "Header Header" "Primary Secondary";
     `}
 `;
 
 const HomeHeroHeader = styled(BannerHeader)`
-    ${props => props.theme.mediaQuery.higher}
+    grid-area: Header;
+
+    ${props => props.theme.mediaQuery.maximum`
+        background-image: linear-gradient(
+            to right,
+            ${props.theme.color.brand0Base} 50%,
+            ${props.theme.color.brand1Base} 50%
+        );
+    `}
 `;
 
 const HomeHeroSectionRoot = styled(props => <Wrapper fluid {...props} />)`
@@ -77,6 +82,7 @@ HomeHeroSection.propTypes = {
 const HomeHeroSectionPrimary = styled(props => (
     <HomeHeroSection alignLeft {...props} />
 ))`
+    grid-area: Primary;
     background-color: ${props => props.theme.color.brand0Base};
     color: ${props => props.theme.color.brand0Contrast};
 `;
@@ -86,39 +92,41 @@ const HomeHeroSectionPrimaryTitle = styled.h1`
 `;
 
 const HomeHeroSectionSecondary = styled(HomeHeroSection)`
+    grid-area: Secondary;
     background-color: ${props => props.theme.color.brand1Base};
     color: ${props => props.theme.color.brand1Contrast};
 `;
 
 const HomeHeroSectionSecondaryTitleRoot = styled.h1``;
 const HomeHeroSectionSecondaryTitlePre = styled.div`
-    ${headingCssFont}
-    font-size: ${props => props.theme.fontSize.large};
+    ${headingFontCss}
+    font-size: ${props => props.theme.fontSize.medium};
 `;
-const HomeHeroSectionSecondaryTitleMain = styled.div``;
+
+const HomeHeroSectionSecondaryTitleMain = styled.div`
+    color: ${props => props.theme.color.brand0Base};
+`;
 
 export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => {
     return (
         <HomeHeroRoot {...props}>
             <HomeHeroHeader />
-            <HomeHeroInner>
-                <HomeHeroSectionPrimary>
-                    <HomeHeroSectionPrimaryTitle>
-                        {sectionPrimary.title}
-                    </HomeHeroSectionPrimaryTitle>
-                </HomeHeroSectionPrimary>
+            <HomeHeroSectionPrimary>
+                <HomeHeroSectionPrimaryTitle>
+                    {sectionPrimary.title}
+                </HomeHeroSectionPrimaryTitle>
+            </HomeHeroSectionPrimary>
 
-                <HomeHeroSectionSecondary as="section">
-                    <HomeHeroSectionSecondaryTitleRoot>
-                        <HomeHeroSectionSecondaryTitlePre primary={false}>
-                            {sectionSecondary.preTitle}
-                        </HomeHeroSectionSecondaryTitlePre>
-                        <HomeHeroSectionSecondaryTitleMain>
-                            {sectionSecondary.title}
-                        </HomeHeroSectionSecondaryTitleMain>
-                    </HomeHeroSectionSecondaryTitleRoot>
-                </HomeHeroSectionSecondary>
-            </HomeHeroInner>
+            <HomeHeroSectionSecondary as="section">
+                <HomeHeroSectionSecondaryTitleRoot>
+                    <HomeHeroSectionSecondaryTitlePre primary={false}>
+                        {sectionSecondary.preTitle}
+                    </HomeHeroSectionSecondaryTitlePre>
+                    <HomeHeroSectionSecondaryTitleMain>
+                        {sectionSecondary.title}
+                    </HomeHeroSectionSecondaryTitleMain>
+                </HomeHeroSectionSecondaryTitleRoot>
+            </HomeHeroSectionSecondary>
         </HomeHeroRoot>
     );
 };

@@ -16,6 +16,10 @@ const BannerHeaderNavToggle = styled(props => (
     padding: ${props =>
         `${props.theme.spacing.eighth} ${props.theme.spacing.quarter}`};
     color: ${props => props.theme.color.brand1Base};
+
+    ${props => props.theme.mediaQuery.high`
+        display: none;
+    `}
 `;
 
 const BannerHeaderNavToggleIcon = styled(IconBars)`
@@ -24,9 +28,16 @@ const BannerHeaderNavToggleIcon = styled(IconBars)`
 `;
 
 const BannerHeaderNavRoot = styled.nav`
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    ${props => props.theme.mediaQuery.high`
+        padding: ${props.theme.spacing.threeQuarter} ${props.theme.spacing.base};
+        background-color: ${props.theme.color.brand0Base};
+        border-radius: ${props.theme.border.radius0};
+    `}
 `;
 
 const BannerHeaderNavListRoot = styled.ul`
@@ -35,11 +46,20 @@ const BannerHeaderNavListRoot = styled.ul`
     position: absolute;
     top: 100%;
     right: 0;
+
+    ${props => props.theme.mediaQuery.high`
+        position: static;
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: ${props.theme.spacing.base};
+    `}
 `;
 
-const BannerHeaderNavListItemRoot = styled.li``;
-
-const BannerHeaderNavListItemLink = styled.a``;
+const BannerHeaderNavListItemLink = styled.a`
+    ${props => props.theme.mediaQuery.high`
+        font-weight: ${props.theme.fontWeight.base1};
+    `}
+`;
 
 const BannerHeaderNavListItem = ({
     navigationLabel,
@@ -47,11 +67,11 @@ const BannerHeaderNavListItem = ({
     title,
     ...props
 }) => (
-    <BannerHeaderNavListItemRoot {...props}>
+    <li {...props}>
         <BannerHeaderNavListItemLink href={path} title={title}>
             {navigationLabel}
         </BannerHeaderNavListItemLink>
-    </BannerHeaderNavListItemRoot>
+    </li>
 );
 
 BannerHeaderNavListItem.propTypes = {

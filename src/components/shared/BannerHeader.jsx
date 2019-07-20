@@ -16,7 +16,6 @@ const BannerHeaderRoot = styled(props => <header role="banner" {...props} />)`
 `;
 
 const BannerHeaderInner = styled(Wrapper)`
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
