@@ -38,6 +38,9 @@ export const RootTemplate = ({
         <>
             <Global styles={globalCss(theme)} />
             <Helmet
+                htmlAttributes={{
+                    lang: 'en',
+                }}
                 title={title}
                 meta={[
                     { name: 'description', content: description },
