@@ -4,6 +4,10 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 import { BannerHeader } from 'Components/shared/BannerHeader';
+import {
+    BannerHeaderNavRoot,
+    BannerHeaderNavListItemLink,
+} from 'Components/shared/BannerHeaderNav';
 import { Wrapper } from 'Components/shared/Wrapper';
 
 import { headingFontCss } from 'Styles/utils';
@@ -30,6 +34,20 @@ const HomeHeroHeader = styled(BannerHeader)`
             ${props.theme.color.brand0Base} 50%,
             ${props.theme.color.brand1Base} 50%
         );
+
+        ${BannerHeaderNavRoot} {
+            background-color: ${props.theme.color.brand1Base};
+            padding-right: 0;
+        }
+
+        ${BannerHeaderNavListItemLink} {
+            color: ${props.theme.color.brand1Contrast};
+
+            &:hover,
+            &:focus {
+                color: ${props.theme.color.brand0Base};
+            }
+        }
     `}
 `;
 
@@ -64,15 +82,13 @@ const HomeHeroSectionInner = styled(props => (
     `}
 `;
 
-const HomeHeroSection = ({ alignLeft, children, ...props }) => {
-    return (
-        <HomeHeroSectionRoot {...props}>
-            <HomeHeroSectionInner alignLeft={alignLeft}>
-                {children}
-            </HomeHeroSectionInner>
-        </HomeHeroSectionRoot>
-    );
-};
+const HomeHeroSection = ({ alignLeft, children, ...props }) => (
+    <HomeHeroSectionRoot {...props}>
+        <HomeHeroSectionInner alignLeft={alignLeft}>
+            {children}
+        </HomeHeroSectionInner>
+    </HomeHeroSectionRoot>
+);
 
 HomeHeroSection.propTypes = {
     alignLeft: PropTypes.bool,
@@ -107,29 +123,27 @@ const HomeHeroSectionSecondaryTitleMain = styled.div`
     color: ${props => props.theme.color.brand0Base};
 `;
 
-export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => {
-    return (
-        <HomeHeroRoot {...props}>
-            <HomeHeroHeader />
-            <HomeHeroSectionPrimary>
-                <HomeHeroSectionPrimaryTitle>
-                    {sectionPrimary.title}
-                </HomeHeroSectionPrimaryTitle>
-            </HomeHeroSectionPrimary>
+export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
+    <HomeHeroRoot {...props}>
+        <HomeHeroHeader />
+        <HomeHeroSectionPrimary>
+            <HomeHeroSectionPrimaryTitle>
+                {sectionPrimary.title}
+            </HomeHeroSectionPrimaryTitle>
+        </HomeHeroSectionPrimary>
 
-            <HomeHeroSectionSecondary as="section">
-                <HomeHeroSectionSecondaryTitleRoot>
-                    <HomeHeroSectionSecondaryTitlePre primary={false}>
-                        {sectionSecondary.preTitle}
-                    </HomeHeroSectionSecondaryTitlePre>
-                    <HomeHeroSectionSecondaryTitleMain>
-                        {sectionSecondary.title}
-                    </HomeHeroSectionSecondaryTitleMain>
-                </HomeHeroSectionSecondaryTitleRoot>
-            </HomeHeroSectionSecondary>
-        </HomeHeroRoot>
-    );
-};
+        <HomeHeroSectionSecondary as="section">
+            <HomeHeroSectionSecondaryTitleRoot>
+                <HomeHeroSectionSecondaryTitlePre primary={false}>
+                    {sectionSecondary.preTitle}
+                </HomeHeroSectionSecondaryTitlePre>
+                <HomeHeroSectionSecondaryTitleMain>
+                    {sectionSecondary.title}
+                </HomeHeroSectionSecondaryTitleMain>
+            </HomeHeroSectionSecondaryTitleRoot>
+        </HomeHeroSectionSecondary>
+    </HomeHeroRoot>
+);
 
 HomeHero.propTypes = {
     sectionPrimary: PropTypes.object.isRequired,
