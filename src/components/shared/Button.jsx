@@ -71,8 +71,8 @@ export const Button = ({ appearance, size, href, ...props }) => {
 
     // Add smooth scroll if host is the same, `url` has hash and its supported
     if (
-        window &&
-        Element &&
+        typeof window !== 'undefined' &&
+        typeof Element !== 'undefined' &&
         Element.prototype.scrollIntoView &&
         url &&
         url.hash &&
@@ -88,7 +88,11 @@ export const Button = ({ appearance, size, href, ...props }) => {
     }
 
     // Open external links in new window (can be overriden by props)
-    if (window && url && url.host !== window.location.host) {
+    if (
+        typeof window !== 'undefined' &&
+        url &&
+        url.host !== window.location.host
+    ) {
         optionalProps.target = '_blank';
     }
 
