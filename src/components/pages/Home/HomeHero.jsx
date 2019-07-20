@@ -16,18 +16,18 @@ const HomeHeroRoot = styled.div`
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+`;
 
+const HomeHeroInner = styled.div`
     ${props => props.theme.mediaQuery.maximum`
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: max-content;
-        grid-template-areas: "Header Header" "Primary Secondary";
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        flex-direction: row;
     `}
 `;
 
 const HomeHeroHeader = styled(BannerHeader)`
-    grid-area: Header;
-
     ${props => props.theme.mediaQuery.maximum`
         background-image: linear-gradient(
             to right,
@@ -98,7 +98,6 @@ HomeHeroSection.propTypes = {
 const HomeHeroSectionPrimary = styled(props => (
     <HomeHeroSection alignLeft {...props} />
 ))`
-    grid-area: Primary;
     background-color: ${props => props.theme.color.brand0Base};
     color: ${props => props.theme.color.brand0Contrast};
 `;
@@ -108,7 +107,6 @@ const HomeHeroSectionPrimaryTitle = styled.h1`
 `;
 
 const HomeHeroSectionSecondary = styled(HomeHeroSection)`
-    grid-area: Secondary;
     background-color: ${props => props.theme.color.brand1Base};
     color: ${props => props.theme.color.brand1Contrast};
 `;
@@ -126,22 +124,24 @@ const HomeHeroSectionSecondaryTitleMain = styled.div`
 export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
     <HomeHeroRoot {...props}>
         <HomeHeroHeader />
-        <HomeHeroSectionPrimary>
-            <HomeHeroSectionPrimaryTitle>
-                {sectionPrimary.title}
-            </HomeHeroSectionPrimaryTitle>
-        </HomeHeroSectionPrimary>
+        <HomeHeroInner>
+            <HomeHeroSectionPrimary>
+                <HomeHeroSectionPrimaryTitle>
+                    {sectionPrimary.title}
+                </HomeHeroSectionPrimaryTitle>
+            </HomeHeroSectionPrimary>
 
-        <HomeHeroSectionSecondary as="section">
-            <HomeHeroSectionSecondaryTitleRoot>
-                <HomeHeroSectionSecondaryTitlePre primary={false}>
-                    {sectionSecondary.preTitle}
-                </HomeHeroSectionSecondaryTitlePre>
-                <HomeHeroSectionSecondaryTitleMain>
-                    {sectionSecondary.title}
-                </HomeHeroSectionSecondaryTitleMain>
-            </HomeHeroSectionSecondaryTitleRoot>
-        </HomeHeroSectionSecondary>
+            <HomeHeroSectionSecondary as="section">
+                <HomeHeroSectionSecondaryTitleRoot>
+                    <HomeHeroSectionSecondaryTitlePre primary={false}>
+                        {sectionSecondary.preTitle}
+                    </HomeHeroSectionSecondaryTitlePre>
+                    <HomeHeroSectionSecondaryTitleMain>
+                        {sectionSecondary.title}
+                    </HomeHeroSectionSecondaryTitleMain>
+                </HomeHeroSectionSecondaryTitleRoot>
+            </HomeHeroSectionSecondary>
+        </HomeHeroInner>
     </HomeHeroRoot>
 );
 
