@@ -17,7 +17,7 @@ const BannerHeaderNavToggle = styled(props => (
         `${props.theme.spacing.eighth} ${props.theme.spacing.quarter}`};
     color: ${props => props.theme.color.brand1Base};
 
-    ${props => props.theme.mediaQuery.high`
+    ${props => props.theme.mediaQuery.medium`
         display: none;
     `}
 `;
@@ -33,7 +33,7 @@ export const BannerHeaderNavRoot = styled.nav`
     flex-direction: column;
     align-items: flex-end;
 
-    ${props => props.theme.mediaQuery.high`
+    ${props => props.theme.mediaQuery.medium`
         padding: ${props.theme.spacing.threeQuarter} ${props.theme.spacing.base};
         background-color: ${props.theme.color.brand0Base};
         border-radius: ${props.theme.border.radius0};
@@ -47,16 +47,20 @@ const BannerHeaderNavListRoot = styled.ul`
     top: 100%;
     right: 0;
 
-    ${props => props.theme.mediaQuery.high`
+    ${props => props.theme.mediaQuery.medium`
         position: static;
         display: grid;
         grid-auto-flow: column;
         grid-gap: ${props.theme.spacing.base};
     `}
+
+    ${props => props.theme.mediaQuery.higher`
+        grid-gap: calc(${props.theme.spacing.base} * 1.2);
+    `}
 `;
 
 export const BannerHeaderNavListItemLink = styled.a`
-    ${props => props.theme.mediaQuery.high`
+    ${props => props.theme.mediaQuery.medium`
         font-weight: ${props.theme.fontWeight.base1};
     `}
 `;
