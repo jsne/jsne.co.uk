@@ -2,7 +2,7 @@ import { css } from '@emotion/core';
 
 import { headingFontCss } from 'Styles/utils';
 
-export const getGlobalCss = theme => css`
+export const globalCss = theme => css`
     @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 
     @font-face {
@@ -98,14 +98,14 @@ export const getGlobalCss = theme => css`
 
     h1,
     h2 {
-        ${headingFontCss({ theme })};
+        ${headingFontCss({ primary: true, theme })};
     }
 
     h3,
     h4,
     h5,
     h6 {
-        ${headingFontCss({ primary: false, theme })};
+        ${headingFontCss({ theme })};
     }
 
     img {

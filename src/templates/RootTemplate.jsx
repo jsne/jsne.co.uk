@@ -7,7 +7,7 @@ import { ThemeProvider } from 'emotion-theming';
 import Helmet from 'react-helmet';
 import React from 'react';
 
-import { getGlobalCss } from 'Styles/global';
+import { globalCss } from 'Styles/global';
 import { theme } from 'Styles/theme';
 
 const RootTemplateChildContainer = styled.div`
@@ -34,7 +34,7 @@ export const RootTemplate = ({
 }) => (
     <ThemeProvider theme={theme} {...props}>
         <>
-            <Global styles={getGlobalCss(theme)} />
+            <Global styles={globalCss(theme)} />
             <Helmet
                 title={title}
                 meta={[

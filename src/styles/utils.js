@@ -16,15 +16,21 @@ export const visuallyHiddenCss = () => css`
     clip: rect(1px, 1px, 1px, 1px);
 `;
 
-export const headdingShadowCss = props => css`
-    text-shadow: ${props.shadow &&
-        `2px 2px ${props.theme.color.brandShadowBase}`};
+export const headingShadowCss = props =>
+    props.shadow
+        ? css`
+              text-shadow: 2px 2px ${props.theme.color.brandShadowBase};
+          `
+        : undefined;
+
+export const headingFontFamilyCss = props => css`
+    font-family: ${props.primary
+        ? props.theme.fontFamily.title0
+        : props.theme.fontFamily.title1};
 `;
 
-export const headingFontCss = ({ primary = true, ...props }) => css`
-    ${headdingShadowCss}
-    font-family: ${
-        primary ? props.theme.fontFamily.title0 : props.theme.fontFamily.title1
-    };
+export const headingFontCss = props => css`
     font-weight: normal;
+    ${headingShadowCss(props)}
+    ${headingFontFamilyCss(props)}
 `;
