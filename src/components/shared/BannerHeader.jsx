@@ -5,8 +5,8 @@ import styled from '@emotion/styled';
 
 import Logo from 'Assets/images/logo.svg';
 
-import { Wrapper } from 'Components/shared/Wrapper';
 import { BannerHeaderNav } from 'Components/shared/BannerHeaderNav';
+import { Wrapper } from 'Components/shared/Wrapper';
 
 const BannerHeaderRoot = styled(props => <header role="banner" {...props} />)`
     padding-top: ${props => props.theme.spacing.half};
@@ -47,7 +47,7 @@ const BannerHeaderLogoImage = styled(Logo)`
 
 const BannerHeaderLogo = ({ to = '/', ...props }) => (
     <BannerHeaderLogoRoot>
-        <BannerHeaderLogoLink to={to} {...props}>
+        <BannerHeaderLogoLink to={to} {...props} aria-label="Homepage">
             <BannerHeaderLogoImage />
         </BannerHeaderLogoLink>
     </BannerHeaderLogoRoot>
