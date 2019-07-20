@@ -27,7 +27,7 @@ const BannerHeaderNavToggleIcon = styled(IconBars)`
     fill: currentColor;
 `;
 
-const BannerHeaderNavRoot = styled.nav`
+export const BannerHeaderNavRoot = styled.nav`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -55,7 +55,7 @@ const BannerHeaderNavListRoot = styled.ul`
     `}
 `;
 
-const BannerHeaderNavListItemLink = styled.a`
+export const BannerHeaderNavListItemLink = styled.a`
     ${props => props.theme.mediaQuery.high`
         font-weight: ${props.theme.fontWeight.base1};
     `}

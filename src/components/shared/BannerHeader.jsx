@@ -13,6 +13,11 @@ const BannerHeaderRoot = styled(props => <header role="banner" {...props} />)`
     padding-bottom: ${props => props.theme.spacing.half};
     background-color: ${props => props.theme.color.brand0Base};
     color: ${props => props.theme.color.brand0Contrast};
+
+    ${props => props.theme.mediaQuery.higher`
+        padding-top: ${props.theme.spacing.base};
+        padding-bottom: ${props.theme.spacing.base};
+    `}
 `;
 
 const BannerHeaderInner = styled(Wrapper)`
@@ -52,16 +57,14 @@ BannerHeaderLogo.propTypes = {
     to: PropTypes.string,
 };
 
-export const BannerHeader = ({ /* children,*/ ...props }) => {
-    return (
-        <BannerHeaderRoot {...props}>
-            <BannerHeaderInner paddingX>
-                <BannerHeaderLogo alt="JSNE" />
-                <BannerHeaderNav />
-            </BannerHeaderInner>
-        </BannerHeaderRoot>
-    );
-};
+export const BannerHeader = ({ /* children,*/ ...props }) => (
+    <BannerHeaderRoot {...props}>
+        <BannerHeaderInner paddingX>
+            <BannerHeaderLogo alt="JSNE" />
+            <BannerHeaderNav />
+        </BannerHeaderInner>
+    </BannerHeaderRoot>
+);
 
 BannerHeader.propTypes = {
     children: PropTypes.node,
