@@ -16,7 +16,7 @@ module.exports = {
         'gatsby-plugin-react-helmet',
         {
             resolve: 'gatsby-plugin-emotion',
-            optons: {
+            options: {
                 autoLabel: isDev,
                 cssPropOptimization: true,
                 labelFormat: '[local]',
