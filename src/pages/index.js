@@ -32,15 +32,16 @@ const HomePage = ({ data: { contentfulNotifcation } }) => {
                 sectionPrimary={{
                     title: (
                         <>
-                            <span>JavaScript</span> North East
+                            <div>JavaScript</div> North East
                         </>
                     ),
                     text:
-                        "We're an all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.",
+                        "We're the all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.",
                 }}
                 sectionSecondary={{
                     preTitle: 'Up next:',
                     title: eventInfo.title,
+                    to: eventInfo.path,
                     text: eventInfo.description.description,
                     infos: [
                         // <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
