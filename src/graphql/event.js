@@ -9,10 +9,8 @@ export const eventFragment = graphql`
     fragment eventFragment on ContentfulEvent {
         description {
             childMdx {
-                code {
-                    body
-                    scope
-                }
+                body
+                mdxAST
             }
         }
         eventDate
