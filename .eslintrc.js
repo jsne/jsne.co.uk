@@ -41,6 +41,7 @@ module.exports = {
         'eslint-comments/disable-enable-pair': 0,
 
         // react
+        'react/forbid-foreign-prop-types': 0,
         'react/jsx-filename-extension': 0,
 
         // shopify
