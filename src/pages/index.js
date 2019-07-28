@@ -42,7 +42,7 @@ const HomePage = ({ data: { contentfulNotifcation } }) => {
                     preTitle: 'Up next:',
                     title: eventInfo.title,
                     to: eventInfo.path,
-                    text: eventInfo.description.description,
+                    text: eventInfo.description.childMdx.body,
                     infos: [
                         // <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
                         // <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
