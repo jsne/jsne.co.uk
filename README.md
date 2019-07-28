@@ -34,6 +34,7 @@ yarn serve
 
 ## Built With
 
--   [Gatsby](<https://github.com/gatsbyjs/gatsby>)
--   [React](<https://github.com/facebook/react>)
--   [Emotion](<https://github.com/emotion-js/emotion>)
+-   [Gatsby](https://github.com/gatsbyjs/gatsby)
+-   [React](https://github.com/facebook/react)
+-   [Emotion](https://github.com/emotion-js/emotion)
+-   [Styled-system](https://github.com/styled-system/styled-system)
