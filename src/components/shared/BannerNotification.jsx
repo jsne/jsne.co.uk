@@ -6,17 +6,17 @@ import { Wrapper } from 'Components/shared/Wrapper';
 import { Button } from 'Components/shared/Button';
 
 const BannerNotificationRoot = styled.section`
-    ${props => props.theme.color.getIntentPresetCss(props.intent)}
+    ${props => props.theme.colors.getIntentPresetCss(props.intent)}
 `;
 
 const BannerNotificationInner = styled(props => <Wrapper padding {...props} />)`
     display: grid;
-    grid-gap: ${props => props.theme.spacing.half};
+    grid-gap: ${props => props.theme.space.half};
     justify-items: center;
 
     ${props => props.theme.mediaQuery.low`
         grid-auto-flow: column;
-        grid-gap: ${props.theme.spacing.base};
+        grid-gap: ${props.theme.space.whole};
         align-items: center;
         justify-content: space-between;
     `}
@@ -32,8 +32,8 @@ const BannerNotificationCtaRoot = styled.div`
 `;
 
 const BannerNotificationCtaButton = styled(Button)`
-    background-color: ${props => props.theme.color.uiBodyBase};
-    color: ${props => props.theme.color.uiBodyContrast};
+    background-color: ${props => props.theme.colors.uiBodyBase};
+    color: ${props => props.theme.colors.uiBodyContrast};
 `;
 
 /**

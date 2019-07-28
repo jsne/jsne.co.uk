@@ -10,14 +10,12 @@ import video2 from 'Static/assets/media/charlie-what-do-now.mp4';
 import video3 from 'Static/assets/media/frank-egg-limo.mp4';
 import video4 from 'Static/assets/media/frank-whoops.mp4';
 
-const videoUrls = [video1, video2, video3, video4];
-
 const NotFoundPageVideo = styled.video`
     width: 100%;
 `;
 
 const NotFoundPageGroup = styled.div`
-    margin-bottom: ${props => props.theme.spacing.double};
+    margin-bottom: ${props => props.theme.space.double};
     text-align: center;
 
     &:last-of-type {
@@ -32,11 +30,22 @@ const NotFoundPageRoot = styled.div`
     justify-content: center;
     min-height: 100vh;
     min-width: 100%;
-    padding: ${props => props.theme.spacing.base};
+    padding: ${props => props.theme.space.whole};
 `;
 
+const getRandomVideoUrl = () => {
+    const videoUrls = [video1, video2, video3, video4];
+    const videoUrlIndex = (videoUrls.length * Math.random()) | 0;
+
+    return videoUrls[videoUrlIndex];
+};
+
 const NotFoundPage = () => {
-    const videoUrl = videoUrls[(videoUrls.length * Math.random()) | 0];
+    let videoUrl = getRandomVideoUrl();
+
+    if (typeof window !== 'undefined') {
+        videoUrl = getRandomVideoUrl();
+    }
 
     /* eslint-disable shopify/jsx-no-hardcoded-content */
     return (

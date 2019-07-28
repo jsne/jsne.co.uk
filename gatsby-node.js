@@ -1,5 +1,3 @@
-/* eslint-disable no-console, consistent-return */
-
 const { webpackConfig } = require('./build');
 
 exports.onCreateWebpackConfig = ({

@@ -9,14 +9,14 @@ import { BannerHeaderNav } from 'Components/shared/BannerHeaderNav';
 import { Wrapper } from 'Components/shared/Wrapper';
 
 const BannerHeaderRoot = styled(props => <header role="banner" {...props} />)`
-    padding-top: ${props => props.theme.spacing.half};
-    padding-bottom: ${props => props.theme.spacing.half};
-    background-color: ${props => props.theme.color.brand0Base};
-    color: ${props => props.theme.color.brand0Contrast};
+    padding-top: ${props => props.theme.space.half};
+    padding-bottom: ${props => props.theme.space.half};
+    background-color: ${props => props.theme.colors.brandPrimaryBase};
+    color: ${props => props.theme.colors.brandPrimaryContrast};
 
     ${props => props.theme.mediaQuery.higher`
-        padding-top: ${props.theme.spacing.base};
-        padding-bottom: ${props.theme.spacing.base};
+        padding-top: ${props.theme.space.whole};
+        padding-bottom: ${props.theme.space.whole};
     `}
 `;
 
@@ -40,7 +40,7 @@ const BannerHeaderLogoImage = styled(Logo)`
         width: 5rem;
     `}
 
-    ${props => props.theme.mediaQuery.maximum`
+    ${props => props.theme.mediaQuery.highest`
         width: 5.25rem;
     `}
 `;

@@ -17,19 +17,19 @@ export const visuallyHiddenCss = () => css`
 `;
 
 export const headingShadowCss = props =>
-    props.shadow
+    props.hasShadow
         ? css`
-              text-shadow: 2px 2px ${props.theme.color.brandShadowBase};
+              text-shadow: 2px 2px
+                  ${props.theme.colors.uiInteractiveOutlineBase};
           `
         : undefined;
 
 export const headingFontFamilyCss = props => css`
-    font-family: ${props.primary
-        ? props.theme.fontFamily.title0
-        : props.theme.fontFamily.title1};
+    font-family: ${props.fonts ? props.fonts : props.theme.fonts.titles[0]},
+        sans-serif;
 `;
 
-export const headingFontCss = props => css`
+export const headingCss = props => css`
     font-weight: normal;
     ${headingShadowCss(props)}
     ${headingFontFamilyCss(props)}

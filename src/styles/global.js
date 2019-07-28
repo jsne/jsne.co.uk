@@ -1,10 +1,10 @@
 import { css } from '@emotion/core';
 
-import { headingFontCss } from 'Styles/utils';
+import { headingCss } from 'Styles/utils';
 
 export const globalCss = theme => css`
     @font-face {
-        font-family: '${theme.fontFamily.body0}';
+        font-family: '${theme.fonts.bodys[0]}';
         font-weight: 100 900;
         font-style: normal;
         font-display: swap;
@@ -14,7 +14,7 @@ export const globalCss = theme => css`
     }
 
     @font-face {
-        font-family: '${theme.fontFamily.body1}';
+        font-family: '${theme.fonts.bodys[1]}';
         font-weight: 100 900;
         font-style: italic;
         font-display: swap;
@@ -24,7 +24,7 @@ export const globalCss = theme => css`
     }
 
     @font-face {
-        font-family: '${theme.fontFamily.title0}';
+        font-family: '${theme.fonts.titles[0]}';
         font-style: italic;
         font-weight: normal;
         font-display: swap;
@@ -34,7 +34,7 @@ export const globalCss = theme => css`
     }
 
     @font-face {
-        font-family: '${theme.fontFamily.title1}';
+        font-family: '${theme.fonts.titles[1]}';
         font-style: normal;
         font-weight: normal;
         font-display: swap;
@@ -53,21 +53,21 @@ export const globalCss = theme => css`
     }
 
     :root {
-        font-size: ${theme.fontSize.root0};
+        font-size: ${theme.root.fontSizes.bases[0]};
 
-        ${theme.mediaQuery.maximum`
-            font-size: ${theme.fontSize.root1};
+        ${theme.mediaQuery.highest`
+            font-size: ${theme.root.fontSizes.bases[1]};
         `}
     }
 
     body {
         margin: 0;
-        font-size: ${theme.fontSize.normal};
-        line-height: ${theme.lineHeight.multi};
-        font-family: '${theme.fontFamily.body0}', arial, sans-serif;
-        font-weight: ${theme.fontWeight.base0};
-        background-color: ${theme.color.uiBodyBase};
-        color: ${theme.color.uiBodyContrast};
+        font-size: ${theme.fontSizes.normal};
+        line-height: ${theme.lineHeights.multi};
+        font-family: '${theme.fonts.bodys[0]}', arial, sans-serif;
+        font-weight: ${theme.fontWeights.base};
+        background-color: ${theme.colors.uiBodyBase};
+        color: ${theme.colors.uiBodyContrast};
     }
 
     p {
@@ -96,14 +96,14 @@ export const globalCss = theme => css`
 
     h1,
     h2 {
-        ${headingFontCss({ primary: true, theme })};
+        ${headingCss({ primary: true, theme })};
     }
 
     h3,
     h4,
     h5,
     h6 {
-        ${headingFontCss({ theme })};
+        ${headingCss({ theme })};
     }
 
     img {

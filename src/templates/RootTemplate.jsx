@@ -47,9 +47,9 @@ export const RootTemplate = ({
                     { name: 'keywords', content: 'JavaScript, meet-up, JSNE' },
                     {
                         name: 'msapplication-TileColor',
-                        content: theme.color.primaryBase,
+                        content: theme.colors.primaryBase,
                     },
-                    { name: 'theme-color', content: theme.color.primaryBase },
+                    { name: 'theme-color', content: theme.colors.primaryBase },
                     ...meta,
                 ]}
                 link={[
@@ -74,7 +74,7 @@ export const RootTemplate = ({
                     {
                         rel: 'mask-icon',
                         href: '/safari-pinned-tab.svg',
-                        color: theme.color.brand0Base,
+                        color: theme.colors.brandPrimaryBase,
                     },
                     ...link,
                 ]}

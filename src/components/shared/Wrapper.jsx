@@ -8,7 +8,7 @@ export const wrapperCssFluid = props =>
     props.fluid
         ? undefined
         : css`
-              max-width: ${props.theme.breakpoint.maximum};
+              max-width: ${props.theme.breakpoints.maximum};
           `;
 
 /**
@@ -28,12 +28,12 @@ export const wrapperCssMarginX = props =>
 export const wrapperCssPaddingX = props =>
     props.paddingX || props.padding
         ? css`
-              padding-right: ${props.theme.spacing.half};
-              padding-left: ${props.theme.spacing.half};
+              padding-right: ${props.theme.space.half};
+              padding-left: ${props.theme.space.half};
 
               ${props.theme.mediaQuery.low`
-            padding-right: ${props.theme.spacing.base};
-            padding-left: ${props.theme.spacing.base};
+            padding-right: ${props.theme.space.whole};
+            padding-left: ${props.theme.space.whole};
         `}
           `
         : undefined;
@@ -44,12 +44,12 @@ export const wrapperCssPaddingX = props =>
 export const wrapperCssPaddingY = props =>
     props.paddingY || props.padding
         ? css`
-              padding-top: ${props.theme.spacing.half};
-              padding-bottom: ${props.theme.spacing.half};
+              padding-top: ${props.theme.space.half};
+              padding-bottom: ${props.theme.space.half};
 
               ${props.theme.mediaQuery.low`
-            padding-top: ${props.theme.spacing.base};
-            padding-bottom: ${props.theme.spacing.base};
+            padding-top: ${props.theme.space.whole};
+            padding-bottom: ${props.theme.space.whole};
         `}
           `
         : undefined;

@@ -4,25 +4,26 @@ import { css } from '@emotion/core';
  * Get Theme without having to duplicate definition values
  */
 const getTheme = () => {
-    // 0erence breakpoints
-    const breakpoint = {
-        minimum: '475px',
+    const rootBreakpoints = {
+        lowest: '375px',
+        lower: '411px',
         low: '600px',
         medium: '800px',
         high: '1024px',
         higher: '1280px',
-        maximum: '1400px',
+        highest: '1400px',
     };
 
     // Root color definitions, not directly included in theme
-    const rootColor = {
+    const rootColors = {
         // Blacks
         black500: '#322C3C',
         black600: '#4A4257',
         black700: '#8B8398',
         // Blues
-        blue500: '#56CCF2',
-        blue600: '#88E2FF',
+        blue500: '#36c3f1',
+        blue600: '#56CCF2',
+        blue700: '#88E2FF',
         // Greens
         green500: '#49b43b',
         // Oranges
@@ -37,7 +38,10 @@ const getTheme = () => {
         purple600: '#8D50F0',
         // Reds
         red500: '#d21515',
-        red600: '#f7d2d2',
+        red600: '#f04343',
+        red700: '#f66565',
+        red900: '#f68686',
+        red800: '#f7d2d2',
         // Whites
         white500: '#f8f8f8',
         white700: '#f2f2f2',
@@ -47,26 +51,42 @@ const getTheme = () => {
         yellow600: '#fff099',
     };
 
-    const transition = {
+    const rootLineHeights = {
+        single: 1,
+        normal: 1.2,
+        multi: 1.4375,
+        spaced: 1.6,
+    };
+
+    const rootSpace = {
+        nudge: '.1rem',
+        quarter: '.25rem',
+        third: '.333333rem',
+        half: '.5rem',
+        twoThird: '.666666rem',
+        threeQuarter: '.75rem',
+        whole: '1rem',
+        wholeQuarter: '1.25rem',
+        wholeHalf: '1.5rem',
+        wholeThreeQuarter: '1.75rem',
+        double: '2rem',
+    };
+
+    const rootTransition = {
         delay: 0,
         duration: '.275s',
         timingFunction: 'cubic-bezier(.5, -.5, .3, 1.3)',
     };
 
     /**
-     * css transition helper
-     * @param  {string} [property='all']                       - CSS property e.g. 'color'
-     * @param  {number|string} [delay=transitions.delay]       - delay before/after
-     * @param  {number|string} [duration=transitions.duration] - duration
-     * @param  {string} [timingFunction=transitions.timingFunction]  - timing function e.g. 'ease-in-out'
-     * @return {Object}                                        - CSS style definition
+     * Css transition helper
      */
     const getTransitionCss = (
         property = 'all',
         {
-            delay = transition.delay,
-            duration = transition.duration,
-            timingFunction = transition.timingFunction,
+            delay = rootTransition.delay,
+            duration = rootTransition.duration,
+            timingFunction = rootTransition.timingFunction,
         } = {},
     ) => css`
         transition-delay: ${delay};
@@ -75,122 +95,129 @@ const getTheme = () => {
         transition-timing-function: ${timingFunction};
     `;
 
+    const mediaQuery = Object.keys(rootBreakpoints).reduce((acc, label) => {
+        acc[label] = (...args) => css`
+            @media (min-width: ${rootBreakpoints[label]}) {
+                ${css(...args)}
+            }
+        `;
+
+        return acc;
+    }, {});
+
     const rootTheme = {
-        border: {
-            radius0: '.1rem',
-            style: 'solid',
-            width0: '2px',
+        root: {
+            fontSizes: {
+                bases: ['16px', '18px'],
+            },
         },
-        breakpoint: {
-            ...breakpoint,
+        zIndices: [],
+        radii: ['.1rem'],
+        borders: {
+            borderStyles: ['solid'],
+            borderWidths: [1, 2],
         },
-        color: {
-            // Primary brand
-            brand0Base: rootColor.yellow500,
-            brand0Contrast: rootColor.purple200,
-            // Secondary brand
-            brand1Base: rootColor.purple500,
-            brand1Contrast: rootColor.white700,
-            // Shadow brand
-            brandShadowBase: rootColor.purple100,
-            brandShadowContrast: rootColor.white700,
+        breakpoints: {
+            ...Object.values(rootBreakpoints),
+            ...rootBreakpoints,
+        },
+        colors: {
+            // brand
+            brandPrimaryBase: rootColors.yellow500,
+            brandPrimaryBases: [],
+            brandPrimaryContrast: rootColors.purple200,
+            brandPrimaryContrasts: [],
+            brandSecondaryBase: rootColors.purple500,
+            brandSecondaryBases: [],
+            brandSecondaryContrast: rootColors.white500,
+            brandSecondardContrasts: [],
             // Intent (statuses)
-            intentGoodBase: rootColor.green500,
-            intentGoodContrast: rootColor.white700,
-            intentBadBase: rootColor.orange500,
-            intentBadContrast: rootColor.white700,
-            intentUglyBase: rootColor.red500,
-            intentUglyContrast: rootColor.white900,
-            intentNeutralBase: rootColor.blue500,
-            intentNeutralContrast: rootColor.white700,
+            intentGoodBase: rootColors.green500,
+            intentGoodBases: [],
+            intentGoodContrast: rootColors.white700,
+            intentGoodContrasts: [],
+            intentBadBase: rootColors.orange500,
+            intentBadBases: [],
+            intentBadContrast: rootColors.white700,
+            intentBadContrasts: [],
+            intentUglyBase: [rootColors.red500],
+            intentUglyBases: [],
+            intentUglyContrast: [],
+            intentUglyContrasts: [rootColors.white900],
+            intentNeutralBase: [rootColors.blue500],
+            intentNeutralBases: [],
+            intentNeutralContrast: rootColors.white500,
+            intentNeutralContrasts: [rootColors.white700],
             // UI body
-            uiBodyBase: rootColor.white700,
-            uiBodyContrast: rootColor.black500,
+            uiBodyBase: [rootColors.white700],
+            uiBodyBases: [],
+            uiBodyContrast: [rootColors.black500],
+            uiBodyContrasts: [],
             // UI interactive outline
-            uiInteractiveOutlineBase: `${rootColor.purple100}58`,
-            uiInteractiveOutlineContrast: rootColor.white900,
+            uiInteractiveOutlineBase: `${rootColors.purple100}58`,
+            uiInteractiveOutlineBases: [],
+            uiInteractiveOutlineContrast: [],
+            uiInteractiveOutlineContrasts: [rootColors.white900],
         },
-        fontFamily: {
-            body0: 'font-body-0',
-            body1: 'font-body-1',
-            title0: 'font-title-0',
-            title1: 'font-title-1',
+        fonts: {
+            bodys: ['font-body-0', 'font-body-1'],
+            titles: ['font-title-0', 'font-title-1'],
         },
-        fontSize: {
-            // initial `:root` font-size
-            root0: '16px',
-            // font-size for high DPI
-            root1: '18px',
-            normal: '1rem',
+        fontSizes: {
+            smaller: '.75rem',
             small: '.85rem',
+            normal: '1rem',
             medium: '1.3rem',
             large: '1.6rem',
             larger: '2rem',
             largest: '2.65rem',
         },
-        fontWeight: {
-            base0: 500,
-            base1: 600,
-            base2: 700,
+        fontWeights: {
+            base: 500,
+            bases: [300, 400, 500, 600, 700],
         },
-        lineHeight: {
-            multi: 1.4375,
-            normal: 1.2,
-            single: 1,
-            spaced: 1.6,
+        lineHeights: {
+            ...Object.values(rootLineHeights),
+            ...rootLineHeights,
         },
         // Automagically generate media queries based on `breakpoint` key/values
         // Allows us to use media queries as functions in `styled` components like:
         // `${props => props.theme.mediaQuery.low`
         //     content: 'Only on low and up!';
         // `}`
-        mediaQuery: Object.keys(breakpoint).reduce((acc, label) => {
-            acc[label] = (...args) => css`
-                @media (min-width: ${breakpoint[label]}) {
-                    ${css(...args)}
-                }
-            `;
-
-            return acc;
-        }, {}),
-        spacing: {
-            base: '1rem',
-            eighth: '.125rem',
-            quarter: '.25rem',
-            half: '.5rem',
-            threeQuarter: '.75rem',
-            double: '2rem',
-            nudge: '.2rem',
+        mediaQuery,
+        space: {
+            ...Object.values(rootSpace),
+            ...rootSpace,
         },
         transition: {
-            ...transition,
-            // Helper function
+            ...rootTransition,
             call: (...args) => getTransitionCss(...args),
         },
     };
 
-    rootTheme.color.getIntentPresetCss = (intent = 'neutral') => {
+    rootTheme.colors.getIntentPresetCss = (intent = 'neutral') => {
         let style = '';
 
         if (intent === 'good') {
             style = `
-                color: ${rootTheme.color.intentGoodContrast};
-                background-color: ${rootTheme.color.intentGoodBase};
+                color: ${rootTheme.colors.intentGoodContrast};
+                background-color: ${rootTheme.colors.intentGoodBase};
             `;
         } else if (intent === 'bad') {
             style = `
-                color: ${rootTheme.color.intentBadContrast};
-                background-color: ${rootTheme.color.intentBadBase};
+                color: ${rootTheme.colors.intentBadContrast};
+                background-color: ${rootTheme.colors.intentBadBase};
             `;
         } else if (intent === 'ugly') {
             style = `
-                color: ${rootTheme.color.intentUglyContrast};
-                background-color: ${rootTheme.color.intentUglyBase};
+                color: ${rootTheme.colors.intentUglyContrast};
+                background-color: ${rootTheme.colors.intentUglyBase};
             `;
         } else {
             style = `
-                color: ${rootTheme.color.intentNeutralContrast};
-                background-color: ${rootTheme.color.intentNeutralBase};
+                color: ${rootTheme.colors.intentNeutralContrast};
+                background-color: ${rootTheme.colors.intentNeutralBase};
             `;
         }
 

@@ -1,5 +1,10 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
+const eventGetFormatted = data => ({
+    ...data.contentfulEvent,
+    path: `/event/${data.contentfulEvent.slug}`,
+});
+
 export const eventFragment = graphql`
     fragment eventFragment on ContentfulEvent {
         description {
@@ -26,7 +31,7 @@ export const eventFragment = graphql`
 
 /**
  * Essential data for Latest event
- * @NOTE Result will be `null` if `$date` event is past previous event
+ * @NOTE Result will be `null` if `$date` is past previous event
  */
 export const eventQuerySingleLatest = graphql`
     query eventQuerySingleLatest($date: Date) {
@@ -43,5 +48,5 @@ export const eventQuerySingleLatest = graphql`
  */
 export const useEventQuerySingleLatestFormatted = () => {
     const data = useStaticQuery(eventQuerySingleLatest);
-    return data.contentfulEvent;
+    return eventGetFormatted(data);
 };

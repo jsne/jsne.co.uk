@@ -14,8 +14,8 @@ const BannerHeaderNavToggle = styled(props => (
     <Button as="button" {...props} />
 ))`
     padding: ${props =>
-        `${props.theme.spacing.eighth} ${props.theme.spacing.quarter}`};
-    color: ${props => props.theme.color.brand1Base};
+        `${props.theme.space.eighth} ${props.theme.space.quarter}`};
+    color: ${props => props.theme.colors.brandSecondaryBase};
 
     ${props => props.theme.mediaQuery.medium`
         display: none;
@@ -34,9 +34,9 @@ export const BannerHeaderNavRoot = styled.nav`
     align-items: flex-end;
 
     ${props => props.theme.mediaQuery.medium`
-        padding: ${props.theme.spacing.threeQuarter} ${props.theme.spacing.base};
-        background-color: ${props.theme.color.brand0Base};
-        border-radius: ${props.theme.border.radius0};
+        padding: ${props.theme.space.threeQuarter} ${props.theme.space.whole};
+        background-color: ${props.theme.colors.brandPrimaryBase};
+        border-radius: ${props.theme.radii[0]};
     `}
 `;
 
@@ -51,17 +51,17 @@ const BannerHeaderNavListRoot = styled.ul`
         position: static;
         display: grid;
         grid-auto-flow: column;
-        grid-gap: ${props.theme.spacing.base};
+        grid-gap: ${props.theme.space.whole};
     `}
 
     ${props => props.theme.mediaQuery.higher`
-        grid-gap: calc(${props.theme.spacing.base} * 1.2);
+        grid-gap: calc(${props.theme.space.whole} * 1.4);
     `}
 `;
 
 export const BannerHeaderNavListItemLink = styled.a`
     ${props => props.theme.mediaQuery.medium`
-        font-weight: ${props.theme.fontWeight.base1};
+        font-weight: ${props.theme.fontWeights.bases[3]};
     `}
 `;
 
@@ -115,6 +115,7 @@ export const BannerHeaderNav = ({
                 onClick={handleToggleClick}
                 aria-controls={navMenuId}
                 aria-expanded={isExpanded}
+                aria-haspopup="true"
                 aria-label={toggleButtonLabel}
             >
                 <BannerHeaderNavToggleIcon role="presentation" />
