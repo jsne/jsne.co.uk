@@ -46,5 +46,6 @@ Heading.propTypes = {
     ...fontWeight.propTypes,
     ...letterSpacing.propTypes,
     ...lineHeight.propTypes,
+    ...space.propTypes,
     ...textAlign.propTypes,
 };

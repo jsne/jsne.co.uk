@@ -5,6 +5,7 @@ import {
     fontWeight,
     letterSpacing,
     lineHeight,
+    space,
     textAlign,
 } from 'styled-system';
 
@@ -14,6 +15,7 @@ export const Text = styled.p`
     ${fontWeight}
     ${letterSpacing}
     ${lineHeight}
+    ${space}
     ${textAlign}
 `;
 
@@ -27,5 +29,6 @@ Text.propTypes = {
     ...fontWeight.propTypes,
     ...letterSpacing.propTypes,
     ...lineHeight.propTypes,
+    ...space.propTypes,
     ...textAlign.propTypes,
 };
