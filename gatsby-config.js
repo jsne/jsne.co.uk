@@ -50,7 +50,7 @@ module.exports = {
                 exclude: ['/preview/**'],
             },
         },
-        'gatsby-mdx',
+        'gatsby-plugin-mdx',
         {
             resolve: 'gatsby-plugin-react-svg',
             options: {
