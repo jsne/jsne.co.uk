@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 
-import { headingCss } from 'Styles/utils';
+import { headingCss } from 'Components/shared/Heading';
 
 export const globalCss = theme => css`
     @font-face {
@@ -96,7 +96,7 @@ export const globalCss = theme => css`
 
     h1,
     h2 {
-        ${headingCss({ primary: true, theme })};
+        ${headingCss({ theme })};
     }
 
     h3,

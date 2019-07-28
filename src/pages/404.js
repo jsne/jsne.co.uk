@@ -41,11 +41,7 @@ const getRandomVideoUrl = () => {
 };
 
 const NotFoundPage = () => {
-    let videoUrl = getRandomVideoUrl();
-
-    if (typeof window !== 'undefined') {
-        videoUrl = getRandomVideoUrl();
-    }
+    const videoUrl = getRandomVideoUrl();
 
     /* eslint-disable shopify/jsx-no-hardcoded-content */
     return (

@@ -10,6 +10,7 @@ import {
     BannerHeaderNavListItemLink,
 } from 'Components/shared/BannerHeaderNav';
 import { Heading } from 'Components/shared/Heading';
+import { Text } from 'Components/shared/Text';
 import { Wrapper } from 'Components/shared/Wrapper';
 
 const HomeHeroRoot = styled.div`
@@ -67,7 +68,7 @@ const HomeHeroSectionInner = styled(props => (
 ))`
     ${props => props.theme.mediaQuery.highest`
         width: 100%;
-        max-width: calc(${props.theme.breakpoints.maximum} / 2);
+        max-width: calc(${props.theme.breakpoints.highest} / 2);
 
         ${css(
             props.alignLeft
@@ -102,8 +103,12 @@ const HomeHeroSectionPrimary = styled(props => (
     color: ${props => props.theme.colors.brandPrimaryContrast};
 `;
 
-const HomeHeroSectionPrimaryTitle = styled.h1`
+const HomeHeroSectionPrimaryTitle = styled(Heading)`
     font-size: ${props => props.theme.fontSizes.largest};
+
+    ${props => props.theme.mediaQuery.low`
+        font-size: ${props.theme.fontSizes.hero};
+    `}
 `;
 
 const HomeHeroSectionSecondary = styled(HomeHeroSection)`
@@ -116,20 +121,15 @@ const HomeHeroSectionSecondaryTitlePre = styled(Heading)`
     font-size: ${props => props.theme.fontSizes.medium};
 `;
 
-const HomeHeroSectionSecondaryTitleMain = styled(props => (
-    <Heading {...props} as={Link} />
-))`
-    color: ${props => props.theme.colors.brandPrimaryBase};
-`;
-
 export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
     <HomeHeroRoot {...props}>
         <HomeHeroHeader />
         <HomeHeroInner>
             <HomeHeroSectionPrimary>
-                <HomeHeroSectionPrimaryTitle>
+                <HomeHeroSectionPrimaryTitle as="h1" mb="threeQuarter">
                     {sectionPrimary.title}
                 </HomeHeroSectionPrimaryTitle>
+                <Text>{sectionPrimary.text}</Text>
             </HomeHeroSectionPrimary>
 
             <HomeHeroSectionSecondary as="section">
@@ -137,13 +137,14 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                     <HomeHeroSectionSecondaryTitlePre as="div">
                         {sectionSecondary.preTitle}
                     </HomeHeroSectionSecondaryTitlePre>
-                    <HomeHeroSectionSecondaryTitleMain
-                        primary
+                    <Heading
+                        as={Link}
+                        color="brandPrimaryBase"
                         hasShadow
                         to={sectionSecondary.to}
                     >
                         {sectionSecondary.title}
-                    </HomeHeroSectionSecondaryTitleMain>
+                    </Heading>
                 </HomeHeroSectionSecondaryTitleRoot>
             </HomeHeroSectionSecondary>
         </HomeHeroInner>

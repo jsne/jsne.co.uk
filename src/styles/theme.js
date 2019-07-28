@@ -58,6 +58,18 @@ const getTheme = () => {
         spaced: 1.6,
     };
 
+    const rootFontSizes = {
+        smallest: '.65rem',
+        smaller: '.75rem',
+        small: '.85rem',
+        normal: '1rem',
+        medium: '1.3rem',
+        large: '1.6rem',
+        larger: '2rem',
+        largest: '2.65rem',
+        hero: '3rem',
+    };
+
     const rootSpace = {
         nudge: '.1rem',
         quarter: '.25rem',
@@ -164,13 +176,8 @@ const getTheme = () => {
             titles: ['font-title-0', 'font-title-1'],
         },
         fontSizes: {
-            smaller: '.75rem',
-            small: '.85rem',
-            normal: '1rem',
-            medium: '1.3rem',
-            large: '1.6rem',
-            larger: '2rem',
-            largest: '2.65rem',
+            ...Object.values(rootFontSizes),
+            ...rootFontSizes,
         },
         fontWeights: {
             base: 500,

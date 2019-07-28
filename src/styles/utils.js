@@ -15,22 +15,3 @@ export const visuallyHiddenCss = () => css`
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
 `;
-
-export const headingShadowCss = props =>
-    props.hasShadow
-        ? css`
-              text-shadow: 2px 2px
-                  ${props.theme.colors.uiInteractiveOutlineBase};
-          `
-        : undefined;
-
-export const headingFontFamilyCss = props => css`
-    font-family: ${props.fonts ? props.fonts : props.theme.fonts.titles[0]},
-        sans-serif;
-`;
-
-export const headingCss = props => css`
-    font-weight: normal;
-    ${headingShadowCss(props)}
-    ${headingFontFamilyCss(props)}
-`;
