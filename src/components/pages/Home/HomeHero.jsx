@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import { MDXProvider } from '@mdx-js/react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import React from 'react';
@@ -116,7 +117,6 @@ const HomeHeroSectionSecondary = styled(HomeHeroSection)`
     color: ${props => props.theme.colors.brandSecondaryContrast};
 `;
 
-const HomeHeroSectionSecondaryTitleRoot = styled.h1``;
 const HomeHeroSectionSecondaryTitlePre = styled(Heading)`
     font-size: ${props => props.theme.fontSizes.medium};
 `;
@@ -133,7 +133,7 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
             </HomeHeroSectionPrimary>
 
             <HomeHeroSectionSecondary as="section">
-                <HomeHeroSectionSecondaryTitleRoot>
+                <Text as="h1" mb="half">
                     <HomeHeroSectionSecondaryTitlePre as="div">
                         {sectionSecondary.preTitle}
                     </HomeHeroSectionSecondaryTitlePre>
@@ -145,7 +145,24 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                     >
                         {sectionSecondary.title}
                     </Heading>
-                </HomeHeroSectionSecondaryTitleRoot>
+                </Text>
+                <Text>
+                    <MDXProvider
+                        components={{
+                            // eslint-disable-next-line id-length, react/display-name
+                            a: p => (
+                                <Text
+                                    displayName="text"
+                                    as="a"
+                                    color="brandPrimaryBase"
+                                    {...p}
+                                />
+                            ),
+                        }}
+                    >
+                        {sectionSecondary.text}
+                    </MDXProvider>
+                </Text>
             </HomeHeroSectionSecondary>
         </HomeHeroInner>
     </HomeHeroRoot>
