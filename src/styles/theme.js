@@ -47,8 +47,15 @@ const getTheme = () => {
         white700: '#f2f2f2',
         white900: '#ffffff',
         // Yellows
+        yellow100: '#877107',
+        yellow200: '#a78c08',
+        yellow300: '#c8a80b',
+        yellow400: '#e4c00f',
         yellow500: '#f9d72f',
-        yellow600: '#fff099',
+        yellow600: '#fee155',
+        yellow700: '#fce470',
+        yellow800: '#fbeea2',
+        yellow900: '#fff099',
     };
 
     const rootLineHeights = {
@@ -136,7 +143,17 @@ const getTheme = () => {
         colors: {
             // brand
             brandPrimaryBase: rootColors.yellow500,
-            brandPrimaryBases: [],
+            brandPrimaryBases: [
+                rootColors.yellow100,
+                rootColors.yellow200,
+                rootColors.yellow300,
+                rootColors.yellow400,
+                rootColors.yellow500,
+                rootColors.yellow600,
+                rootColors.yellow700,
+                rootColors.yellow800,
+                rootColors.yellow900,
+            ],
             brandPrimaryContrast: rootColors.purple200,
             brandPrimaryContrasts: [],
             brandSecondaryBase: rootColors.purple500,
