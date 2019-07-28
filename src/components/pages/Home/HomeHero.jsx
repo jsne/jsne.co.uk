@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import { MDXProvider } from '@mdx-js/react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -146,7 +147,7 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                         {sectionSecondary.title}
                     </Heading>
                 </Text>
-                <Text>
+                <Text as="div">
                     <MDXProvider
                         components={{
                             // eslint-disable-next-line id-length, react/display-name
@@ -160,7 +161,7 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                             ),
                         }}
                     >
-                        {sectionSecondary.text}
+                        <MDXRenderer>{sectionSecondary.text}</MDXRenderer>
                     </MDXProvider>
                 </Text>
             </HomeHeroSectionSecondary>
