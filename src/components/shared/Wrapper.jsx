@@ -8,7 +8,7 @@ export const wrapperCssFluid = props =>
     props.fluid
         ? undefined
         : css`
-              max-width: ${props.theme.breakpoints.maximum};
+              max-width: ${props.theme.breakpoints.highest};
           `;
 
 /**
