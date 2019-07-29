@@ -267,6 +267,10 @@ const getTheme = () => {
         //     content: 'Only on low and up!';
         // `}`
         mediaQuery,
+        sizes: {
+            ...Object.values(rootBreakpoints),
+            ...rootBreakpoints,
+        },
         space: {
             ...Object.values(rootSpace),
             ...rootSpace,
