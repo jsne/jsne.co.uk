@@ -5,14 +5,15 @@ import React from 'react';
 import { Text } from './Text';
 
 const TextIconRoot = styled(Text)`
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
     grid-gap: ${props => props.theme.space.half};
     align-items: center;
     justify-content: center;
 `;
 
 const TextIconIcon = styled.span`
-    width: 1.35rem;
+    width: 1.25rem;
 `;
 
 const TextIconText = styled.span``;
