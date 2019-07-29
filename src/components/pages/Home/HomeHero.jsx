@@ -13,6 +13,7 @@ import {
     BannerHeaderNavRoot,
     BannerHeaderNavListItemLink,
 } from 'Components/shared/BannerHeaderNav';
+import { Box } from 'Components/shared/Box';
 import { Heading } from 'Components/shared/Heading';
 import { Text } from 'Components/shared/Text';
 import { Wrapper } from 'Components/shared/Wrapper';
@@ -157,47 +158,49 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                 <HomeHeroSectionPrimaryTitle as="h1" mb="threeQuarter">
                     {sectionPrimary.title}
                 </HomeHeroSectionPrimaryTitle>
-                <Text>{sectionPrimary.text}</Text>
+                <Text maxWidth="medium">{sectionPrimary.text}</Text>
             </HomeHeroSectionPrimary>
 
             <HomeHeroSectionSecondary as="section">
-                <Text as="h1" mb="half">
-                    <HomeHeroSectionSecondaryTitlePre as="div">
-                        {sectionSecondary.preTitle}
-                    </HomeHeroSectionSecondaryTitlePre>
-                    <Heading
-                        as={Link}
-                        color="brandPrimaryBase"
-                        hasShadow
-                        to={sectionSecondary.to}
-                    >
-                        {sectionSecondary.title}
-                    </Heading>
-                </Text>
-                <Text as="div" mb="whole">
-                    <MDXProvider
-                        components={{
-                            // eslint-disable-next-line id-length, react/display-name
-                            a: p => (
-                                <Text
-                                    displayName="text"
-                                    as="a"
-                                    color="brandPrimaryBase"
-                                    {...p}
-                                />
-                            ),
-                        }}
-                    >
-                        <MDXRenderer>{sectionSecondary.text}</MDXRenderer>
-                    </MDXProvider>
-                </Text>
-                <HomeHeroSectionSeondaryInfos>
-                    {sectionSecondary.infos.map(({ key, ...info }) => (
-                        <HomeHeroSectionSeondaryInfosItem key={key}>
-                            {info}
-                        </HomeHeroSectionSeondaryInfosItem>
-                    ))}
-                </HomeHeroSectionSeondaryInfos>
+                <Box maxWidth="medium">
+                    <Text as="h1">
+                        <HomeHeroSectionSecondaryTitlePre as="div">
+                            {sectionSecondary.preTitle}
+                        </HomeHeroSectionSecondaryTitlePre>
+                        <Heading
+                            as={Link}
+                            color="brandPrimaryBase"
+                            hasShadow
+                            to={sectionSecondary.to}
+                        >
+                            {sectionSecondary.title}
+                        </Heading>
+                    </Text>
+                    <Text as="div" mb="wholeQuarter">
+                        <MDXProvider
+                            components={{
+                                // eslint-disable-next-line id-length, react/display-name
+                                a: p => (
+                                    <Text
+                                        displayName="text"
+                                        as="a"
+                                        color="brandPrimaryBase"
+                                        {...p}
+                                    />
+                                ),
+                            }}
+                        >
+                            <MDXRenderer>{sectionSecondary.text}</MDXRenderer>
+                        </MDXProvider>
+                    </Text>
+                    <HomeHeroSectionSeondaryInfos>
+                        {sectionSecondary.infos.map(({ key, ...info }) => (
+                            <HomeHeroSectionSeondaryInfosItem key={key}>
+                                {info}
+                            </HomeHeroSectionSeondaryInfosItem>
+                        ))}
+                    </HomeHeroSectionSeondaryInfos>
+                </Box>
             </HomeHeroSectionSecondary>
         </HomeHeroInner>
     </HomeHeroRoot>
