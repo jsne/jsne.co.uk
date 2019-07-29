@@ -71,8 +71,13 @@ const HomeHeroHeader = styled(BannerHeader)`
 const HomeHeroSectionRoot = styled(props => <Wrapper fluid {...props} />)`
     display: flex;
     flex-direction: column;
-    padding-top: ${props => props.theme.space.whole};
-    padding-bottom: ${props => props.theme.space.whole};
+    padding-top: ${props => props.theme.space.wholeHalf};
+    padding-bottom: ${props => props.theme.space.wholeHalf};
+
+    ${props => props.theme.mediaQuery.low`
+        padding-top: ${props.theme.space.double};
+        padding-bottom: ${props.theme.space.double};
+    `}
 
     ${props => props.theme.mediaQuery.highest`
         justify-content: center;
@@ -80,7 +85,7 @@ const HomeHeroSectionRoot = styled(props => <Wrapper fluid {...props} />)`
 `;
 
 const HomeHeroSectionInner = styled(props => (
-    <Wrapper fluid marginX={false} padding {...props} />
+    <Wrapper fluid marginX={false} paddingX {...props} />
 ))`
     ${props => props.theme.mediaQuery.highest`
         width: 100%;
