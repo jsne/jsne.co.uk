@@ -6,11 +6,22 @@ import { useEventQuerySingleLatestFormatted } from 'Graphql/event';
 
 import { RootTemplate } from 'Templates/RootTemplate';
 import { BannerNotification } from 'Components/shared/BannerNotification';
+import { TextIcon } from 'Components/shared/TextIcon';
 import { HomeHero } from 'Components/pages/Home/HomeHero';
 
+import IconCalander from 'Assets/images/icon-calendar-alt.svg';
+import IconClock from 'Assets/images/icon-clock.svg';
+import IconMap from 'Assets/images/icon-map-marker-alt.svg';
+
 const HomePage = ({ data: { contentfulNotifcation } }) => {
-    const eventInfo = useEventQuerySingleLatestFormatted();
-    // const { venue } = eventInfo;
+    const event = useEventQuerySingleLatestFormatted();
+    const { venue } = event;
+
+    const eventDate = new Date(`${event.eventDate}Z`);
+    const eventDateString = eventDate.toDateString();
+    const eventMins =
+        (eventDate.getUTCMinutes() < 10 ? '0' : '') + eventDate.getUTCMinutes();
+    const eventTime = `${eventDate.getUTCHours()}:${eventMins}`;
 
     /* eslint-disable shopify/jsx-no-hardcoded-content */
     return (
@@ -40,16 +51,33 @@ const HomePage = ({ data: { contentfulNotifcation } }) => {
                 }}
                 sectionSecondary={{
                     preTitle: 'Up next:',
-                    title: eventInfo.title,
-                    to: eventInfo.path,
-                    text: eventInfo.description.childMdx.body,
+                    title: event.title,
+                    to: event.path,
+                    text: event.description.childMdx.body,
                     infos: [
-                        // <IconText key="date" icon={<CalendarIcon />} iconSize="large" text={eventDateString} />,
-                        // <IconText key="time" icon={<ClockIcon />} iconSize="large" text={eventTime} />,
-                        // <IconText key="venue" icon={<MapIcon />} iconSize="large" text={venue.name} to="#venue-map" underline />,
+                        <TextIcon
+                            key="date"
+                            as="time"
+                            datetime={eventDateString}
+                            icon={<IconCalander />}
+                            text={eventDateString}
+                        />,
+                        <TextIcon
+                            key="time"
+                            icon={<IconClock />}
+                            text={eventTime}
+                        />,
+                        <TextIcon
+                            key="venue"
+                            as="a"
+                            color="brandPrimaryBase"
+                            icon={<IconMap />}
+                            text={venue.name}
+                            href="#venue-map"
+                        />,
                     ],
                     cta: {
-                        to: eventInfo.titoId,
+                        to: event.titoId,
                         label: 'Get tickets',
                     },
                 }}

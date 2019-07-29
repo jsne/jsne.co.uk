@@ -6,6 +6,8 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import React from 'react';
 
+import { listCleanCss } from 'Styles/utils';
+
 import { BannerHeader } from 'Components/shared/BannerHeader';
 import {
     BannerHeaderNavRoot,
@@ -133,6 +135,20 @@ const HomeHeroSectionSecondaryTitlePre = styled(Heading)`
     font-size: ${props => props.theme.fontSizes.medium};
 `;
 
+const HomeHeroSectionSeondaryInfos = styled.ul`
+    ${listCleanCss};
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: ${props => props.theme.space.wholeHalf};
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: ${props => props.theme.space.whole};
+`;
+
+const HomeHeroSectionSeondaryInfosItem = styled.li`
+    display: block;
+`;
+
 export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
     <HomeHeroRoot {...props}>
         <HomeHeroHeader />
@@ -158,7 +174,7 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                         {sectionSecondary.title}
                     </Heading>
                 </Text>
-                <Text as="div">
+                <Text as="div" mb="whole">
                     <MDXProvider
                         components={{
                             // eslint-disable-next-line id-length, react/display-name
@@ -175,6 +191,13 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                         <MDXRenderer>{sectionSecondary.text}</MDXRenderer>
                     </MDXProvider>
                 </Text>
+                <HomeHeroSectionSeondaryInfos>
+                    {sectionSecondary.infos.map(({ key, ...info }) => (
+                        <HomeHeroSectionSeondaryInfosItem key={key}>
+                            {info}
+                        </HomeHeroSectionSeondaryInfosItem>
+                    ))}
+                </HomeHeroSectionSeondaryInfos>
             </HomeHeroSectionSecondary>
         </HomeHeroInner>
     </HomeHeroRoot>
