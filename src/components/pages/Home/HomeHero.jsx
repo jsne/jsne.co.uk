@@ -31,6 +31,17 @@ const HomeHeroInner = styled.div`
 `;
 
 const HomeHeroHeader = styled(BannerHeader)`
+    ${props => props.theme.mediaQuery.medium`
+        ${BannerHeaderNavListItemLink} {
+            color: ${props.theme.colors.brandSecondaryBase};
+
+            &:hover,
+            &:focus {
+                color: ${props.theme.colors.brandSecondaryBases[3]};
+            }
+        }
+    `}
+
     ${props => props.theme.mediaQuery.highest`
         background-image: linear-gradient(
             to right,
