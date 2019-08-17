@@ -52,6 +52,11 @@ export const globalCss = theme => css`
         box-sizing: inherit;
     }
 
+    ::selection {
+        background-color: ${theme.colors.uiBodyContrast};
+        color: ${theme.colors.brandPrimaryBase};
+    }
+
     :root {
         font-size: ${theme.root.fontSizes.bases[0]};
 
