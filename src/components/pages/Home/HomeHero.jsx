@@ -163,12 +163,12 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                 <HomeHeroSectionPrimaryTitle as="h1" mb="threeQuarter">
                     {sectionPrimary.title}
                 </HomeHeroSectionPrimaryTitle>
-                <Text maxWidth="medium">{sectionPrimary.text}</Text>
+                <Text maxWidth="29rem">{sectionPrimary.text}</Text>
             </HomeHeroSectionPrimary>
 
             <HomeHeroSectionSecondary as="section">
                 <Box maxWidth="medium">
-                    <Text as="h1">
+                    <Text as="h1" mb="quarter">
                         <HomeHeroSectionSecondaryTitlePre as="div">
                             {sectionSecondary.preTitle}
                         </HomeHeroSectionSecondaryTitlePre>
