@@ -1,7 +1,6 @@
 # JSNE Website
 
 [![CircleCI](https://circleci.com/gh/jsne/jsne.co.uk.svg?style=shield)](https://circleci.com/gh/jsne/jsne.co.uk)
-
 [![Netlify Status](https://api.netlify.com/api/v1/badges/409c5c17-66c8-4e64-a4c0-7eb5c699d57f/deploy-status)](https://app.netlify.com/sites/jsne/deploys)
 
 ## Set Up
