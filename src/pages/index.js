@@ -46,8 +46,13 @@ const HomePage = ({ data: { contentfulNotifcation } }) => {
                             <div>JavaScript</div> North East
                         </>
                     ),
-                    text:
-                        "We're the all things JavaScript meetup based in Newcastle. We meet every third Wednesday of the month.",
+                    text: (
+                        <>
+                            We&apos;re the all things JavaScript meetup based in
+                            Newcastle.
+                            <br /> We meet every third Wednesday of the month.
+                        </>
+                    ),
                 }}
                 sectionSecondary={{
                     preTitle: 'Up next:',
