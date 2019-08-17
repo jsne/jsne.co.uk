@@ -19,6 +19,7 @@ export const eventFragment = graphql`
         speaker {
             ...speakerFragment
         }
+        ticketSlug
         title
         titoId
         venue {

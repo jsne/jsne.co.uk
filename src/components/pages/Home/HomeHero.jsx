@@ -144,15 +144,19 @@ const HomeHeroSectionSecondaryTitlePre = styled(Heading)`
 const HomeHeroSectionSeondaryInfos = styled.ul`
     ${listCleanCss};
     display: grid;
-    grid-auto-flow: column;
+    grid-auto-flow: row;
     grid-gap: ${props => props.theme.space.wholeHalf};
-    justify-content: flex-start;
     align-items: center;
-    margin-bottom: ${props => props.theme.space.whole};
+    justify-content: flex-start;
+    margin-bottom: ${props => props.theme.space.wholeHalf};
+
+    ${props => props.theme.mediaQuery.low`
+        grid-auto-flow: column;
+    `}
 `;
 
 const HomeHeroSectionSeondaryInfosItem = styled.li`
-    display: block;
+    display: flex;
 `;
 
 export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
@@ -181,7 +185,7 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                             {sectionSecondary.title}
                         </Heading>
                     </Text>
-                    <Text as="div" mb="wholeQuarter">
+                    <Text as="div" mb="wholeHalf">
                         <MDXProvider
                             components={{
                                 // eslint-disable-next-line id-length, react/display-name
@@ -205,6 +209,7 @@ export const HomeHero = ({ sectionPrimary, sectionSecondary, ...props }) => (
                             </HomeHeroSectionSeondaryInfosItem>
                         ))}
                     </HomeHeroSectionSeondaryInfos>
+                    {sectionSecondary.ctas}
                 </Box>
             </HomeHeroSectionSecondary>
         </HomeHeroInner>

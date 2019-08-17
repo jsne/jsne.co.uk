@@ -78,7 +78,14 @@ export const RootTemplate = ({
                     },
                     ...link,
                 ]}
-                script={script}
+                script={[
+                    {
+                        src: 'https://js.tito.io/v2',
+                        async: true,
+                        id: 'script-tito',
+                    },
+                    ...script,
+                ]}
             />
             {childrenReplaceContainer ? (
                 children

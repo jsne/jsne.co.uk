@@ -1,12 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { fontWeight } from 'styled-system';
-
+import { position, typography } from 'styled-system';
+import shouldForwardProp from '@styled-system/should-forward-prop';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-export const ButtonRoot = styled.a`
-    ${fontWeight}
+export const ButtonRoot = styled(
+    ({ children, to, ...props }) => (
+        <a href={to} {...props}>
+            {children}
+        </a>
+    ),
+    { shouldForwardProp },
+)`
+    ${position}
+    ${typography}
     ${props => props.theme.transition.call()}
     display: inline-flex;
     border-radius: ${props => props.theme.radii[0]};
@@ -61,15 +69,16 @@ export const ButtonRoot = styled.a`
 `;
 
 ButtonRoot.propTypes = {
-    ...fontWeight.propTypes,
+    ...position.propTypes,
+    ...typography.propTypes,
 };
 
 ButtonRoot.defaultProps = {
     fontWeight: 600,
 };
 
-export const Button = ({ appearance, size, href, ...props }) => {
-    const url = href && href.includes('://') ? new URL(href) : null;
+export const Button = ({ appearance, size, to, ...props }) => {
+    const url = to && to.includes('://') ? new URL(to) : null;
     const optionalProps = {};
 
     // Add smooth scroll if host is the same, `url` has hash and its supported
@@ -97,12 +106,13 @@ export const Button = ({ appearance, size, href, ...props }) => {
         url.host !== window.location.host
     ) {
         optionalProps.target = '_blank';
+        optionalProps.rel = 'noopener noreferrer';
     }
 
     return (
         <ButtonRoot
             appearance={appearance}
-            href={href}
+            href={to}
             size={size}
             {...optionalProps}
             {...props}
@@ -123,6 +133,6 @@ Button.propTypes = {
         'ugly',
         null,
     ]),
-    href: PropTypes.string,
+    to: PropTypes.string,
     size: PropTypes.oneOf(['smaller', 'small', 'medium', 'large', null]),
 };

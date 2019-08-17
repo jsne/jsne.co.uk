@@ -6,6 +6,7 @@ import { useEventQuerySingleLatestFormatted } from 'Graphql/event';
 
 import { RootTemplate } from 'Templates/RootTemplate';
 import { BannerNotification } from 'Components/shared/BannerNotification';
+import { ButtonTicket } from 'Components/shared/ButtonTicket';
 import { TextIcon } from 'Components/shared/TextIcon';
 import { HomeHero } from 'Components/pages/Home/HomeHero';
 
@@ -81,10 +82,14 @@ const HomePage = ({ data: { contentfulNotifcation } }) => {
                             href="#venue-map"
                         />,
                     ],
-                    cta: {
-                        to: event.titoId,
-                        label: 'Get tickets',
-                    },
+                    ctas: (
+                        <ButtonTicket
+                            to={event.ticketSlug}
+                            ticketId={event.titoId}
+                        >
+                            Get tickets
+                        </ButtonTicket>
+                    ),
                 }}
             />
         </RootTemplate>
