@@ -1375,7 +1375,7 @@
   dependencies:
     "@styled-system/core" "^5.1.0"
 
-"@styled-system/should-forward-prop@^5.0.16":
+"@styled-system/should-forward-prop@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@styled-system/should-forward-prop/-/should-forward-prop-5.1.0.tgz#3af2c04643c66f14fba098c17e21e5855ae23078"
   integrity sha512-cHANlnbyHxSqp/wtq14NlSOgk77lAli3kDYq7yjMt8oxIuHRKwJDKdO/ainxSTtgTqVHm2Irr/UEmulphu1YFg==
