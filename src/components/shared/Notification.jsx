@@ -42,7 +42,6 @@ const NotificationInner = styled('div')`
 
 const NotificationRoot = styled('section')`
     display: flex;
-    flex-direciton: column;
     padding-top: ${theme.spacingUnits.half};
     padding-bottom: ${theme.spacingUnits.half};
     background-color: ${theme.colors.info};

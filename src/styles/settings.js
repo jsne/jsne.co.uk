@@ -37,7 +37,7 @@ export const colors = {
     bad: 'rgb(233, 150, 9)',
     ugly: 'rgb(217, 13, 13)',
     uglyFade: 'rgb(247, 210, 210)',
-    info: 'rgb(86, 207, 219)',
+    info: 'rgb(0,184, 248)',
 };
 
 export const fonts = {
