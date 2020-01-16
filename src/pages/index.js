@@ -94,7 +94,7 @@ IndexPage.propTypes = {
 
 export const pageQuery = graphql`
     query pageQuery {
-        contentfulNotifcation(uid: {eq:"new-venue-black-swan"}) {
+        contentfulNotifcation(uid: {eq:"new-venue-tuspark"}) {
             text {
                 content { content { value } }
             }
